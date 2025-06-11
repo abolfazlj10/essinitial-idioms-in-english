@@ -1,0 +1,1155 @@
+{
+    "levels": [
+      {
+        "level_name": "سطح مبتدی",
+        "lessons": [
+          {
+            "lesson_number": 1,
+            "lesson_name": "درس 1",
+            "idioms": [
+              {
+                "english_phrase": "to get in/to get on",
+                "persian_phrase_meaning": "سوار شدن (به وسیله نقلیه)",
+                "english_definition": "to enter or to board a vehicle",
+                "persian_definition_meaning": "وارد شدن یا سوار شدن به یک وسیله نقلیه",
+                "english_explanation": "To get in is used for cars; to get on is used for all other forms of transportation.",
+                "persian_explanation_meaning": "get in برای خودروها و get on برای سایر وسایل حمل و نقل استفاده می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "It's easiest to get in the car from the driver's side. The door on the other side doesn't work well.",
+                    "persian_meaning": "این آسان‌ترین راه برای سوار شدن به ماشین از سمت راننده است. در سمت دیگر خوب کار نمی‌کند."
+                  },
+                  {
+                    "english_text": "I always get on the bus to work at 34th Street.",
+                    "persian_meaning": "من همیشه در خیابان ۳۴ سوار اتوبوس می‌شوم تا سر کار بروم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to get out of/to get off",
+                "persian_phrase_meaning": "پیاده شدن (از وسیله نقلیه)",
+                "english_definition": "to leave or to descend from a vehicle.",
+                "persian_definition_meaning": "ترک کردن یا پایین آمدن از یک وسیله نقلیه.",
+                "english_explanation": "To get out of is used for cars; to get off is used for all other forms of transportation.",
+                "persian_explanation_meaning": "get out of برای خودروها و get off برای سایر وسایل حمل و نقل استفاده می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "Why don't we stop and get out of the car for a while?",
+                    "persian_meaning": "چرا توقف نمی‌کنیم و برای مدتی از ماشین پیاده نمی‌شویم؟"
+                  },
+                  {
+                    "english_text": "Helen got off the train at the 42nd Street terminal.",
+                    "persian_meaning": "هلن در ایستگاه خیابان ۴۲ از قطار پیاده شد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to put on",
+                "persian_phrase_meaning": "پوشیدن (لباس)",
+                "english_definition": "to place on oneself (usually said of clothes) (S)",
+                "persian_definition_meaning": "بر تن کردن (معمولاً در مورد لباس) (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Mary put on her coat and left the room.",
+                    "persian_meaning": "مری کتش را پوشید و اتاق را ترک کرد."
+                  },
+                  {
+                    "english_text": "Put your hat on before you leave the house.",
+                    "persian_meaning": "قبل از اینکه از خانه خارج شوی، کلاهت را بپوش."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take off",
+                "persian_phrase_meaning": "درآوردن (لباس)",
+                "english_definition": "to remove (usually said of clothes) (S)",
+                "persian_definition_meaning": "درآوردن (معمولاً در مورد لباس) (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "John took off his jacket as he entered the office.",
+                    "persian_meaning": "جان وقتی وارد دفتر شد، ژاکتش را درآورد."
+                  },
+                  {
+                    "english_text": "Take your sweater off. The room is very warm.",
+                    "persian_meaning": "ژاکتت را در بیاور. اتاق خیلی گرم است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to call up",
+                "persian_phrase_meaning": "تلفن کردن",
+                "english_definition": "to telephone (also: to give someone a call) (S)",
+                "persian_definition_meaning": "تلفن کردن (همچنین: to give someone a call) (قابل تفکیک)",
+                "english_explanation": "To call can be used instead of to call up, as in the first example below.",
+                "persian_explanation_meaning": "Call می‌تواند به جای call up استفاده شود، مانند مثال اول در پایین.",
+                "examples": [
+                  {
+                    "english_text": "I forgot to call up Mr. Jones yesterday. I'd better call him now.",
+                    "persian_meaning": "دیروز فراموش کردم به آقای جونز زنگ بزنم. بهتر است همین الان به او زنگ بزنم."
+                  },
+                  {
+                    "english_text": "Call me up tomorrow, Jane. We'll arrange a time to have lunch together.",
+                    "persian_meaning": "جین، فردا به من زنگ بزن. زمانی را برای ناهار با هم هماهنگ می‌کنیم."
+                  },
+                  {
+                    "english_text": "I promise to give you a call as soon as I arrive in New York.",
+                    "persian_meaning": "قول می‌دهم به محض رسیدن به نیویورک بهت زنگ بزنم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to turn on",
+                "persian_phrase_meaning": "روشن کردن، به کار انداختن",
+                "english_definition": "to start or cause to function (also: to switch on) (S)",
+                "persian_definition_meaning": "شروع به کار کردن یا باعث کار کردن چیزی شدن (همچنین: to switch on) (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Please turn on the light; it's too dark in here.",
+                    "persian_meaning": "لطفاً چراغ را روشن کنید؛ اینجا خیلی تاریک است."
+                  },
+                  {
+                    "english_text": "Do you know who turned the air conditioning on?",
+                    "persian_meaning": "می‌دانی چه کسی کولر را روشن کرد؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to turn off",
+                "persian_phrase_meaning": "خاموش کردن",
+                "english_definition": "to cause to stop functioning (also: to switch off, to shut off) (S)",
+                "persian_definition_meaning": "باعث توقف کار کردن چیزی شدن (همچنین: to switch off, to shut off) (قابل تفکیک)",
+                "english_explanation": "Turn on and turn off, as well as their related forms, are used for things that flow, such as electricity, water, gas, etc.",
+                "persian_explanation_meaning": "Turn on و turn off، و همچنین اشکال مرتبط با آن‌ها، برای چیزهایی که جریان دارند، مانند برق، آب، گاز و غیره استفاده می‌شوند.",
+                "examples": [
+                  {
+                    "english_text": "Please turn off the light when you leave the room.",
+                    "persian_meaning": "لطفاً وقتی اتاق را ترک می‌کنید چراغ را خاموش کنید."
+                  },
+                  {
+                    "english_text": "Are you really listening to the radio, or should I turn it off?",
+                    "persian_meaning": "واقعاً داری به رادیو گوش می‌دهی، یا باید آن را خاموش کنم؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "right away",
+                "persian_phrase_meaning": "فوراً، بلافاصله",
+                "english_definition": "very soon; immediately (also: at once)",
+                "persian_definition_meaning": "خیلی زود؛ بلافاصله (همچنین: at once)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Dad says that dinner will be ready right away, so we'd better wash our hands and set the table.",
+                    "persian_meaning": "بابا می‌گوید شام فوراً آماده می‌شود، پس بهتر است دست‌هایمان را بشوییم و میز را بچینیم."
+                  },
+                  {
+                    "english_text": "Tell Will to come to my office right away. I must see him immediately.",
+                    "persian_meaning": "به ویل بگو فوراً به دفتر من بیاید. باید فوراً او را ببینم."
+                  },
+                  {
+                    "english_text": "Stop playing that loud music at once!",
+                    "persian_meaning": "همین الان آن موسیقی بلند را قطع کن!"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to pick up",
+                "persian_phrase_meaning": "برداشتن، بلند کردن",
+                "english_definition": "to lift form the floor, table, etc., with one's fingers (S)",
+                "persian_definition_meaning": "برداشتن از روی زمین، میز و غیره، با انگشتان (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Harry picked up the newspaper that was on the front doorstep.",
+                    "persian_meaning": "هری روزنامه‌ای را که جلوی در خانه بود، برداشت."
+                  },
+                  {
+                    "english_text": "Could you pick your toy up before someone falls over it?",
+                    "persian_meaning": "می‌توانی اسباب‌بازی‌ات را برداری قبل از اینکه کسی روی آن بیفتد؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "sooner or later",
+                "persian_phrase_meaning": "بالاخره، دیر یا زود",
+                "english_definition": "eventually, after a period of time",
+                "persian_definition_meaning": "بالاخره، پس از مدتی",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "If you study English seriously, sooner or later you'll become fluent.",
+                    "persian_meaning": "اگر جدی انگلیسی بخوانی، دیر یا زود روان خواهی شد."
+                  },
+                  {
+                    "english_text": "I'm too tired to do my homework now; I'm sure I'll do it sooner or later.",
+                    "persian_meaning": "الان برای انجام تکالیفم خیلی خسته‌ام؛ مطمئنم دیر یا زود انجامش می‌دهم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to get up",
+                "persian_phrase_meaning": "برخاستن، از خواب بیدار شدن",
+                "english_definition": "to arise, to rise from a bed; to make someone arise (S)",
+                "persian_definition_meaning": "بلند شدن، از رختخواب برخاستن؛ کسی را بیدار کردن (قابل تفکیک)",
+                "english_explanation": "For the last definition a noun phrase must separate the verb and particle.",
+                "persian_explanation_meaning": "برای تعریف دوم، یک عبارت اسمی باید فعل و حرف اضافه را از هم جدا کند.",
+                "examples": [
+                  {
+                    "english_text": "Carla gets up at seven o'clock every morning.",
+                    "persian_meaning": "کارلا هر روز صبح ساعت هفت بیدار می‌شود."
+                  },
+                  {
+                    "english_text": "At what time should we get the children up tomorrow?",
+                    "persian_meaning": "فردا بچه‌ها را ساعت چند بیدار کنیم؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "at first",
+                "persian_phrase_meaning": "در ابتدا، اولش",
+                "english_definition": "in the beginning, originally",
+                "persian_definition_meaning": "در ابتدا، در اصل",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "At first English was difficult for him, but later he made great progress.",
+                    "persian_meaning": "در ابتدا انگلیسی برای او دشوار بود، اما بعدها پیشرفت زیادی کرد."
+                  },
+                  {
+                    "english_text": "I thought at first that it was Sheila calling, but then I realized that it was Betty.",
+                    "persian_meaning": "اول فکر کردم شیلا زنگ می‌زند، اما بعداً متوجه شدم که بتی بود."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "lesson_number": 2,
+            "lesson_name": "درس 2",
+            "idioms": [
+              {
+                "english_phrase": "to dress up",
+                "persian_phrase_meaning": "لباس رسمی پوشیدن، شیک‌پوشیدن",
+                "english_definition": "to wear formal clothes, to dress very nicely",
+                "persian_definition_meaning": "لباس رسمی پوشیدن، خیلی خوب لباس پوشیدن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "We should definitely dress up to go to the theater.",
+                    "persian_meaning": "قطعاً باید برای رفتن به تئاتر لباس شیک بپوشیم."
+                  },
+                  {
+                    "english_text": "You don't have to dress up for Mike's party.",
+                    "persian_meaning": "لازم نیست برای مهمانی مایک لباس رسمی بپوشی."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "at last",
+                "persian_phrase_meaning": "بالاخره، سرانجام",
+                "english_definition": "finally, after a long time.",
+                "persian_definition_meaning": "بالاخره، پس از مدت طولانی.",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "We waited for hours and then the train arrived at last.",
+                    "persian_meaning": "ساعت‌ها منتظر ماندیم و بالاخره قطار رسید."
+                  },
+                  {
+                    "english_text": "Now that I am sixteen, at last I can drive my parents' car.",
+                    "persian_meaning": "حالا که شانزده ساله شدم، بالاخره می‌توانم ماشین پدر و مادرم را برانم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "as usual",
+                "persian_phrase_meaning": "طبق معمول",
+                "english_definition": "as is the general case, as is typical",
+                "persian_definition_meaning": "همانند حالت کلی، طبق معمول",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "George is late for class as usual. This seems to happen every day.",
+                    "persian_meaning": "جورج طبق معمول برای کلاس دیر کرده است. این هر روز اتفاق می‌افتد."
+                  },
+                  {
+                    "english_text": "As usual, Dora received first prize in the swimming contest. It's the third consecutive year that she has won.",
+                    "persian_meaning": "طبق معمول، دورا در مسابقه شنا جایزه اول را دریافت کرد. این سومین سال متوالی است که او برنده شده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to find out",
+                "persian_phrase_meaning": "فهمیدن، اطلاعات کسب کردن",
+                "english_definition": "get information about, to determine (S)",
+                "persian_definition_meaning": "دریافت اطلاعات درباره، مشخص کردن (قابل تفکیک)",
+                "english_explanation": "This idiom is separable only when a pronoun is used, as in the second example.",
+                "persian_explanation_meaning": "این اصطلاح فقط زمانی قابل تفکیک است که یک ضمیر استفاده شود، مانند مثال دوم.",
+                "examples": [
+                  {
+                    "english_text": "Will you please try to find out what time the airplane arrives?",
+                    "persian_meaning": "لطفاً سعی می‌کنید بفهمید هواپیما چه ساعتی می‌رسد؟"
+                  },
+                  {
+                    "english_text": "I'll call right now to find it out.",
+                    "persian_meaning": "همین الان زنگ می‌زنم تا آن را بفهمم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to look at",
+                "persian_phrase_meaning": "نگاه کردن به، توجه کردن به",
+                "english_definition": "give one's attention to; to watch",
+                "persian_definition_meaning": "توجه خود را به چیزی دادن؛ تماشا کردن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The teacher told us to look at the blackboard and not at our books.",
+                    "persian_meaning": "معلم به ما گفت به تخته سیاه نگاه کنیم و نه به کتاب‌هایمان."
+                  },
+                  {
+                    "english_text": "I like to walk along a country road at night and look at the stars.",
+                    "persian_meaning": "دوست دارم شب‌ها در جاده‌ای روستایی قدم بزنم و به ستاره‌ها نگاه کنم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to look for",
+                "persian_phrase_meaning": "جستجو کردن، دنبال چیزی گشتن",
+                "english_definition": "to try to find, to search for",
+                "persian_definition_meaning": "تلاش برای یافتن، جستجو کردن برای",
+                "english_explanation": "An adverb phrase such as all over can be put between the verb and preposition, as in the second example, however, the idiom cannot be separated by a noun or pronoun.",
+                "persian_explanation_meaning": "یک عبارت قیدی مانند 'all over' می‌تواند بین فعل و حرف اضافه قرار گیرد، مانند مثال دوم؛ با این حال، اصطلاح را نمی‌توان با اسم یا ضمیر جدا کرد.",
+                "examples": [
+                  {
+                    "english_text": "He's spent over an hour looking for the pen that he lost.",
+                    "persian_meaning": "او بیش از یک ساعت است که دنبال خودکار گمشده‌اش می‌گردد."
+                  },
+                  {
+                    "english_text": "So there you are! We've looked all over for you.",
+                    "persian_meaning": "پس تو اینجا هستی! ما همه جا دنبالت گشتیم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "all right",
+                "persian_phrase_meaning": "خوب، قابل قبول؛ بله، اوکی",
+                "english_definition": "acceptable, fine; yes, okay",
+                "persian_definition_meaning": "قابل قبول، خوب؛ بله، اوکی",
+                "english_explanation": "This idiom can also be spelled alright in informal usage.",
+                "persian_explanation_meaning": "این اصطلاح در کاربرد غیررسمی می‌تواند به صورت 'alright' نیز نوشته شود.",
+                "examples": [
+                  {
+                    "english_text": "He said that it would be all right to wait in her office until she returned.",
+                    "persian_meaning": "او گفت که منتظر ماندن در دفترش تا بازگشت او ایرادی ندارد."
+                  },
+                  {
+                    "english_text": "Do you want me to turn off the TV? Alright, if you insist.",
+                    "persian_meaning": "می‌خواهی تلویزیون را خاموش کنم؟ باشه، اگر اصرار داری."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "all along",
+                "persian_phrase_meaning": "از همان ابتدا، تمام مدت",
+                "english_definition": "all the time, from the beginning (without change)",
+                "persian_definition_meaning": "تمام وقت، از ابتدا (بدون تغییر)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "She knew all along that we'd never agree with his plan.",
+                    "persian_meaning": "او از همان ابتدا می‌دانست که ما هرگز با برنامه‌اش موافقت نخواهیم کرد."
+                  },
+                  {
+                    "english_text": "You're smiling! Did you know all along that I'd give you a birthday present?",
+                    "persian_meaning": "داری می‌خندی! از همان اول می‌دانستی که بهت کادوی تولد می‌دهم؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "little by little",
+                "persian_phrase_meaning": "کم‌کم، به تدریج",
+                "english_definition": "gradually, slowly (also: step by step)",
+                "persian_definition_meaning": "به تدریج، آرام آرام (همچنین: step by step)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Karen's health seems to be improving little by little.",
+                    "persian_meaning": "به نظر می‌رسد سلامتی کارن کم‌کم در حال بهبود است."
+                  },
+                  {
+                    "english_text": "If you study regularly each day, step by step your vocabulary will increase.",
+                    "persian_meaning": "اگر هر روز به طور منظم مطالعه کنی، واژگانت قدم به قدم افزایش خواهد یافت."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to tire out",
+                "persian_phrase_meaning": "خسته کردن، از پا درآوردن",
+                "english_definition": "to make very weary due to difficult conditions or hard effort (also: to wear out) (S)",
+                "persian_definition_meaning": "خیلی خسته کردن به دلیل شرایط دشوار یا تلاش زیاد (همچنین: to wear out) (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The hot weather tired out the runners in the marathon.",
+                    "persian_meaning": "هوای گرم دوندگان ماراتن را از پا درآورد."
+                  },
+                  {
+                    "english_text": "Does studying for final exams wear you out? It makes me feel worn out!",
+                    "persian_meaning": "آیا درس خواندن برای امتحانات نهایی خسته‌ات می‌کند؟ من را از پا در می‌آورد!"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to call on",
+                "persian_phrase_meaning": "درخواست پاسخ از کسی؛ ملاقات کردن",
+                "english_definition": "to ask for a response from; to visit (also: to drop in on)",
+                "persian_definition_meaning": "درخواست پاسخ از کسی؛ ملاقات کردن (همچنین: to drop in on)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Jose didn't know the answer when the teacher called on him.",
+                    "persian_meaning": "خوزه وقتی معلم از او خواست جواب دهد، پاسخ را نمی‌دانست."
+                  },
+                  {
+                    "english_text": "Last night several friends called on us at our home.",
+                    "persian_meaning": "دیشب چند دوست در خانه‌مان به ما سر زدند."
+                  },
+                  {
+                    "english_text": "Why don't we drop in on Sally a little later?",
+                    "persian_meaning": "چرا کمی بعد به سالی سر نمی‌زنیم؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "never mind",
+                "persian_phrase_meaning": "مهم نیست، نگران نباش",
+                "english_definition": "don't be concerned about it; ignore what was just said",
+                "persian_definition_meaning": "نگران آن نباش؛ آنچه گفته شد را نادیده بگیر",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "When he spilled his drink on my coat, I said, \"Never mind. It needs to be cleaned anyway.\"",
+                    "persian_meaning": "وقتی نوشیدنی‌اش روی کتم ریخت، گفتم: «مهم نیست. به هر حال نیاز به تمیز کردن دارد.»"
+                  },
+                  {
+                    "english_text": "So you weren't listening to me again. Never mind; it wasn't important.",
+                    "persian_meaning": "پس دوباره به حرف من گوش نمی‌دادی. مهم نیست؛ چیز مهمی نبود."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "lesson_number": 3,
+            "lesson_name": "درس 3",
+            "idioms": [
+              {
+                "english_phrase": "to pick out",
+                "persian_phrase_meaning": "انتخاب کردن، برگزیدن",
+                "english_definition": "to choose, to select (S)",
+                "persian_definition_meaning": "انتخاب کردن، برگزیدن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Ann picked out a good book to give to her brother as a graduation gift.",
+                    "persian_meaning": "آن برای برادرش به عنوان هدیه فارغ‌التحصیلی یک کتاب خوب انتخاب کرد."
+                  },
+                  {
+                    "english_text": "Johnny, if you want me to buy you a toy, then pick one out now.",
+                    "persian_meaning": "جانی، اگر می‌خواهی برایت اسباب‌بازی بخرم، همین الان یکی را انتخاب کن."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take one's time",
+                "persian_phrase_meaning": "عجله نکردن، با آرامش انجام دادن",
+                "english_definition": "to do without rush, not to hurry",
+                "persian_definition_meaning": "بدون عجله انجام دادن، عجله نکردن",
+                "english_explanation": "This idiom is often used in the imperative form. (See the first example)",
+                "persian_explanation_meaning": "این اصطلاح اغلب به صورت امری استفاده می‌شود. (به مثال اول نگاه کنید)",
+                "examples": [
+                  {
+                    "english_text": "There's no need to hurry doing those exercises. Take your time.",
+                    "persian_meaning": "نیازی نیست در انجام آن تمرینات عجله کنی. وقت بگذار."
+                  },
+                  {
+                    "english_text": "William never works rapidly. He always takes his time in every thing that he does.",
+                    "persian_meaning": "ویلیام هرگز سریع کار نمی‌کند. او همیشه در هر کاری که انجام می‌دهد وقت می‌گذارد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to talk over",
+                "persian_phrase_meaning": "صحبت کردن در مورد، مشورت کردن",
+                "english_definition": "to discuss or consider a situation with others (S)",
+                "persian_definition_meaning": "بحث یا بررسی موقعیتی با دیگران (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "We talked over Carla's plan to install an air conditioner in the room, but we couldn't reach a decision.",
+                    "persian_meaning": "در مورد برنامه کارلا برای نصب کولر در اتاق صحبت کردیم، اما نتوانستیم به تصمیمی برسیم."
+                  },
+                  {
+                    "english_text": "Before I accepted the new job offer, I talked the matter over with my wife.",
+                    "persian_meaning": "قبل از اینکه پیشنهاد شغلی جدید را قبول کنم، موضوع را با همسرم در میان گذاشتم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to lie down",
+                "persian_phrase_meaning": "دراز کشیدن، دراز شدن",
+                "english_definition": "to place oneself in a flat position, to recline",
+                "persian_definition_meaning": "خود را در وضعیتی صاف قرار دادن، دراز کشیدن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "If you are tired, why don't you lie down for an hour or so?",
+                    "persian_meaning": "اگر خسته هستید، چرا برای یک ساعت یا بیشتر دراز نمی‌کشید؟"
+                  },
+                  {
+                    "english_text": "The doctor says that Grace must lie down and rest for a short time every afternoon.",
+                    "persian_meaning": "دکتر می‌گوید گریس باید هر بعدازظهر برای مدت کوتاهی دراز بکشد و استراحت کند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to stand up",
+                "persian_phrase_meaning": "ایستادن، بلند شدن",
+                "english_definition": "to rise from a sitting or lying position (also: to get up)",
+                "persian_definition_meaning": "از حالت نشسته یا خوابیده برخاستن (همچنین: to get up)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "When the president entered the room, everyone stood up.",
+                    "persian_meaning": "وقتی رئیس جمهور وارد اتاق شد، همه بلند شدند."
+                  },
+                  {
+                    "english_text": "Suzy, stop rolling around on the floor; get up now.",
+                    "persian_meaning": "سوزی، دیگر روی زمین غلت نزن؛ الان بلند شو."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to sit down",
+                "persian_phrase_meaning": "نشستن",
+                "english_definition": "to be seated (also: take a seat)",
+                "persian_definition_meaning": "نشستن (همچنین: take a seat)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "We sat down on the park bench and watched the children play.",
+                    "persian_meaning": "روی نیمکت پارک نشستیم و بازی بچه‌ها را تماشا کردیم."
+                  },
+                  {
+                    "english_text": "There aren't any more chairs, but you can take a seat on the floor.",
+                    "persian_meaning": "صندلی دیگری نیست، اما می‌توانی روی زمین بنشینی."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "all (day, week, month, year) long",
+                "persian_phrase_meaning": "تمام (روز، هفته، ماه، سال)",
+                "english_definition": "the entire day, week, month, year",
+                "persian_definition_meaning": "تمام روز، هفته، ماه، سال",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "I've been working on my income tax forms all day long. I've hardly had time to eat.",
+                    "persian_meaning": "تمام روز مشغول پر کردن فرم‌های مالیاتی‌ام بودم. به سختی وقت غذا خوردن داشتم."
+                  },
+                  {
+                    "english_text": "It's been raining all week long. We haven't seen the sun since last Monday.",
+                    "persian_meaning": "تمام هفته باران می‌بارد. از دوشنبه گذشته خورشید را ندیده‌ایم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "by oneself",
+                "persian_phrase_meaning": "تنها، بدون کمک",
+                "english_definition": "alone, without assistance",
+                "persian_definition_meaning": "تنها، بدون کمک",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Francis translated that French novel by himself. No one helped him.",
+                    "persian_meaning": "فرانسیس آن رمان فرانسوی را خودش ترجمه کرد. کسی به او کمک نکرد."
+                  },
+                  {
+                    "english_text": "Paula likes to walk through the woods by herself, but her brother prefers to walk with a companion.",
+                    "persian_meaning": "پائولا دوست دارد تنها در جنگل قدم بزند، اما برادرش ترجیح می‌دهد با یک همراه راه برود."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "on purpose",
+                "persian_phrase_meaning": "عمداً، از قصد",
+                "english_definition": "for a reason, deliberately",
+                "persian_definition_meaning": "به دلیلی، عمداً",
+                "english_explanation": "This idiom is usually used when someone does something wrong or unfair.",
+                "persian_explanation_meaning": "این اصطلاح معمولاً زمانی استفاده می‌شود که کسی کار اشتباه یا ناعادلانه‌ای انجام می‌دهد.",
+                "examples": [
+                  {
+                    "english_text": "Do you think that she didn't come to the meeting on purpose?",
+                    "persian_meaning": "فکر می‌کنی او عمداً به جلسه نیامد؟"
+                  },
+                  {
+                    "english_text": "It was no accident that he broke my glasses. He did it on purpose.",
+                    "persian_meaning": "عمدی بود که او عینکم را شکست. او این کار را از قصد انجام داد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to get along with",
+                "persian_phrase_meaning": "کنار آمدن با، سازگار بودن با؛ از عهده کاری برآمدن",
+                "english_definition": "to associate or work well with; to succeed or manage in doing (also: to get on with)",
+                "persian_definition_meaning": "ارتباط خوب داشتن یا خوب کار کردن با؛ موفق شدن یا از عهده کاری برآمدن (همچنین: to get on with)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Terry isn't getting along with her new roommate; they argue constantly.",
+                    "persian_meaning": "تری با هم‌اتاقی جدیدش کنار نمی‌آید؛ آن‌ها دائماً با هم بحث می‌کنند."
+                  },
+                  {
+                    "english_text": "How are you getting on with your students?",
+                    "persian_meaning": "چطور با دانش‌آموزانت کنار می‌آیی؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to make a difference (to)",
+                "persian_phrase_meaning": "اهمیت داشتن (برای)، تأثیر گذاشتن (بر)",
+                "english_definition": "to be of importance (to), to affect",
+                "persian_definition_meaning": "مهم بودن (برای)، تأثیر گذاشتن",
+                "english_explanation": "This idiom is often used with adjectives to show the degree of importance.",
+                "persian_explanation_meaning": "این اصطلاح اغلب با صفات برای نشان دادن درجه اهمیت استفاده می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "It makes a big difference to me whether he likes the food I serve.",
+                    "persian_meaning": "برای من خیلی مهم است که او غذایی که سرو می‌کنم را دوست داشته باشد یا نه."
+                  },
+                  {
+                    "english_text": "Does it make any difference to you where we go for dinner?",
+                    "persian_meaning": "برای شما فرقی می‌کند کجا برای شام برویم؟"
+                  },
+                  {
+                    "english_text": "No, it doesn't make any difference.",
+                    "persian_meaning": "نه، هیچ فرقی نمی‌کند."
+                  },
+                  {
+                    "english_text": "It makes no difference to Lisa either.",
+                    "persian_meaning": "برای لیزا هم فرقی نمی‌کند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take out",
+                "persian_phrase_meaning": "بیرون آوردن، خارج کردن؛ به قرار گذاشتن (با کسی)",
+                "english_definition": "to remove, to extract (S); to go on a date with (S) (also to go out with)",
+                "persian_definition_meaning": "برداشتن، استخراج کردن (قابل تفکیک)؛ با کسی به قرار رفتن (قابل تفکیک) (همچنین to go out with)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Student, take out your books and open them to page twelve.",
+                    "persian_meaning": "دانش‌آموز، کتاب‌هایتان را بیرون بیاورید و صفحه دوازده را باز کنید."
+                  },
+                  {
+                    "english_text": "Did you take Sue out last night?",
+                    "persian_meaning": "دیشب سو را به قرار بردی؟"
+                  },
+                  {
+                    "english_text": "No, she couldn't go out with me.",
+                    "persian_meaning": "نه، او نتوانست با من بیرون برود."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "lesson_number": 4,
+            "lesson_name": "درس 4",
+            "idioms": [
+              {
+                "english_phrase": "to take part in",
+                "persian_phrase_meaning": "شرکت کردن در، دخالت داشتن در",
+                "english_definition": "to be involved in, to participate in (also: to be in on)",
+                "persian_definition_meaning": "درگیر بودن در، شرکت کردن در (همچنین: to be in on)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Martin was sick and could not take part in the meeting yesterday.",
+                    "persian_meaning": "مارتین مریض بود و نتوانست دیروز در جلسه شرکت کند."
+                  },
+                  {
+                    "english_text": "I didn't want to be in on their argument, so I remained silent.",
+                    "persian_meaning": "نمی‌خواستم در بحث آنها دخالت کنم، بنابراین سکوت کردم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "at all",
+                "persian_phrase_meaning": "اصلاً، به هیچ وجه",
+                "english_definition": "to any degree (also: in the least)",
+                "persian_definition_meaning": "به هر درجه‌ای (همچنین: in the least)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Larry isn't at all shy about expressing his opinions.",
+                    "persian_meaning": "لری اصلاً در بیان نظراتش خجالتی نیست."
+                  },
+                  {
+                    "english_text": "When I asked Donna whether she was tired, she said, \"Not in the least. I'm full of energy.\"",
+                    "persian_meaning": "وقتی از دونا پرسیدم خسته است یا نه، گفت: «اصلاً. پر از انرژی هستم.»"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to look up",
+                "persian_phrase_meaning": "دنبال اطلاعات گشتن (در فرهنگ لغت، دایرکتوری و غیره)",
+                "english_definition": "to locate information in a directory, dictionary, book, etc. (S)",
+                "persian_definition_meaning": "پیدا کردن اطلاعات در دایرکتوری، فرهنگ لغت، کتاب و غیره (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Ellen suggested that we look up Lee's telephone number in the directory.",
+                    "persian_meaning": "الن پیشنهاد کرد که شماره تلفن لی را در دایرکتوری پیدا کنیم."
+                  },
+                  {
+                    "english_text": "Students should try to understand the meaning of a new word from context before looking the word up in the dictionary.",
+                    "persian_meaning": "دانش‌آموزان باید قبل از پیدا کردن کلمه در فرهنگ لغت، سعی کنند معنی کلمه جدید را از روی متن بفهمند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to wait on",
+                "persian_phrase_meaning": "خدمت کردن به، سرویس دادن به (در فروشگاه یا رستوران)",
+                "english_definition": "to serve in a store or restaurant",
+                "persian_definition_meaning": "خدمت کردن در یک فروشگاه یا رستوران",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "A very pleasant young clerk waited on me in that shop.",
+                    "persian_meaning": "یک کارمند جوان و بسیار دلپذیر در آن مغازه به من سرویس داد."
+                  },
+                  {
+                    "english_text": "The restaurant waitress asked us, \"Has anyone waited on you yet?\"",
+                    "persian_meaning": "پیشخدمت رستوران از ما پرسید: «آیا کسی تا به حال به شما سرویس داده است؟»"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "at least",
+                "persian_phrase_meaning": "حداقل، دست کم",
+                "english_definition": "a minimum of, no fewer (or less) than",
+                "persian_definition_meaning": "حداقل، نه کمتر از",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "I spend at least two hours every night on my studies.",
+                    "persian_meaning": "من هر شب حداقل دو ساعت را صرف مطالعه‌ام می‌کنم."
+                  },
+                  {
+                    "english_text": "Mike claims that he drinks at least a quart of water every day.",
+                    "persian_meaning": "مایک ادعا می‌کند که هر روز حداقل یک چهارم لیتر آب می‌نوشد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "so far",
+                "persian_phrase_meaning": "تا کنون، تا به حال",
+                "english_definition": "until now, until the present time (also: up to now, as of yet)",
+                "persian_definition_meaning": "تا الان، تا زمان حال (همچنین: up to now, as of yet)",
+                "english_explanation": "This idiom is usually used with the present perfect tense.",
+                "persian_explanation_meaning": "این اصطلاح معمولاً با زمان حال کامل استفاده می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "So far, this year has been excellent for business. I hope that the good luck continues.",
+                    "persian_meaning": "تا به حال، امسال برای کسب و کار عالی بوده است. امیدوارم این خوش شانسی ادامه یابد."
+                  },
+                  {
+                    "english_text": "How many idioms have we studied in this book up to now?",
+                    "persian_meaning": "تا به حال چند اصطلاح در این کتاب مطالعه کرده‌ایم؟"
+                  },
+                  {
+                    "english_text": "As of yet, we have not had an answer from him.",
+                    "persian_meaning": "تا به حال، از او جوابی دریافت نکرده‌ایم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take a walk, stroll, hike, etc.",
+                "persian_phrase_meaning": "به پیاده‌روی، قدم زدن، کوهنوردی و غیره رفتن",
+                "english_definition": "to go for a walk, stroll, hike, etc.",
+                "persian_definition_meaning": "رفتن برای پیاده‌روی، قدم زدن، کوهنوردی و غیره",
+                "english_explanation": "A stroll involves slow, easy walking; a hike involves serious, strenuous walking.",
+                "persian_explanation_meaning": "قدم زدن (stroll) شامل پیاده‌روی آرام و راحت است؛ کوهنوردی (hike) شامل پیاده‌روی جدی و طاقت‌فرسا است.",
+                "examples": [
+                  {
+                    "english_text": "Last evening we took a walk around the park.",
+                    "persian_meaning": "دیشب در پارک قدم زدیم."
+                  },
+                  {
+                    "english_text": "It's a fine day. Would you like to take a stroll along Mason Boulevard?",
+                    "persian_meaning": "روز خوبی است. دوست داری در بلوار میسون قدم بزنیم؟"
+                  },
+                  {
+                    "english_text": "Let's take a hike up Cowles Mountain this afternoon.",
+                    "persian_meaning": "بیایید امروز بعدازظهر به کوه کاولز کوهنوردی کنیم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take a trip",
+                "persian_phrase_meaning": "به سفر رفتن",
+                "english_definition": "to go on a journey, to travel",
+                "persian_definition_meaning": "به سفر رفتن، مسافرت کردن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "I'm so busy at work that I have no time to take a trip.",
+                    "persian_meaning": "آنقدر در کارم مشغولم که وقت سفر ندارم."
+                  },
+                  {
+                    "english_text": "During the summer holidays, the Thompsons took a trip to Europe.",
+                    "persian_meaning": "در تعطیلات تابستانی، خانواده تامپسون به اروپا سفر کردند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to try on",
+                "persian_phrase_meaning": "پرو کردن (لباس)",
+                "english_definition": "to wear clothes to check the style or fit before buying (S)",
+                "persian_definition_meaning": "پوشیدن لباس برای بررسی مدل یا اندازه قبل از خرید (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "He tried on several suits before he picked out a blue one.",
+                    "persian_meaning": "او چند دست کت و شلوار را پرو کرد قبل از اینکه یکی آبی را انتخاب کند."
+                  },
+                  {
+                    "english_text": "Why don't you try these shoes on next?",
+                    "persian_meaning": "چرا این کفش‌ها را بعداً امتحان نمی‌کنی؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to think over",
+                "persian_phrase_meaning": "در مورد چیزی فکر کردن، سنجیدن",
+                "english_definition": "to consider carefully before deciding (S)",
+                "persian_definition_meaning": "با دقت بررسی کردن قبل از تصمیم‌گیری (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "I'd like to think over your offer first. Then can we talk it over tomorrow?",
+                    "persian_meaning": "اول می‌خواهم در مورد پیشنهاد شما فکر کنم. بعد می‌توانیم فردا در موردش صحبت کنیم؟"
+                  },
+                  {
+                    "english_text": "You don't have to give me your decision now. Think it over for a while.",
+                    "persian_meaning": "لازم نیست همین الان تصمیمت را به من بگویی. کمی در موردش فکر کن."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take place",
+                "persian_phrase_meaning": "برگزار شدن، اتفاق افتادن",
+                "english_definition": "to occur, to happen according to plan",
+                "persian_definition_meaning": "رخ دادن، طبق برنامه اتفاق افتادن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The regular meetings of the committee take place in Constitution Hall.",
+                    "persian_meaning": "جلسات منظم کمیته در سالن قانون اساسی برگزار می‌شود."
+                  },
+                  {
+                    "english_text": "I thought that the celebration was taking place at John's house.",
+                    "persian_meaning": "فکر کردم جشن در خانه جان برگزار می‌شود."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to put away",
+                "persian_phrase_meaning": "کنار گذاشتن، سر جای خود قرار دادن",
+                "english_definition": "to remove from sight, to put in the proper place (S)",
+                "persian_definition_meaning": "از دید پنهان کردن، در جای مناسب قرار دادن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Please put away your papers before you open the test booklet.",
+                    "persian_meaning": "لطفاً قبل از باز کردن دفترچه آزمون، کاغذهایتان را کنار بگذارید."
+                  },
+                  {
+                    "english_text": "John put the notepad away in his desk when he was finished with it.",
+                    "persian_meaning": "جان وقتی کارش با دفترچه یادداشت تمام شد، آن را در کشویش گذاشت."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "lesson_number": 5,
+            "lesson_name": "درس 5",
+            "idioms": [
+              {
+                "english_phrase": "to look out",
+                "persian_phrase_meaning": "مراقب بودن، احتیاط کردن",
+                "english_definition": "to be careful or cautious (also: to watch out)",
+                "persian_definition_meaning": "مراقب یا محتاط بودن (همچنین: to watch out)",
+                "english_explanation": "Both of these idioms can occur with the preposition for.",
+                "persian_explanation_meaning": "هر دو این اصطلاحات می‌توانند با حرف اضافه 'for' استفاده شوند.",
+                "examples": [
+                  {
+                    "english_text": "\"Look out!\" Jeffrey cried as his friend almost stepped in a big hole in the ground.",
+                    "persian_meaning": "جفری فریاد زد «مراقب باش!» وقتی دوستش تقریباً وارد سوراخ بزرگی در زمین شد."
+                  },
+                  {
+                    "english_text": "Look out for reckless drivers whenever you cross the street.",
+                    "persian_meaning": "هنگام عبور از خیابان همیشه مراقب رانندگان بی‌پروا باشید."
+                  },
+                  {
+                    "english_text": "Small children should always watch out for strangers offering candy.",
+                    "persian_meaning": "کودکان خردسال همیشه باید مراقب غریبه‌هایی باشند که آب‌نبات تعارف می‌کنند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to shake hands",
+                "persian_phrase_meaning": "دست دادن",
+                "english_definition": "to exchange greetings by clasping hands",
+                "persian_definition_meaning": "احوالپرسی کردن با فشردن دست‌ها",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "When people meet for the first time, they usually shake hands.",
+                    "persian_meaning": "وقتی مردم برای اولین بار یکدیگر را ملاقات می‌کنند، معمولاً دست می‌دهند."
+                  },
+                  {
+                    "english_text": "The student warmly shook hands with his old professor.",
+                    "persian_meaning": "دانش‌آموز به گرمی با استاد قدیمی‌اش دست داد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to get back",
+                "persian_phrase_meaning": "بازگشتن، برگرداندن",
+                "english_definition": "to return (S)",
+                "persian_definition_meaning": "برگشتن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Mr. Harris got back from his business trip to Chicago this morning.",
+                    "persian_meaning": "آقای هریس امروز صبح از سفر کاری خود به شیکاگو برگشت."
+                  },
+                  {
+                    "english_text": "Could you get the children back home by five o'clock?",
+                    "persian_meaning": "می‌توانی بچه‌ها را تا ساعت پنج به خانه برگردانی؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to catch cold",
+                "persian_phrase_meaning": "سرما خوردن",
+                "english_definition": "to become sick with a cold of the nose or throat",
+                "persian_definition_meaning": "بیمار شدن با سرماخوردگی بینی یا گلو",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "If you go out in this rain, you will surely catch cold.",
+                    "persian_meaning": "اگر در این باران بیرون بروی، حتماً سرما می‌خوری."
+                  },
+                  {
+                    "english_text": "How did she ever catch cold in such warm weather?",
+                    "persian_meaning": "چطور او در چنین هوای گرمی سرما خورد؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to get over",
+                "persian_phrase_meaning": "بهبود یافتن از بیماری؛ کنار آمدن با ضرر یا غم",
+                "english_definition": "to recover from an illness; to accept a loss or sorrow",
+                "persian_definition_meaning": "از بیماری بهبود یافتن؛ پذیرفتن یک ضرر یا غم",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "It took me over a month to get over my cold, but I'm finally well now.",
+                    "persian_meaning": "بیش از یک ماه طول کشید تا از سرماخوردگی‌ام بهبود پیدا کنم، اما بالاخره الان خوب هستم."
+                  },
+                  {
+                    "english_text": "It seems that Mr. Mason will never get over the death of his wife.",
+                    "persian_meaning": "به نظر می‌رسد آقای میسون هرگز از مرگ همسرش کنار نخواهد آمد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to make up one's mind",
+                "persian_phrase_meaning": "تصمیم گرفتن، نهایی کردن تصمیم",
+                "english_definition": "to reach a decision, to decide finally",
+                "persian_definition_meaning": "به تصمیمی رسیدن، بالاخره تصمیم گرفتن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Sally is considering several colleges to attend, but she hasn't made up her mind yet.",
+                    "persian_meaning": "سالی در حال بررسی چندین دانشگاه برای تحصیل است، اما هنوز تصمیم نگرفته است."
+                  },
+                  {
+                    "english_text": "When are you going to make up your mind about your vacation plans?",
+                    "persian_meaning": "چه زمانی در مورد برنامه‌های تعطیلاتت تصمیم می‌گیری؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to change one's mind",
+                "persian_phrase_meaning": "عقیده خود را عوض کردن",
+                "english_definition": "to alter one's decision or opinion",
+                "persian_definition_meaning": "تغییر تصمیم یا نظر خود",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "We have changed our minds and are going to Canada instead of California this summer.",
+                    "persian_meaning": "ما نظرمان را تغییر داده‌ایم و امسال تابستان به جای کالیفرنیا به کانادا می‌رویم."
+                  },
+                  {
+                    "english_text": "Matthew has changed his mind several times about buying a new cat.",
+                    "persian_meaning": "متیو چندین بار در مورد خرید گربه جدید نظرش را تغییر داده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "for the time being",
+                "persian_phrase_meaning": "فعلاً، موقتاً",
+                "english_definition": "temporarily (also: for now)",
+                "persian_definition_meaning": "موقت (همچنین: for now)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "For the time being, Janet is working as a waitress, but she really hopes to become an actress soon.",
+                    "persian_meaning": "فعلاً، جانت به عنوان پیشخدمت کار می‌کند، اما او واقعاً امیدوار است به زودی بازیگر شود."
+                  },
+                  {
+                    "english_text": "We're living in an apartment for now, but soon we'll be looking for a house to buy.",
+                    "persian_meaning": "فعلاً در یک آپارتمان زندگی می‌کنیم، اما به زودی دنبال خرید خانه خواهیم بود."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "for good",
+                "persian_phrase_meaning": "برای همیشه، دائمی",
+                "english_definition": "permanently, forever",
+                "persian_definition_meaning": "دائمی، برای همیشه",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Ruth has returned to Canada for good. She won't ever live in the United States again.",
+                    "persian_meaning": "روث برای همیشه به کانادا برگشته است. او دیگر هرگز در ایالات متحده زندگی نخواهد کرد."
+                  },
+                  {
+                    "english_text": "Are you finished with school for good, or will you continue your studies some day?",
+                    "persian_meaning": "آیا برای همیشه با مدرسه تمام کردی، یا روزی درس‌هایت را ادامه خواهی داد؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to call off",
+                "persian_phrase_meaning": "لغو کردن",
+                "english_definition": "to cancel (S)",
+                "persian_definition_meaning": "لغو کردن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The referee called off the soccer game because of the darkness.",
+                    "persian_meaning": "داور به دلیل تاریکی بازی فوتبال را لغو کرد."
+                  },
+                  {
+                    "english_text": "The president called the meeting off because she had to leave town.",
+                    "persian_meaning": "رئیس جلسه را لغو کرد زیرا مجبور بود شهر را ترک کند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to put off",
+                "persian_phrase_meaning": "به تعویق انداختن",
+                "english_definition": "to postpone (S)",
+                "persian_definition_meaning": "به تعویق انداختن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Many students put off doing their assignments until the last minute.",
+                    "persian_meaning": "بسیاری از دانش‌آموزان انجام تکالیفشان را تا آخرین لحظه به تعویق می‌اندازند."
+                  },
+                  {
+                    "english_text": "Let's put the party off until next weekend, okay?",
+                    "persian_meaning": "بیایید مهمانی را تا آخر هفته آینده به تعویق بیندازیم، باشه؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "in a hurry",
+                "persian_phrase_meaning": "عجول، با عجله",
+                "english_definition": "hurried, rushed (also: in a rush)",
+                "persian_definition_meaning": "عجول، شتاب‌زده (همچنین: in a rush)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Alex seems in a hurry; he must be late for his train again.",
+                    "persian_meaning": "الکس عجله دارد؛ حتماً دوباره برای قطارش دیر کرده است."
+                  },
+                  {
+                    "english_text": "She's always in a rush in the morning to get the kids to school.",
+                    "persian_meaning": "او همیشه صبح‌ها برای رساندن بچه‌ها به مدرسه عجله دارد."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

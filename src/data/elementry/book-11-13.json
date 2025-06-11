@@ -1,0 +1,711 @@
+{
+    "levels": [
+      {
+        "level_name": "سطح مبتدی",
+        "lessons": [
+          {
+            "lesson_number": 11,
+            "lesson_name": "درس 11",
+            "idioms": [
+              {
+                "english_phrase": "to keep out",
+                "persian_phrase_meaning": "داخل نشدن، اجازه ورود ندادن",
+                "english_definition": "not to enter, not allow to enter (S)",
+                "persian_definition_meaning": "وارد نشدن، اجازه ورود ندادن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "There was a large sign outside the door that said, \"Danger! Keep out!\"",
+                    "persian_meaning": "یک تابلوی بزرگ بیرون در بود که می‌گفت: «خطر! وارد نشوید!»"
+                  },
+                  {
+                    "english_text": "I've told you to keep the dog out of the house.",
+                    "persian_meaning": "بهت گفتم سگ را از خانه دور نگه داری."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to keep away (from)",
+                "persian_phrase_meaning": "دور نگه داشتن (از)، دوری کردن (از)",
+                "english_definition": "to stay at a distance (from) (S); to avoid use of (also: stay away from)",
+                "persian_definition_meaning": "در فاصله ماندن (از) (قابل تفکیک)؛ از استفاده چیزی اجتناب کردن (همچنین: stay away from)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Please be sure to keep the children away from the street!",
+                    "persian_meaning": "لطفاً مطمئن شوید بچه‌ها را از خیابان دور نگه دارید!"
+                  },
+                  {
+                    "english_text": "The signs on the burned-out house said, \"Keep Away! Danger Zone.\"",
+                    "persian_meaning": "تابلوهای روی خانه سوخته می‌گفت: «دور بمانید! منطقه خطر.»"
+                  },
+                  {
+                    "english_text": "It's important for your health to stay away from dangerous drugs.",
+                    "persian_meaning": "برای سلامتی شما مهم است که از داروهای خطرناک دوری کنید."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to find fault with",
+                "persian_phrase_meaning": "انتقاد کردن از، عیب‌جویی کردن از",
+                "english_definition": "criticize, to complain about something",
+                "persian_definition_meaning": "انتقاد کردن، شکایت کردن در مورد چیزی",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "It is very easy to find fault with the work of others, but more difficult to accept criticism of one's own work.",
+                    "persian_meaning": "عیب‌جویی از کار دیگران بسیار آسان است، اما پذیرش انتقاد از کار خود دشوارتر است."
+                  },
+                  {
+                    "english_text": "Mrs. Johnson is always finding fault with her children, but they really try to please their mother.",
+                    "persian_meaning": "خانم جانسون همیشه از بچه‌هایش عیب‌جویی می‌کند، اما آن‌ها واقعاً تلاش می‌کنند مادرشان را راضی کنند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to be up to",
+                "persian_phrase_meaning": "مسئول تصمیم‌گیری بودن؛ مشغول کاری بودن (فعالیت معمول)",
+                "english_definition": "to be responsible for deciding; to be doing as a regular activity",
+                "persian_definition_meaning": "مسئول تصمیم‌گیری بودن؛ مشغول انجام فعالیت روزمره بودن",
+                "english_explanation": "The second definition is most often used in a question as a form of greeting.",
+                "persian_explanation_meaning": "تعریف دوم اغلب در یک سوال به عنوان نوعی احوالپرسی استفاده می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "I don't care whether we go to the reception or not. It's up to you.",
+                    "persian_meaning": "برای من مهم نیست که به مهمانی برویم یا نه. به تو بستگی دارد."
+                  },
+                  {
+                    "english_text": "Hi, George. I haven't seen you in a while. What have you been up to?",
+                    "persian_meaning": "سلام جورج. مدتی است ندیدمت. مشغول چه کاری بودی؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "ill at ease",
+                "persian_phrase_meaning": "معذب، ناراحت، نگران",
+                "english_definition": "uncomfortable or worried in a situation",
+                "persian_definition_meaning": "احساس ناراحتی یا نگرانی در یک موقعیت",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Speaking in front of a large audience makes many people feel ill at ease.",
+                    "persian_meaning": "صحبت کردن در مقابل جمع کثیری از مردم، بسیاری را معذب می‌کند."
+                  },
+                  {
+                    "english_text": "My wife and I were ill at ease because our daughter was late coming home from a date.",
+                    "persian_meaning": "من و همسرم نگران بودیم چون دخترمان از قرار دیر به خانه برگشت."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to do over",
+                "persian_phrase_meaning": "دوباره انجام دادن، بازبینی کردن",
+                "english_definition": "to revise, to do again (S)",
+                "persian_definition_meaning": "بازبینی کردن، دوباره انجام دادن (قابل تفکیک)",
+                "english_explanation": "A noun or pronoun must separate the two parts of this idiom.",
+                "persian_explanation_meaning": "یک اسم یا ضمیر باید دو بخش این اصطلاح را از هم جدا کند.",
+                "examples": [
+                  {
+                    "english_text": "You'd better do the letter over because it is written so poorly.",
+                    "persian_meaning": "بهتر است نامه را دوباره بنویسی چون خیلی بد نوشته شده است."
+                  },
+                  {
+                    "english_text": "Jose made so many mistakes in his homework that the teacher made him do it over.",
+                    "persian_meaning": "خوزه آنقدر در تکالیفش اشتباه داشت که معلم مجبورش کرد دوباره آن‌ها را انجام دهد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to look into",
+                "persian_phrase_meaning": "تحقیق کردن، بررسی کردن",
+                "english_definition": "to investigate, to examine carefully (also: to check into)",
+                "persian_definition_meaning": "تحقیق کردن، با دقت بررسی کردن (همچنین: to check into)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The police are looking into the matter of the stolen computers.",
+                    "persian_meaning": "پلیس در حال تحقیق در مورد کامپیوترهای دزدیده شده است."
+                  },
+                  {
+                    "english_text": "The congressional committee will check into the financial dealings of the government contractor.",
+                    "persian_meaning": "کمیته کنگره معاملات مالی پیمانکار دولتی را بررسی خواهد کرد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take hold of",
+                "persian_phrase_meaning": "گرفتن، محکم گرفتن",
+                "english_definition": "to grasp, to grip with the hands",
+                "persian_definition_meaning": "با دست‌ها محکم گرفتن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "You should take hold of the railing as you go down those steep stairs.",
+                    "persian_meaning": "هنگام پایین رفتن از آن پله‌های شیب‌دار باید دستگیره را محکم بگیری."
+                  },
+                  {
+                    "english_text": "The blind man took hold of my arm as I led him across the street.",
+                    "persian_meaning": "مرد نابینا بازوی مرا گرفت در حالی که او را از خیابان عبور می‌دادم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to get through",
+                "persian_phrase_meaning": "تمام کردن، کامل کردن",
+                "english_definition": "to finish, to complete",
+                "persian_definition_meaning": "تمام کردن، کامل کردن",
+                "english_explanation": "This idiom is followed either by the –ing form of a verb (a gerund) or by the preposition with.",
+                "persian_explanation_meaning": "این اصطلاح یا با فرم -ing فعل (اسم مصدر) یا با حرف اضافه 'with' دنبال می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "I didn't get through studying last night until almost eleven o'clock.",
+                    "persian_meaning": "دیشب تا تقریباً ساعت یازده مطالعه‌ام را تمام نکردم."
+                  },
+                  {
+                    "english_text": "At what time does your wife get through with work every day?",
+                    "persian_meaning": "همسرت هر روز ساعت چند کارش تمام می‌شود؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "from now on",
+                "persian_phrase_meaning": "از این به بعد",
+                "english_definition": "from this time into the future",
+                "persian_definition_meaning": "از این زمان به بعد، در آینده",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Mr. Lee's doctor told him to cut down on eating fatty foods from now on, or else he might suffer heart disease.",
+                    "persian_meaning": "دکتر آقای لی به او گفت از این به بعد از خوردن غذاهای چرب خودداری کند، وگرنه ممکن است به بیماری قلبی دچار شود."
+                  },
+                  {
+                    "english_text": "I'm sorry that I dropped by at a bad time. From now on I'll call you first.",
+                    "persian_meaning": "متاسفم که در زمان بدی سر زدم. از این به بعد اول به شما زنگ می‌زنم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to keep track of",
+                "persian_phrase_meaning": "سابقه چیزی را نگه داشتن؛ موقعیت چیزی را به خاطر داشتن",
+                "english_definition": "to keep or maintain a record of; to remember the location of",
+                "persian_definition_meaning": "نگه داشتن یا حفظ سابقه چیزی؛ به خاطر داشتن موقعیت چیزی",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Steve keeps track of all the long-distance telephone calls related to his business that he makes from his house.",
+                    "persian_meaning": "استیو تمام تماس‌های تلفنی راه دور مربوط به کسب و کارش را که از خانه‌اش برقرار می‌کند، ثبت می‌کند."
+                  },
+                  {
+                    "english_text": "With seven small children, how do the Wilsons keep track of all of them?",
+                    "persian_meaning": "با هفت فرزند کوچک، خانواده ویلسون چگونه همه آنها را زیر نظر دارند؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to be carried away",
+                "persian_phrase_meaning": "شدیداً تحت تأثیر احساسات قرار گرفتن، از خود بی‌خود شدن",
+                "english_definition": "to be greatly affected by a strong feeling (S)",
+                "persian_definition_meaning": "شدیداً تحت تأثیر یک احساس قوی قرار گرفتن (قابل تفکیک)",
+                "english_explanation": "This idiom can also be used with get instead of be.",
+                "persian_explanation_meaning": "این اصطلاح همچنین می‌تواند با 'get' به جای 'be' استفاده شود.",
+                "examples": [
+                  {
+                    "english_text": "Paula and Leanne were carried away by the sad movie that they saw together.",
+                    "persian_meaning": "پائولا و لی‌ان تحت تأثیر فیلم غم‌انگیزی که با هم دیدند، از خود بی‌خود شدند."
+                  },
+                  {
+                    "english_text": "James got carried away with anger when his roommate crashed his new car into a telephone pole.",
+                    "persian_meaning": "جیمز از خشم از خود بی‌خود شد وقتی هم‌اتاقی‌اش ماشین جدیدش را به تیر برق کوبید."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "lesson_number": 12,
+            "lesson_name": "درس 12",
+            "idioms": [
+              {
+                "english_phrase": "up to date",
+                "persian_phrase_meaning": "به روز، مدرن؛ جاری، به موقع",
+                "english_definition": "modern; current, timely",
+                "persian_definition_meaning": "مدرن؛ جاری، به موقع",
+                "english_explanation": "Hyphens (-) separate the parts of this idiom when it precedes a noun form, as in the third example. The verb to update derives from this idiom.",
+                "persian_explanation_meaning": "خط فاصله (-) بخش‌های این اصطلاح را زمانی که قبل از یک اسم قرار می‌گیرد، از هم جدا می‌کند، مانند مثال سوم. فعل 'to update' از این اصطلاح مشتق شده است.",
+                "examples": [
+                  {
+                    "english_text": "The president insisted that the company bring its aging equipment up to date.",
+                    "persian_meaning": "رئیس اصرار داشت که شرکت تجهیزات قدیمی خود را به روز کند."
+                  },
+                  {
+                    "english_text": "This catalog is not up to date. It was published several years ago.",
+                    "persian_meaning": "این کاتالوگ به روز نیست. چند سال پیش منتشر شده است."
+                  },
+                  {
+                    "english_text": "The news program gave an up-to-date account of the nuclear accident. The newscaster said that he would update the news report every half hour.",
+                    "persian_meaning": "برنامه خبری گزارشی به روز از حادثه هسته‌ای ارائه داد. گوینده خبر گفت که هر نیم ساعت گزارش خبری را به‌روز می‌کند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "out of date",
+                "persian_phrase_meaning": "قدیمی، از مد افتاده؛ منقضی شده؛ ناموجود",
+                "english_definition": "not modern; not current, not timely; no longer available in published form",
+                "persian_definition_meaning": "غیر مدرن؛ غیرجاری، نامناسب از نظر زمانی؛ دیگر به صورت چاپی موجود نیست",
+                "english_explanation": "Again, hyphens separate the parts of this idiom when it precedes a noun form as, in the second example. The passive verb to be outdated derives from this idiom.",
+                "persian_explanation_meaning": "باز هم، خط فاصله بخش‌های این اصطلاح را زمانی که قبل از یک اسم قرار می‌گیرد، از هم جدا می‌کند، مانند مثال دوم. فعل مجهول 'to be outdated' از این اصطلاح مشتق شده است.",
+                "examples": [
+                  {
+                    "english_text": "Many people buy new cars when their old cars become out of date.",
+                    "persian_meaning": "بسیاری از مردم وقتی ماشین‌های قدیمی‌شان از مد می‌افتند، ماشین جدید می‌خرند."
+                  },
+                  {
+                    "english_text": "I don't know why Gene likes to wear out-of-date cloth. His clothes are so outdated that even his girlfriend hesitates to be seen with him.",
+                    "persian_meaning": "نمی‌دانم چرا جین دوست دارد لباس‌های از مد افتاده بپوشد. لباس‌هایش آنقدر قدیمی هستند که حتی دوست‌دخترش هم از دیده‌شدن با او تردید دارد."
+                  },
+                  {
+                    "english_text": "This book can't be ordered any more because it is out of date.",
+                    "persian_meaning": "این کتاب دیگر قابل سفارش نیست زیرا قدیمی شده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to blow up",
+                "persian_phrase_meaning": "باد کردن، منفجر کردن/شدن",
+                "english_definition": "to inflate, to fill with air (S); to explode, to destroy (or be destroyed) by explosion (S)",
+                "persian_definition_meaning": "باد کردن، پر کردن با هوا (قابل تفکیک)؛ منفجر کردن، نابود کردن (یا نابود شدن) با انفجار (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Daddy, could you please blow up this balloon for me?",
+                    "persian_meaning": "بابا، می‌توانی لطفاً این بادکنک را برایم باد کنی؟"
+                  },
+                  {
+                    "english_text": "When the airplane crashed into the ground, it blew up immediately.",
+                    "persian_meaning": "هواپیما وقتی به زمین سقوط کرد، بلافاصله منفجر شد."
+                  },
+                  {
+                    "english_text": "The military had to blow the missile up in midair when it started to go the wrong way.",
+                    "persian_meaning": "ارتش مجبور شد موشک را در میانه هوا منفجر کند وقتی شروع به اشتباه رفتن کرد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to catch fire",
+                "persian_phrase_meaning": "آتش گرفتن",
+                "english_definition": "to begin to burn",
+                "persian_definition_meaning": "شروع به سوختن کردن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Don't stand too close to the gas stove. Your clothes may catch fire.",
+                    "persian_meaning": "زیاد نزدیک اجاق گاز نایست. لباس‌هایت ممکن است آتش بگیرند."
+                  },
+                  {
+                    "english_text": "No one seems to know how the old building caught fire.",
+                    "persian_meaning": "به نظر می‌رسد هیچ‌کس نمی‌داند ساختمان قدیمی چگونه آتش گرفت."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to burn down",
+                "persian_phrase_meaning": "آرام سوختن تا انتها (معمولاً شمع)؛ کاملاً با آتش نابود کردن/شدن",
+                "english_definition": "to burn slowly, but completely (usually said of candles); to destroy completely by fire (S)",
+                "persian_definition_meaning": "آرام اما کاملاً سوختن (معمولاً در مورد شمع)؛ کاملاً با آتش نابود کردن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "There was a large amount of wax on the table where the candles had burned down.",
+                    "persian_meaning": "مقدار زیادی موم روی میز بود جایی که شمع‌ها تا انتها سوخته بودند."
+                  },
+                  {
+                    "english_text": "The fire spread so quickly that the firefighters could not prevent the whole block of buildings from burning down.",
+                    "persian_meaning": "آتش به قدری سریع گسترش یافت که آتش‌نشانان نتوانستند از سوختن کامل کل بلوک ساختمان‌ها جلوگیری کنند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to burn up",
+                "persian_phrase_meaning": "کاملاً با آتش نابود کردن؛ عصبانی کردن، بسیار ناراحت کردن",
+                "english_definition": "to destroy completely by fire (S); to make angry or very annoyed (S) (also to tick off)",
+                "persian_definition_meaning": "کاملاً با آتش نابود کردن (قابل تفکیک)؛ عصبانی یا بسیار کلافه کردن (قابل تفکیک) (همچنین to tick off)",
+                "english_explanation": "To burn up and to burn down (previous idiom) share the same definition but also have different definitions.",
+                "persian_explanation_meaning": "Burn up و burn down (اصطلاح قبلی) یک تعریف مشترک دارند اما تعاریف متفاوتی نیز دارند.",
+                "examples": [
+                  {
+                    "english_text": "She didn't want anyone to see the letter, so she burned it up and threw the ashes away.",
+                    "persian_meaning": "او نمی‌خواست کسی نامه را ببیند، بنابراین آن را سوزاند و خاکسترش را دور ریخت."
+                  },
+                  {
+                    "english_text": "It really burns me up that he borrowed my car without asking me first.",
+                    "persian_meaning": "این واقعاً مرا عصبانی می‌کند که او ماشینم را بدون اجازه قبلی قرض گرفت."
+                  },
+                  {
+                    "english_text": "Mike got ticked off that his friends never offered to help him move to his new apartment. He had to do everything himself.",
+                    "persian_meaning": "مایک عصبانی شد که دوستانش هرگز برای نقل مکان به آپارتمان جدیدش کمکی نکردند. او مجبور شد همه کارها را خودش انجام دهد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to burn out",
+                "persian_phrase_meaning": "از کار افتادن (به دلیل استفاده زیاد)؛ از خستگی مفرط از پا افتادن",
+                "english_definition": "to stop functioning because of overuse; to make tired from too much work (S)",
+                "persian_definition_meaning": "از کار افتادن به دلیل استفاده بیش از حد؛ خسته کردن از کار زیاد (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "This light bulb has burned out. Could you get another one?",
+                    "persian_meaning": "این لامپ سوخته است. می‌توانید یکی دیگر بیاورید؟"
+                  },
+                  {
+                    "english_text": "Studying all day for my final exams has really burned me out.",
+                    "persian_meaning": "تمام روز درس خواندن برای امتحانات نهایی واقعاً مرا خسته کرده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to make good",
+                "persian_phrase_meaning": "موفق شدن",
+                "english_definition": "to succeed",
+                "persian_definition_meaning": "موفق شدن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "He is a hard worker, and I'm sure that he will make good in that new job.",
+                    "persian_meaning": "او کارگر سخت‌کوشی است، و مطمئنم که در آن شغل جدید موفق خواهد شد."
+                  },
+                  {
+                    "english_text": "Alma has always made good in everything that she has done.",
+                    "persian_meaning": "آلما همیشه در هر کاری که انجام داده موفق بوده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "stands to reason",
+                "persian_phrase_meaning": "منطقی است، بدیهی است",
+                "english_definition": "to be clear and logical",
+                "persian_definition_meaning": "واضح و منطقی بودن",
+                "english_explanation": "This idiom is almost always used with the pronoun subject it and is followed by a that clause.",
+                "persian_explanation_meaning": "این اصطلاح تقریباً همیشه با ضمیر فاعلی 'it' استفاده می‌شود و با یک عبارت 'that' دنبال می‌شود.",
+                "examples": [
+                  {
+                    "english_text": "It stands to reason that a person without experience.",
+                    "persian_meaning": "بدیهی است که یک فرد بدون تجربه (موفق نخواهد شد)."
+                  },
+                  {
+                    "english_text": "It stands to reason that he isn't going to pass the course if he never studies.",
+                    "persian_meaning": "منطقی است که اگر او هرگز درس نخواند، در دوره قبول نخواهد شد."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to break out",
+                "persian_phrase_meaning": "ناگهان گسترش یافتن، شروع شدن (برای بیماری، جنگ و غیره)",
+                "english_definition": "to become widespread suddenly",
+                "persian_definition_meaning": "ناگهان گسترده شدن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "An epidemic of measles broke out in Chicago this past week.",
+                    "persian_meaning": "این هفته یک اپیدمی سرخک در شیکاگو شیوع پیدا کرد."
+                  },
+                  {
+                    "english_text": "If a nuclear war ever breaks out, it is unlikely that many people will survive.",
+                    "persian_meaning": "اگر جنگ هسته‌ای شروع شود، بعید است که بسیاری از مردم زنده بمانند."
+                  },
+                  {
+                    "english_text": "The news says that a large fire has broken out in a huge chemical plant.",
+                    "persian_meaning": "اخبار می‌گوید که آتش‌سوزی بزرگی در یک کارخانه شیمیایی عظیم رخ داده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "as for",
+                "persian_phrase_meaning": "در مورد، راجع به",
+                "english_definition": "regarding, concerning (also: as to)",
+                "persian_definition_meaning": "راجع به، در خصوص (همچنین: as to)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "As for the money, we will simply have to borrow some more from the bank.",
+                    "persian_meaning": "در مورد پول، ما صرفاً مجبوریم کمی بیشتر از بانک قرض بگیریم."
+                  },
+                  {
+                    "english_text": "There is no doubt as to her intelligence; she's the smartest one in the class.",
+                    "persian_meaning": "در مورد هوش او شکی نیست؛ او باهوش‌ترین فرد در کلاس است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to feel sorry for",
+                "persian_phrase_meaning": "دل سوزاندن برای، ترحم کردن به",
+                "english_definition": "to pity, to feel compassion for (also: to take pity on)",
+                "persian_definition_meaning": "ترحم کردن، احساس شفقت کردن (همچنین: to take pity on)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Don't you feel sorry for someone who has to work the night shift?",
+                    "persian_meaning": "آیا برای کسی که مجبور است شیفت شب کار کند دلت نمی‌سوزد؟"
+                  },
+                  {
+                    "english_text": "I helped drive Pierre around when he broke his foot because I took pity on him.",
+                    "persian_meaning": "وقتی پی‌یر پایش شکست، به او کمک کردم رانندگی کند چون به او ترحم کردم."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "lesson_number": 13,
+            "lesson_name": "درس 13",
+            "idioms": [
+              {
+                "english_phrase": "to break down",
+                "persian_phrase_meaning": "خراب شدن، از کار افتادن",
+                "english_definition": "to stop functioning",
+                "persian_definition_meaning": "از کار افتادن",
+                "english_explanation": "Compare this idiom with to burn out in Lesson 12. To burn out means that electrical equipment becomes hot from overuse and stops functioning. To break down means that something stops functioning mechanically, whether from overuse or not.",
+                "persian_explanation_meaning": "این اصطلاح را با 'to burn out' در درس ۱۲ مقایسه کنید. 'To burn out' به این معنی است که تجهیزات الکتریکی به دلیل استفاده بیش از حد داغ شده و از کار می‌افتند. 'To break down' به این معنی است که چیزی به صورت مکانیکی از کار می‌افتد، چه به دلیل استفاده بیش از حد باشد یا نباشد.",
+                "examples": [
+                  {
+                    "english_text": "I just bought my new car yesterday and already it has broken down.",
+                    "persian_meaning": "دیروز ماشین جدیدم را خریدم و همین حالا خراب شده است."
+                  },
+                  {
+                    "english_text": "The elevator broke down, so we walked all the way up to the top floor.",
+                    "persian_meaning": "آسانسور خراب شد، بنابراین تمام مسیر را تا طبقه آخر پیاده رفتیم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to turn out",
+                "persian_phrase_meaning": "نتیجه دادن، معلوم شدن؛ حاضر شدن، شرکت کردن",
+                "english_definition": "to become or result; to appear, to attend (also: to come out)",
+                "persian_definition_meaning": "شدن یا نتیجه دادن؛ ظاهر شدن، شرکت کردن (همچنین: to come out)",
+                "english_explanation": "The noun form turnout derives from the second definition of the idiom.",
+                "persian_explanation_meaning": "فرم اسمی 'turnout' از تعریف دوم این اصطلاح مشتق شده است.",
+                "examples": [
+                  {
+                    "english_text": "Most parents wonder how their children will turn out as adults.",
+                    "persian_meaning": "بیشتر والدین تعجب می‌کنند که فرزندانشان در بزرگسالی چگونه خواهند شد."
+                  },
+                  {
+                    "english_text": "Hundreds of people came out for the demonstration against new taxes.",
+                    "persian_meaning": "صدها نفر برای تظاهرات علیه مالیات‌های جدید آمدند."
+                  },
+                  {
+                    "english_text": "What was the turnout for the public hearing on the education reforms?",
+                    "persian_meaning": "حضور مردم در جلسه عمومی در مورد اصلاحات آموزشی چگونه بود؟"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "once in a blue moon",
+                "persian_phrase_meaning": "به ندرت، خیلی کم",
+                "english_definition": "rarely, infrequently",
+                "persian_definition_meaning": "به ندرت، کمابیش",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Snow falls on the city of San Diego, California, once in a blue moon.",
+                    "persian_meaning": "برف در شهر سن دیگو، کالیفرنیا، به ندرت می‌بارد."
+                  },
+                  {
+                    "english_text": "Once in a blue moon my wife and I eat at a very expensive restaurant.",
+                    "persian_meaning": "ما (من و همسرم) خیلی کم در یک رستوران بسیار گران‌قیمت غذا می‌خوریم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to give up",
+                "persian_phrase_meaning": "تسلیم شدن، دست کشیدن (از عادت بد)",
+                "english_definition": "to stop trying, to stop a bad habit (S); to surrender (S)",
+                "persian_definition_meaning": "دست کشیدن از تلاش، ترک عادت بد (قابل تفکیک)؛ تسلیم شدن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "I'm sure that you can accomplish this task. Don't give up yet!",
+                    "persian_meaning": "مطمئنم که می‌توانی این کار را انجام دهی. هنوز تسلیم نشو!"
+                  },
+                  {
+                    "english_text": "If you give up smoking now, you can certainly live a longer life.",
+                    "persian_meaning": "اگر همین حالا سیگار را ترک کنی، قطعاً می‌توانی عمر طولانی‌تری داشته باشی."
+                  },
+                  {
+                    "english_text": "The soldiers gave themselves up in the face of a stronger enemy forces.",
+                    "persian_meaning": "سربازان در برابر نیروهای دشمن قوی‌تر تسلیم شدند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to cross out",
+                "persian_phrase_meaning": "خط زدن، حذف کردن",
+                "english_definition": "to cancel by marking with a horizontal line (S)",
+                "persian_definition_meaning": "لغو کردن با علامت‌گذاری یک خط افقی (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The teacher crossed out several incorrect words in Tanya's composition.",
+                    "persian_meaning": "معلم چند کلمه نادرست را در انشای تانیا خط زد."
+                  },
+                  {
+                    "english_text": "I crossed the last line out of my letter because it had the wrong tone to it.",
+                    "persian_meaning": "آخرین خط نامه‌ام را خط زدم زیرا لحن اشتباهی داشت."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take for granted",
+                "persian_phrase_meaning": "قدر چیزی را ندانستن؛ بدیهی فرض کردن",
+                "english_definition": "not to appreciate fully (S); to assume to be true without giving much thought (S)",
+                "persian_definition_meaning": "کاملاً قدر چیزی را ندانستن (قابل تفکیک)؛ بدون فکر زیاد چیزی را درست فرض کردن (قابل تفکیک)",
+                "english_explanation": "A noun or pronoun often follows the verb take.",
+                "persian_explanation_meaning": "اغلب یک اسم یا ضمیر بعد از فعل 'take' می‌آید.",
+                "examples": [
+                  {
+                    "english_text": "John took his wife for granted until once when he was very sick and needed her constant attention for a week.",
+                    "persian_meaning": "جان قدر همسرش را نمی‌دانست تا زمانی که یک بار بسیار بیمار شد و به توجه مداوم او برای یک هفته نیاز داشت."
+                  },
+                  {
+                    "english_text": "He spoke English so well that I took it for granted he was an American.",
+                    "persian_meaning": "او آنقدر خوب انگلیسی صحبت می‌کرد که بدیهی فرض کردم آمریکایی است."
+                  },
+                  {
+                    "english_text": "He took for granted that I wasn't American because I spoke English so poorly!",
+                    "persian_meaning": "او بدیهی فرض کرد که من آمریکایی نیستم چون انگلیسی را آنقدر بد صحبت می‌کردم!"
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to take into account",
+                "persian_phrase_meaning": "در نظر گرفتن، ملاحظه کردن",
+                "english_definition": "to consider a fact while evaluating a situation (S)",
+                "persian_definition_meaning": "یک واقعیت را هنگام ارزیابی یک موقعیت در نظر گرفتن (قابل تفکیک)",
+                "english_explanation": "Again, a noun or pronoun often follows the verb take.",
+                "persian_explanation_meaning": "باز هم، اغلب یک اسم یا ضمیر بعد از فعل 'take' می‌آید.",
+                "examples": [
+                  {
+                    "english_text": "The judge took the prisoner's young age into account before sentencing him to three months in jail.",
+                    "persian_meaning": "قاضی سن پایین زندانی را قبل از محکوم کردن او به سه ماه حبس در نظر گرفت."
+                  },
+                  {
+                    "english_text": "Educators should take into account the cultural backgrounds of students when planning a school curriculum.",
+                    "persian_meaning": "تربیت‌کنندگان باید هنگام برنامه‌ریزی برنامه درسی مدرسه، سوابق فرهنگی دانش‌آموزان را در نظر بگیرند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to make clear",
+                "persian_phrase_meaning": "روشن کردن، توضیح دادن",
+                "english_definition": "to clarify, to explain (S)",
+                "persian_definition_meaning": "شفاف کردن، توضیح دادن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "Please make clear that he should never act so impolitely again.",
+                    "persian_meaning": "لطفاً روشن کنید که او هرگز نباید دوباره اینقدر بی‌ادبانه رفتار کند."
+                  },
+                  {
+                    "english_text": "The supervisor made it clear to the workers that they had to increase their productivity.",
+                    "persian_meaning": "سرپرست برای کارگران روشن کرد که باید بهره‌وری خود را افزایش دهند."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "clear-cut",
+                "persian_phrase_meaning": "واضح، مشخص، بدیهی",
+                "english_definition": "clearly stated, definite, apparent",
+                "persian_definition_meaning": "به وضوح بیان شده، قطعی، آشکار",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "The president's message was clear-cut: the company had to reduce personnel immediately.",
+                    "persian_meaning": "پیام رئیس جمهور واضح بود: شرکت باید فوراً نیروهایش را کاهش دهد."
+                  },
+                  {
+                    "english_text": "Professor Larsen is well known for his interesting and clear-cut presentations.",
+                    "persian_meaning": "پروفسور لارسن به خاطر سخنرانی‌های جذاب و واضح خود شناخته شده است."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to have on",
+                "persian_phrase_meaning": "پوشیده داشتن (لباس)",
+                "english_definition": "to be wearing (S)",
+                "persian_definition_meaning": "پوشیده بودن (قابل تفکیک)",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "How do you like the hat which Grace has on today?",
+                    "persian_meaning": "کلاهی که گریس امروز پوشیده را چطور می‌پسندی؟"
+                  },
+                  {
+                    "english_text": "When Sally came into the room, I had nothing on except my shorts.",
+                    "persian_meaning": "وقتی سالی وارد اتاق شد، من جز شورت چیزی نپوشیده بودم."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to come to",
+                "persian_phrase_meaning": "به هوش آمدن؛ بالغ شدن به (مبلغ)",
+                "english_definition": "to regain consciousness; to equal, to amount to",
+                "persian_definition_meaning": "به هوش آمدن؛ برابر شدن، بالغ شدن به",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "At first they thought that the man was dead, but soon he came to.",
+                    "persian_meaning": "در ابتدا فکر کردند که مرد مرده است، اما به زودی به هوش آمد."
+                  },
+                  {
+                    "english_text": "The bill for groceries at the supermarket came to fifty dollars.",
+                    "persian_meaning": "صورت‌حساب مواد غذایی در سوپرمارکت به پنجاه دلار رسید."
+                  }
+                ]
+              },
+              {
+                "english_phrase": "to call for",
+                "persian_phrase_meaning": "نیاز داشتن، لازم داشتن؛ درخواست کردن، تشویق کردن",
+                "english_definition": "to require; to request, to urge",
+                "persian_definition_meaning": "نیاز داشتن؛ درخواست کردن، ترغیب کردن",
+                "english_explanation": null,
+                "persian_explanation_meaning": null,
+                "examples": [
+                  {
+                    "english_text": "This cake recipe calls for some baking soda, but we don't have any.",
+                    "persian_meaning": "این دستور کیک مقداری جوش شیرین نیاز دارد، اما ما نداریم."
+                  },
+                  {
+                    "english_text": "The member of Congress called for new laws to regulate the banking industry.",
+                    "persian_meaning": "عضو کنگره خواستار قوانین جدیدی برای تنظیم صنعت بانکداری شد."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
