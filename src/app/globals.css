@@ -65,10 +65,15 @@
   --font-funnelSans: 'funnelSans';
   --color-bgColor:#a5b2ff;
   --color-primaryColor:#5c6bec;
+  --color-hilightColor:#A855F7;
 }
 
 body {
-  @apply font-interVariable overflow-y-hidden bg-bgColor;
+  @apply font-interVariable overflow-y-hidden;
+}
+
+::selection {
+  @apply bg-hilightColor/50 duration-200;
 }
 
 
