@@ -4,7 +4,7 @@ import { IoCreate } from "react-icons/io5";
 import { FaBookOpen } from "react-icons/fa";
 import { PiCardsThreeFill } from "react-icons/pi";
 import { MdOutlineFavorite } from "react-icons/md";
-import { PiDotOutlineFill } from "react-icons/pi";
+import Link from "next/link";
 
 export default function Home() {
   const [quickAccess] = useState([
@@ -75,7 +75,7 @@ export function QuickAccessCard({icon, title, description}: QuickAccessCardProps
       <div className="text-justify space-y-3">
         <div>{title}</div>
         <div className="text-sm text-gray-500 font-medium pb-2">{description}</div>
-        <div className="select-none text-sm border text-primaryColor rounded-lg p-2 w-1/2 text-center shadow cursor-pointer hover:bg-primaryColor hover:text-white duration-100">Learn more =></div>
+        <Link href="/story" className="select-none text-sm border text-primaryColor rounded-lg p-2 w-1/2 text-center shadow cursor-pointer hover:bg-primaryColor hover:text-white duration-100">Learn more {'=>'}</Link>
       </div>
     </div>
   );
