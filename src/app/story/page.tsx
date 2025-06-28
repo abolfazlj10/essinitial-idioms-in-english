@@ -31,28 +31,28 @@ export default function Story () {
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
         'elementry': 'border-green-400',
-        'intermediate': 'border-yellow-400', 
+        'intermediate': 'border-blue-400', // Alternative: 'border-orange-400', 'border-purple-400', 'border-indigo-400'
         'advanced': 'border-red-400'
     }
 
     // Icon color mapping for different levels
     const iconColors: Record<Level, string> = {
         'elementry': 'text-green-500',
-        'intermediate': 'text-yellow-500', 
+        'intermediate': 'text-blue-500', // Alternative: 'text-orange-500', 'text-purple-500', 'text-indigo-500'
         'advanced': 'text-red-500'
     }
 
     // Gradient backgrounds for different levels (alternative option)
     const gradientColors: Record<Level, string> = {
         'elementry': 'from-green-400/20 to-green-600/20',
-        'intermediate': 'from-yellow-400/20 to-yellow-600/20', 
+        'intermediate': 'from-blue-400/20 to-blue-600/20', 
         'advanced': 'from-red-400/20 to-red-600/20'
     }
 
     // Glow effects for different levels (alternative option)
     const glowColors: Record<Level, string> = {
         'elementry': 'shadow-green-500/50',
-        'intermediate': 'shadow-yellow-500/50', 
+        'intermediate': 'shadow-blue-500/50', 
         'advanced': 'shadow-red-500/50'
     }
 
@@ -180,9 +180,9 @@ export default function Story () {
                             <div className="text-xl font-semibold flex select-none items-center gap-5"><span>Elementry</span><span className="text-sm text-blue-400">{elementry.levels[0].lessons.length} lesson</span></div>
                             <div className="text-gray-400 text-lg">Description in one line</div>
                         </div>
-                        <div onClick={()=> selectLevel('intermediate')} className={`border-3 flex-1 p-6 rounded-xl shadow-lg flex flex-col gap-5 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-yellow-400 bg-yellow-50 shadow-yellow-200' : 'border-gray-300 hover:border-yellow-300'}`}>
+                        <div onClick={()=> selectLevel('intermediate')} className={`border-3 flex-1 p-6 rounded-xl shadow-lg flex flex-col gap-5 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400 bg-blue-50 shadow-blue-200' : 'border-gray-300 hover:border-blue-300'}`}>
                             {currentSelectedLevel === 'intermediate' && (
-                                <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                                <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                                     <span className="text-white text-xs">✓</span>
                                 </div>
                             )}
@@ -264,7 +264,7 @@ export default function Story () {
                                     <span>Elementary</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
                                     <span>Intermediate</span>
                                 </div>
                                 <div className="flex items-center gap-2">
