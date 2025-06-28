@@ -30,7 +30,7 @@ export default function Home() {
     }
   ]);
   return (
-    <>
+    <div className="h-full flex flex-col gap-20">
       <div className="flex flex-col gap-6 text-lg">
         <div className="text-[80px] font-bold select-none">Leran essenitial idioms with <span className="bg-gradient-to-r from-[#4e5996] to-primaryColor bg-clip-text text-transparent">AI</span></div>
       </div>
@@ -56,7 +56,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
