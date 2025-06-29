@@ -2,8 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 // ________ ts types ________
 import type { Book, Level, LevelArray } from "@/types/book";
-// _______ Gemini Pack ________
-import { GoogleGenAI } from "@google/genai";
 // __________ jsons the Book __________
 import elementry from '../../data/book/elementry.json'
 import intermediate from '../../data/book/intermediate.json'
@@ -17,51 +15,31 @@ import { FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 export default function Story () {
     
-    const ai = new GoogleGenAI({ apiKey: "AIzaSyBR8oVsvdR2a52qeU32foDaF73O0ixW5vg" });
     const [books] = useState<Record<Level,Book>>({'elementry':elementry,'intermediate':intermediate,'advanced':advanced})
     const [level,setLevel] = useState<LevelArray>([])
-    const [lesson,setLesson] = useState<number | null>(null)
+    const [lessons,setLessons] = useState<Array<number>>([])
+    const [currentViewingLesson, setCurrentViewingLesson] = useState<number | null>(null)
     const scroller = useRef<HTMLDivElement | null>(null)
     const [steper,setSteper] = useState<number>(1)
     const [words,setWords] = useState<Array<string>>([])
-    // Track which word belongs to which level
     const [wordLevels, setWordLevels] = useState<Record<string, Level>>({})
+    const [wordLessons, setWordLessons] = useState<Record<string, number>>({})
     const [currentSelectedLevel, setCurrentSelectedLevel] = useState<Level>('elementry')
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
         'elementry': 'border-green-400',
-        'intermediate': 'border-blue-400', // Alternative: 'border-orange-400', 'border-purple-400', 'border-indigo-400'
+        'intermediate': 'border-blue-400',
         'advanced': 'border-red-400'
-    }
-
-    // Icon color mapping for different levels
-    const iconColors: Record<Level, string> = {
-        'elementry': 'text-green-500',
-        'intermediate': 'text-blue-500', // Alternative: 'text-orange-500', 'text-purple-500', 'text-indigo-500'
-        'advanced': 'text-red-500'
-    }
-
-    // Gradient backgrounds for different levels (alternative option)
-    const gradientColors: Record<Level, string> = {
-        'elementry': 'from-green-400/20 to-green-600/20',
-        'intermediate': 'from-blue-400/20 to-blue-600/20', 
-        'advanced': 'from-red-400/20 to-red-600/20'
-    }
-
-    // Glow effects for different levels (alternative option)
-    const glowColors: Record<Level, string> = {
-        'elementry': 'shadow-green-500/50',
-        'intermediate': 'shadow-blue-500/50', 
-        'advanced': 'shadow-red-500/50'
     }
 
     const selectLevel = (theLevel: Level): void => {
         setCurrentSelectedLevel(theLevel)
     }
 
-    const addWord = (word: string): void => {
+    const addWord = (word: string, lessonIndex: number): void => {
         const foundIndex = words.findIndex((item) => item === word)
+        const lessonNumber = books[currentSelectedLevel]?.levels[0]?.lessons[lessonIndex]?.lesson_number
         
         if (foundIndex !== -1) {
             // Word already exists, remove it
@@ -70,10 +48,16 @@ export default function Story () {
             // Add new word and its level
             setWords(prevWords => [...prevWords, word])
             setWordLevels(prev => ({ ...prev, [word]: currentSelectedLevel }))
+            setWordLessons(prev => ({ ...prev, [word]: lessonNumber }))
             
             // Add level to levels array if not already present
             if (!level.includes(currentSelectedLevel)) {
                 setLevel(prev => [...prev, currentSelectedLevel])
+            }
+            
+            // Add lesson to lessons array if not already present
+            if (!lessons.includes(lessonNumber)) {
+                setLessons(prev => [...prev, lessonNumber])
             }
         }
     }
@@ -81,15 +65,22 @@ export default function Story () {
     const removeWord = (index: number): void => {
         const wordToRemove = words[index]
         const levelOfWord = wordLevels[wordToRemove]
+        const lessonOfWord = wordLessons[wordToRemove]
         
         // Remove the word
         setWords(prevArr => prevArr.filter((_, key) => key !== index))
         
-        // Remove word from wordLevels tracking
+        // Remove word from wordLevels and wordLessons tracking
         setWordLevels(prev => {
             const newWordLevels = { ...prev }
             delete newWordLevels[wordToRemove]
             return newWordLevels
+        })
+        
+        setWordLessons(prev => {
+            const newWordLessons = { ...prev }
+            delete newWordLessons[wordToRemove]
+            return newWordLessons
         })
         
         // Check if this was the last word from this level
@@ -99,13 +90,20 @@ export default function Story () {
             // Remove level from levels array if no more words from this level
             setLevel(prev => prev.filter(l => l !== levelOfWord))
         }
+        
+        // Check if this was the last word from this lesson
+        const remainingWordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonOfWord).length - 1
+        
+        if (remainingWordsFromLesson === 0) {
+            // Remove lesson from lessons array if no more words from this lesson
+            setLessons(prev => prev.filter(l => l !== lessonOfWord))
+        }
     }
 
     
     
     useEffect(() => {
-        console.log(currentSelectedLevel)
-        setLesson(null)
+        setCurrentViewingLesson(null)
         if(words.length == 0)
             setSteper(1)        
 
@@ -115,37 +113,22 @@ export default function Story () {
     }, [currentSelectedLevel]);
 
     useEffect(()=>{
-        if(lesson != null && words.length == 0)
+        if(lessons.length == 0 && words.length == 0)
             setSteper(2)
-        else if(lesson != null && words.length != 0)
+        else if(lessons.length != 0 && words.length != 0)
             setSteper(3)
 
-    },[lesson])
+    },[lessons])
 
     useEffect(()=>{
         if(words.length != 0)
             setSteper(3)
         else if(words.length == 0 && steper == 3)
             setSteper(2)
-        else if(words.length == 0 && lesson != null)
+        else if(words.length == 0 && lessons.length != 0)
             setSteper(2)
     },[words])
     
-    useEffect(()=>{
-        console.log('mounted!')
-        // const test = async () => {
-
-        //     async function main() {
-        //         const response = await ai.models.generateContent({
-        //             model: "gemini-2.0-flash",
-        //             contents: "tell me about closures in javascript",
-        //         });
-        //         console.log(response.text);
-        //     }
-        //     await main();
-        // }
-        // test()
-    })
     return(
         <div className="h-full flex flex-col gap-5 overflow-hidden">
             <div className="flex gap-5 select-none">
@@ -207,9 +190,11 @@ export default function Story () {
                             <div className="text-gray-400 text-lg">Select your words after that you selected the lesson</div>
                         </div>
                         <div className="flex flex-1 bg-[#f9f9f9]/50 border-3 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-3">
-                            <div ref={scroller} className="scroll-smooth overflow-y-scroll h-full w-3/12 flex flex-col gap-2 px-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor " dir="rtl">
+                            <div ref={scroller} className="scroll-smooth overflow-y-scroll h-full w-3/12 flex flex-col gap-2 p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor " dir="rtl">
                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
-                                    <div dir="ltr" onClick={()=>setLesson(index)} className="border rounded-lg px-4 py-3 select-none bg-white hover:bg-[#f1f1f1] cursor-pointer duration-75 flex items-center justify-between" key={index}>
+                                    <div dir="ltr" onClick={()=>{
+                                        setCurrentViewingLesson(item.lesson_number)
+                                    }} className={`border rounded-lg px-4 py-3 select-none bg-white hover:bg-[#f1f1f1] cursor-pointer duration-75 flex items-center justify-between ${lessons.includes(item.lesson_number) ? 'border-primaryColor bg-primaryColor/10' : ''} ${currentViewingLesson === item.lesson_number ? 'ring-2 ring-primaryColor' : ''}`} key={index}>
                                         <div className="space-y-2">
                                             <div className="text-xl font-bold">Lesson {item.lesson_number}</div>
                                             <div className="text-sm text-gray-400">{books[currentSelectedLevel]?.levels[0]?.lessons[0]?.idioms.length} idioms</div>
@@ -219,10 +204,28 @@ export default function Story () {
                                 ))}
                             </div>
                             <div className="p-5 flex-2 space-x-8 space-y-3 border-l-2 border-bgColor">
-                                {lesson != null ? 
-                                    books[currentSelectedLevel]?.levels[0]?.lessons[lesson]?.idioms.map((item: any,key: number)=>(
-                                        <div onClick={ ()=> addWord(item.english_phrase)} className={`text-lg select-none font-bold shadow border-3 bg-[#f9f9f9] border-primaryColor duration-100 rounded-full px-4 py-3 inline-block cursor-pointer ${words.includes(item.english_phrase) && 'border-bgColor bg-primaryColor text-white'}`} key={key}>{item.english_phrase}</div>
-                                    ))
+                                {currentViewingLesson !== null ? 
+                                    <div className="space-y-3">
+                                        <div className="text-lg font-semibold text-gray-600 border-b pb-2">
+                                            Lesson {currentViewingLesson}
+                                        </div>
+                                        <div className="flex flex-wrap gap-3">
+                                            {(() => {
+                                                const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
+                                                return lessonIndex !== -1 ? 
+                                                    books[currentSelectedLevel]?.levels[0]?.lessons[lessonIndex]?.idioms.map((item: any, key: number) => (
+                                                        <div 
+                                                            onClick={() => addWord(item.english_phrase, lessonIndex)} 
+                                                            className={`text-lg select-none font-bold shadow border-3 bg-[#f9f9f9] border-primaryColor duration-100 rounded-full px-4 py-3 inline-block cursor-pointer ${words.includes(item.english_phrase) && 'border-bgColor bg-primaryColor text-white'}`} 
+                                                            key={key}
+                                                        >
+                                                            {item.english_phrase}
+                                                        </div>
+                                                    ))
+                                                : []
+                                            })()}
+                                        </div>
+                                    </div>
                                 : 
                                     <div className="h-full flex items-center justify-center">at first you should select the lesson which you want</div>
                                 }
@@ -235,18 +238,54 @@ export default function Story () {
                     <img className="absolute top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
                     <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-10">
                         <div>
-                            <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Level :</div>
-                            <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-2">
-                                {level.length > 0 ? level.join(', ') : 'No levels selected'}
+                            <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
+                            <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-4 px-5 flex justify-center items-center">
+                                {level.length > 0 ? (
+                                    <div className="flex flex-wrap gap-3 justify-center">
+                                        {level.map((levelName, index) => (
+                                            <div key={index} className={`px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                                                levelName === 'elementry' ? 'bg-gradient-to-r from-green-500 to-green-600' : 
+                                                levelName === 'intermediate' ? 'bg-gradient-to-r from-blue-500 to-blue-600' : 
+                                                'bg-gradient-to-r from-red-500 to-red-600'
+                                            }`}>
+                                                {levelName === 'elementry' && <TbBoxMultiple1 className="text-lg" />}
+                                                {levelName === 'intermediate' && <TbBoxMultiple2 className="text-lg" />}
+                                                {levelName === 'advanced' && <TbBoxMultiple3 className="text-lg" />}
+                                                {levelName.charAt(0).toUpperCase() + levelName.slice(1)}
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="text-gray-400 text-lg">No levels selected</div>
+                                )}
                             </div>
                         </div>
                         <div>
-                            <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lesson :</div>
-                            <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-2">{ lesson != null ? `Lesson ${books[currentSelectedLevel]?.levels[0]?.lessons[lesson]?.lesson_number}` : '_'}</div>
+                            <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lessons :</div>
+                            <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border  py-4 px-5 flex justify-center items-center">
+                                {lessons.length > 0 ? (
+                                    <div className="flex flex-wrap gap-3 justify-center">
+                                        {lessons.map((lessonNumber, index) => {
+                                            const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length
+                                            return (
+                                                <div key={index} className="px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-xl bg-gradient-to-r from-purple-500 to-purple-600">
+                                                    <FaChevronRight className="text-lg" />
+                                                    Lesson {lessonNumber}
+                                                    <span className="bg-white/20 px-2 py-1 rounded-full text-xs">
+                                                        {wordsFromLesson} word{wordsFromLesson !== 1 ? 's' : ''}
+                                                    </span>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                ) : (
+                                    <div className="text-gray-400 text-lg ">Select lessons to continue</div>
+                                )}
+                            </div>
                         </div>
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Words :</div>
-                            <div className="text-xl font-semibold rounded-xl bg-white/20 border pt-8 pb-4 px-5 flex gap-5 flex-wrap">
+                            <div className="text-xl font-semibold rounded-xl bg-white/20 border py-8 px-5 flex gap-5 flex-wrap overflow-y-auto max-h-[250px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                     {words.length ?
                                         words.map((item,index)=>(
                                             <div key={index} className={`relative shadow rounded-xl px-2 py-1 inline-block bg-bgColor/20 border-3 border-dashed ${levelColors[wordLevels[item]]}`}>
@@ -255,7 +294,7 @@ export default function Story () {
                                             </div>
                                         ))
                                         :
-                                        <div className="m-auto text-[25px]">_</div>
+                                        <div className="m-auto text-gray-400 text-lg">Choose your favorite words</div>
                                     }
                             </div>
                             <div className="flex gap-4 mb-3 text-sm">
@@ -275,7 +314,7 @@ export default function Story () {
                         </div>
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Information :</div>
-                            <textarea placeholder="write some inforamatio as foor the story that you want!" className="min-h-[150px] resize-none text-xl font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg"/>
+                            <textarea placeholder="Write some information for the story that you want!" className="resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400"/>
                         </div>
                         <Link href='/' className="text-[22px] text-center font-bold mt-auto border rounded-xl py-4 bg-gradient-to-br from-primaryColor to-blue-600 text-white shadow-xl cursor-pointer hover:shadow-2xl hover:scale-105 duration-200 ">Create Story {'=>'}</Link>
                     </div>
