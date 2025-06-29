@@ -385,9 +385,9 @@ export default function Story () {
                             <div className="text-xl font-semibold rounded-xl bg-white/20 border py-8 px-5 flex gap-5 flex-wrap overflow-y-auto max-h-[250px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                     {words.length ?
                                         words.map((item,index)=>(
-                                            <div key={index} className={`relative shadow rounded-xl px-2 py-1 inline-block bg-bgColor/20 border-3 border-dashed ${levelColors[wordLevels[item]]}`}>
+                                            <div key={index} className={`relative shadow rounded-xl px-2 py-1 flex gap-1 bg-bgColor/20 border-3 border-dashed ${levelColors[wordLevels[item]]}`}>
+                                                <span onClick={ ()=> removeWord(index)} className="px-2 rounded-full select-none cursor-pointer">×</span>
                                                 <span>{item}</span>
-                                                <span onClick={ ()=> removeWord(index)} className="bg-gray-600 absolute -left-4 -top-4 px-2 text-white rounded-full select-none cursor-pointer">×</span>
                                             </div>
                                         ))
                                         :
@@ -430,7 +430,7 @@ export default function Story () {
                                 }
                             }}
                         >
-                            Create Story
+                            Create Story {'=>'}
                         </Link>
                     </div>
                 </div>
