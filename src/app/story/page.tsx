@@ -13,6 +13,10 @@ import { TbBoxMultiple3 } from "react-icons/tb";
 import { FaChevronRight } from "react-icons/fa";
 
 import Link from "next/link";
+
+// Maximum number of words that can be selected
+const MAX_WORDS_LIMIT = 6;
+
 export default function Story () {
     
     const [books] = useState<Record<Level,Book>>({'elementry':elementry,'intermediate':intermediate,'advanced':advanced})
@@ -65,6 +69,11 @@ export default function Story () {
             // Word already exists, remove it
             removeWord(foundIndex)
         } else {
+            // Check if we've reached the maximum limit
+            if (words.length >= MAX_WORDS_LIMIT) {
+                return
+            }
+            
             // Add new word and its level
             setWords(prevWords => [...prevWords, word])
             setWordLevels(prev => ({ ...prev, [word]: currentSelectedLevel }))
@@ -221,6 +230,32 @@ export default function Story () {
                         <div className="flex flex-col gap-3 select-none">
                             <div className="text-[30px] font-semibold">Select Words</div>
                             <div className="text-gray-400 text-lg">Select your words after that you selected the lesson</div>
+                            {/* Word count progress */}
+                            <div className="flex items-center gap-3">
+                                <div className="flex-1 bg-gray-100 rounded-full h-2 shadow-inner border border-gray-200">
+                                    <div 
+                                        className={`h-2 rounded-full transition-all duration-500 ease-out shadow-sm bg-gradient-to-r from-green-300 ${words.length >= MAX_WORDS_LIMIT ? 'to-green-600' : 'to-green-400'}`}
+                                        style={{ 
+                                            width: `${(words.length / MAX_WORDS_LIMIT) * 100}%`,
+                                            boxShadow: words.length >= MAX_WORDS_LIMIT 
+                                                ? '0 0 12px rgba(34,197,94,0.4)' 
+                                                : '0 0 10px rgba(34, 197, 94, 0.2)'
+                                        }}
+                                    ></div>
+                                </div>
+                                <div className="flex flex-col items-center min-w-[60px]">
+                                    <span className={`text-sm font-bold ${words.length >= MAX_WORDS_LIMIT ? 'text-green-600' : 'text-green-700'}`}>{words.length}/{MAX_WORDS_LIMIT}</span>
+                                    <span className="text-xs font-medium text-gray-500">
+                                        {words.length >= MAX_WORDS_LIMIT 
+                                            ? 'Completed!' 
+                                            : words.length >= MAX_WORDS_LIMIT * 0.8 
+                                                ? 'Almost Full' 
+                                                : words.length >= MAX_WORDS_LIMIT * 0.5
+                                                    ? 'Halfway'
+                                                    : 'Getting Started'}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <div className="flex flex-1 bg-[#f9f9f9]/50 border-3 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-3">
                             <div ref={scroller} className="scroll-smooth overflow-y-scroll h-full w-3/12 flex flex-col gap-2 p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor " dir="rtl">
@@ -259,15 +294,31 @@ export default function Story () {
                                             {(() => {
                                                 const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
                                                 return lessonIndex !== -1 ? 
-                                                    books[currentSelectedLevel]?.levels[0]?.lessons[lessonIndex]?.idioms.map((item: any, key: number) => (
-                                                        <div 
-                                                            onClick={() => addWord(item.english_phrase, lessonIndex)} 
-                                                            className={`text-lg select-none font-bold shadow border-3 bg-[#f9f9f9] border-primaryColor duration-100 rounded-full px-4 py-3 inline-block cursor-pointer ${words.includes(item.english_phrase) && 'border-bgColor bg-primaryColor text-white'}`} 
-                                                            key={key}
-                                                        >
-                                                            {item.english_phrase}
-                                                        </div>
-                                                    ))
+                                                    books[currentSelectedLevel]?.levels[0]?.lessons[lessonIndex]?.idioms.map((item: any, key: number) => {
+                                                        const isSelected = words.includes(item.english_phrase)
+                                                        const isLimitReached = words.length >= MAX_WORDS_LIMIT && !isSelected
+                                                        
+                                                        return (
+                                                            <div 
+                                                                onClick={() => {
+                                                                    if (!isLimitReached) {
+                                                                        addWord(item.english_phrase, lessonIndex)
+                                                                    }
+                                                                }} 
+                                                                className={`text-lg select-none font-bold shadow border-3 bg-[#f9f9f9] border-primaryColor duration-100 rounded-full px-4 py-3 inline-block ${
+                                                                    isSelected 
+                                                                        ? 'border-bgColor bg-primaryColor text-white cursor-pointer' 
+                                                                        : isLimitReached 
+                                                                            ? 'border-gray-300 bg-gray-100 text-gray-400 cursor-not-allowed' 
+                                                                            : 'cursor-pointer hover:bg-[#f1f1f1]'
+                                                                }`} 
+                                                                key={key}
+                                                                title={isLimitReached ? `Maximum ${MAX_WORDS_LIMIT} words reached. Remove some words first.` : ''}
+                                                            >
+                                                                {item.english_phrase}
+                                                            </div>
+                                                        )
+                                                    })
                                                 : []
                                             })()}
                                         </div>
@@ -343,26 +394,44 @@ export default function Story () {
                                         <div className="m-auto text-gray-400 text-lg">Choose your favorite words</div>
                                     }
                             </div>
-                            <div className="flex gap-4 mb-3 text-sm">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                                    <span>Elementary</span>
+                            {/* Word count and legend row */}
+                            <div className="flex items-center justify-between mt-2 mb-3 text-sm">
+                                <div className="flex gap-4">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                                        <span>Elementary</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                                        <span>Intermediate</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                                        <span>Advanced</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                                    <span>Intermediate</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                                    <span>Advanced</span>
-                                </div>
+                                <div className={`text-sm font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-green-600' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
                             </div>
                         </div>
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Information :</div>
                             <textarea placeholder="Write some information for the story that you want!" className="resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400"/>
                         </div>
-                        <Link href='/' className="text-[22px] text-center font-bold mt-auto border rounded-xl py-4 bg-gradient-to-br from-primaryColor to-blue-600 text-white shadow-xl cursor-pointer hover:shadow-2xl hover:scale-105 duration-200 ">Create Story {'=>'}</Link>
+                        <Link 
+                            href={words.length >= 1 ? '/' : '#'} 
+                            className={`text-[22px] text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 ${
+                                words.length >= 1 
+                                    ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
+                                    : 'bg-primaryColor/50 text-white cursor-not-allowed'
+                            }`}
+                            onClick={(e) => {
+                                if (words.length < 1) {
+                                    e.preventDefault()
+                                }
+                            }}
+                        >
+                            Create Story
+                        </Link>
                     </div>
                 </div>
             </div>
