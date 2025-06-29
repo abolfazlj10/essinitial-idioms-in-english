@@ -16,7 +16,7 @@ import Link from "next/link";
 export default function Story () {
     
     const [books] = useState<Record<Level,Book>>({'elementry':elementry,'intermediate':intermediate,'advanced':advanced})
-    const [level,setLevel] = useState<LevelArray>([])
+    const [level,setLevel] = useState<LevelArray>(['elementry'])
     const [lessons,setLessons] = useState<Array<number>>([])
     const [currentViewingLesson, setCurrentViewingLesson] = useState<number | null>(null)
     const scroller = useRef<HTMLDivElement | null>(null)
@@ -34,7 +34,27 @@ export default function Story () {
     }
 
     const selectLevel = (theLevel: Level): void => {
+        // Check if current level has any lessons selected
+        const currentLevelHasLessons = lessons.some(lessonNumber => {
+            // Find which level this lesson belongs to
+            const lessonLevel = Object.keys(books).find(level => {
+                const levelBooks = books[level as Level]
+                return levelBooks?.levels[0]?.lessons.some((lesson: any) => lesson.lesson_number === lessonNumber)
+            }) as Level
+            return lessonLevel === currentSelectedLevel
+        })
+        
+        // If current level has no lessons selected, remove it from levels array
+        if (!currentLevelHasLessons) {
+            setLevel(prev => prev.filter(l => l !== currentSelectedLevel))
+        }
+        
         setCurrentSelectedLevel(theLevel)
+        
+        // Add new level to levels array if not already present
+        if (!level.includes(theLevel)) {
+            setLevel(prev => [...prev, theLevel])
+        }
     }
 
     const addWord = (word: string, lessonIndex: number): void => {
@@ -49,16 +69,6 @@ export default function Story () {
             setWords(prevWords => [...prevWords, word])
             setWordLevels(prev => ({ ...prev, [word]: currentSelectedLevel }))
             setWordLessons(prev => ({ ...prev, [word]: lessonNumber }))
-            
-            // Add level to levels array if not already present
-            if (!level.includes(currentSelectedLevel)) {
-                setLevel(prev => [...prev, currentSelectedLevel])
-            }
-            
-            // Add lesson to lessons array if not already present
-            if (!lessons.includes(lessonNumber)) {
-                setLessons(prev => [...prev, lessonNumber])
-            }
         }
     }
 
@@ -83,27 +93,48 @@ export default function Story () {
             return newWordLessons
         })
         
-        // Check if this was the last word from this level
-        const remainingWordsFromLevel = Object.values(wordLevels).filter(level => level === levelOfWord).length - 1
-        
-        if (remainingWordsFromLevel === 0) {
-            // Remove level from levels array if no more words from this level
-            setLevel(prev => prev.filter(l => l !== levelOfWord))
-        }
-        
-        // Check if this was the last word from this lesson
-        const remainingWordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonOfWord).length - 1
-        
-        if (remainingWordsFromLesson === 0) {
-            // Remove lesson from lessons array if no more words from this lesson
-            setLessons(prev => prev.filter(l => l !== lessonOfWord))
-        }
+        // Note: We don't remove levels or lessons from arrays when words are removed
+        // Levels and lessons remain visible even when they have no words
     }
 
     
     
     useEffect(() => {
         setCurrentViewingLesson(null)
+        
+        // Only clean up when we're actually switching levels (not on initial load)
+        if (level.length > 1) {
+            // Remove lessons with 0 words from the previous level
+            setLessons(prev => prev.filter(lessonNumber => {
+                const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length
+                return wordsFromLesson > 0
+            }))
+            
+            // Remove levels that have no lessons after filtering, but keep the current selected level
+            setLevel(prev => {
+                const levelsToKeep = prev.filter(levelName => {
+                    // Always keep the current selected level
+                    if (levelName === currentSelectedLevel) return true
+                    
+                    const lessonsFromLevel = lessons.filter(lessonNumber => {
+                        const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length
+                        if (wordsFromLesson === 0) return false // Skip lessons with 0 words
+                        
+                        // Find which level this lesson belongs to
+                        const lessonLevel = Object.keys(books).find(level => {
+                            const levelBooks = books[level as Level]
+                            return levelBooks?.levels[0]?.lessons.some((lesson: any) => lesson.lesson_number === lessonNumber)
+                        }) as Level
+                        return lessonLevel === levelName
+                    }).length
+                    
+                    return lessonsFromLevel > 0
+                })
+                
+                return levelsToKeep
+            })
+        }
+        
         if(words.length == 0)
             setSteper(1)        
 
@@ -113,10 +144,12 @@ export default function Story () {
     }, [currentSelectedLevel]);
 
     useEffect(()=>{
-        if(lessons.length == 0 && words.length == 0)
+        if(lessons.length > 0 && words.length == 0)
             setSteper(2)
-        else if(lessons.length != 0 && words.length != 0)
+        else if(lessons.length > 0 && words.length != 0)
             setSteper(3)
+        else if(lessons.length == 0)
+            setSteper(1)
 
     },[lessons])
 
@@ -193,7 +226,20 @@ export default function Story () {
                             <div ref={scroller} className="scroll-smooth overflow-y-scroll h-full w-3/12 flex flex-col gap-2 p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor " dir="rtl">
                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                     <div dir="ltr" onClick={()=>{
+                                        // Check if current lesson has any words selected
+                                        const currentLessonHasWords = Object.values(wordLessons).some(lessonNumber => lessonNumber === currentViewingLesson)
+                                        
+                                        // If current lesson has no words, remove it from lessons array
+                                        if (currentViewingLesson !== null && !currentLessonHasWords) {
+                                            setLessons(prev => prev.filter(l => l !== currentViewingLesson))
+                                        }
+                                        
                                         setCurrentViewingLesson(item.lesson_number)
+                                        
+                                        // Add new lesson to lessons array if not already present
+                                        if (!lessons.includes(item.lesson_number)) {
+                                            setLessons(prev => [...prev, item.lesson_number])
+                                        }
                                     }} className={`border rounded-lg px-4 py-3 select-none bg-white hover:bg-[#f1f1f1] cursor-pointer duration-75 flex items-center justify-between ${lessons.includes(item.lesson_number) ? 'border-primaryColor bg-primaryColor/10' : ''} ${currentViewingLesson === item.lesson_number ? 'ring-2 ring-primaryColor' : ''}`} key={index}>
                                         <div className="space-y-2">
                                             <div className="text-xl font-bold">Lesson {item.lesson_number}</div>
