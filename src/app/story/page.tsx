@@ -82,27 +82,44 @@ export default function Story () {
 
     const removeWord = (index: number): void => {
         const wordToRemove = words[index]
-        const levelOfWord = wordLevels[wordToRemove]
-        const lessonOfWord = wordLessons[wordToRemove]
+
+        // Create new state snapshots
+        const newWords = words.filter((_, i) => i !== index)
+        const newWordLevels = { ...wordLevels }
+        delete newWordLevels[wordToRemove]
+        const newWordLessons = { ...wordLessons }
+        delete newWordLessons[wordToRemove]
+
+        // Update word states
+        setWords(newWords)
+        setWordLevels(newWordLevels)
+        setWordLessons(newWordLessons)
         
-        // Remove the word
-        setWords(prevArr => prevArr.filter((_, key) => key !== index))
+        // After removing a word, we need to clean up any lessons or levels
+        // that no longer have any associated words.
+
+        // Clean up lessons:
+        // A lesson should be removed from the list if it's not the currently viewed one
+        // AND it has no more words selected from it.
+        setLessons(prevLessons =>
+            prevLessons.filter(lessonNumber => {
+                const hasWords = Object.values(newWordLessons).includes(lessonNumber)
+                return hasWords || lessonNumber === currentViewingLesson
+            })
+        )
         
-        // Remove word from wordLevels and wordLessons tracking
-        setWordLevels(prev => {
-            const newWordLevels = { ...prev }
-            delete newWordLevels[wordToRemove]
-            return newWordLevels
-        })
-        
-        setWordLessons(prev => {
-            const newWordLessons = { ...prev }
-            delete newWordLessons[wordToRemove]
-            return newWordLessons
-        })
-        
-        // Note: We don't remove levels or lessons from arrays when words are removed
-        // Levels and lessons remain visible even when they have no words
+        // Clean up levels:
+        // A level should be removed if it's not the currently selected one
+        // AND it has no more words selected from it.
+        setLevel(prevLevels =>
+            prevLevels.filter(levelName => {
+                if (levelName === currentSelectedLevel) return true // Always keep the active level
+                
+                // Check if any word in the new list belongs to this level
+                const hasWords = Object.values(newWordLevels).includes(levelName)
+                return hasWords
+            })
+        )
     }
 
     
@@ -402,8 +419,8 @@ export default function Story () {
                                 {lessons.length > 0 ? (
                                     <div className="grid grid-cols-2 gap-3 w-full">
                                         {lessons.map((lessonNumber, index) => {
-                                            const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length
-                                            // پیدا کردن سطح درس
+                                            const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length;
+                                            
                                             let lessonLevel: Level = 'elementry';
                                             for (const levelKey of Object.keys(books) as Level[]) {
                                                 const found = books[levelKey]?.levels[0]?.lessons.some((lesson: any) => lesson.lesson_number === lessonNumber);
@@ -412,9 +429,11 @@ export default function Story () {
                                                     break;
                                                 }
                                             }
+
                                             const isLastAndOdd = index === lessons.length - 1 && lessons.length % 2 !== 0;
                                             const badgeClass = lessonLevel === 'elementry' ? 'bg-green-500 text-white' : lessonLevel === 'intermediate' ? 'bg-blue-500 text-white' : 'bg-red-500 text-white';
-                                            
+                                            const isSemiActive = wordsFromLesson === 0;
+
                                             return (
                                                 <div
                                                     key={index}
@@ -422,11 +441,15 @@ export default function Story () {
                                                         relative
                                                         px-3 py-2 rounded-xl text-sm
                                                         flex items-center justify-center
-                                                        transition-all duration-200 
-                                                        bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40
+                                                        transition-all duration-200 backdrop-blur-sm
                                                         ${isLastAndOdd ? 'col-span-2' : ''}
+                                                        ${isSemiActive
+                                                            ? 'bg-white/10 border-primaryColor/40 opacity-70 hover:opacity-100 hover:bg-white/20'
+                                                            : 'bg-white/20 border-primaryColor hover:bg-white/40'
+                                                        }
                                                     `}
                                                     style={{ fontWeight: 500, borderWidth: 1 }}
+                                                    title={isSemiActive ? "This lesson has no selected words yet." : `${wordsFromLesson} word(s) selected`}
                                                 >
                                                     {wordsFromLesson > 0 && (
                                                         <span className={`absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3 w-5 h-5 rounded-full text-xs font-semibold z-10 border-2 border-white flex items-center justify-center ${badgeClass}`}>
