@@ -13,6 +13,7 @@ import { TbBoxMultiple3 } from "react-icons/tb";
 import { FaChevronRight, FaCheck } from "react-icons/fa";
 
 import Link from "next/link";
+import { GoogleGenAI } from "@google/genai";
 
 const MAX_WORDS_LIMIT = 6;
 
@@ -28,6 +29,9 @@ export default function Story () {
     const [wordLevels, setWordLevels] = useState<Record<string, Level>>({})
     const [wordLessons, setWordLessons] = useState<Record<string, number>>({})
     const [currentSelectedLevel, setCurrentSelectedLevel] = useState<Level>('elementry')
+    const [information, setInformation] = useState<string>("");
+    const [story, setStory] = useState<string>("");
+    const [loadingStory, setLoadingStory] = useState<boolean>(false);
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -122,7 +126,30 @@ export default function Story () {
         )
     }
 
-    
+    const StoryCreator = async (): Promise<void> => {
+        const apiKey = 'AIzaSyCDXMKBUSPiT5eL13KBgAdP4GMX_Q9S_PY'
+        const theWords = words.join(' - ');
+        const prompt = `Write a story for a language learner using these idioms: ${theWords}. ${information ? 'Here is some additional information: ' + information : ''}`;
+        setLoadingStory(true);
+        setStory("");
+        try {
+            const ai = new GoogleGenAI({ apiKey: apiKey });
+            const response = await ai.models.generateContent({
+                model: "gemini-2.5-flash",
+                contents: prompt,
+            });
+            // The response shape may differ, adjust as needed
+            setStory(response.text || "No story generated.");
+        } catch (err: any) {
+            setStory("Error generating story: " + (err?.message || "Unknown error"));
+        } finally {
+            setLoadingStory(false);
+        }
+    }    
+
+    useEffect(()=>{
+        console.log(story)
+    },[story])
     
     useEffect(() => {
         setCurrentViewingLesson(null)
@@ -379,7 +406,7 @@ export default function Story () {
                 <div className="border border-gray-400/10 rounded-xl relative overflow-hidden shadow-xl">
                     <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
                     <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
-                    <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-10">
+                    <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-4">
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
                             <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
@@ -515,23 +542,27 @@ export default function Story () {
                         </div>
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Information :</div>
-                            <textarea placeholder="Write some information for the story that you want!" className="placeholder:select-none resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400"/>
+                            <textarea placeholder="Write some information for the story that you want!" className="placeholder:select-none resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400" 
+                                value={information}
+                                onChange={e => setInformation(e.target.value)}
+                            />
                         </div>
-                        <Link 
-                            href={words.length >= 1 ? '/' : '#'} 
+                        <div 
                             className={`text-[22px] text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 select-none ${
-                                words.length >= 1 
-                                    ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
-                                    : 'bg-primaryColor/50 text-white cursor-not-allowed'
+                                loadingStory
+                                    ? 'bg-gray-400 text-white cursor-wait'
+                                    : words.length >= 1 
+                                        ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
+                                        : 'bg-primaryColor/50 text-white cursor-not-allowed'
                             }`}
-                            onClick={(e) => {
-                                if (words.length < 1) {
-                                    e.preventDefault()
+                            onClick={() => {
+                                if (words.length >= 1 && !loadingStory) {
+                                    StoryCreator()
                                 }
                             }}
                         >
-                            Create Story {'=>'}
-                        </Link>
+                            {loadingStory ? 'Generating...' : 'Create Story =>'}
+                        </div>
                     </div>
                 </div>
             </div>
