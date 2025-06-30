@@ -331,23 +331,33 @@ export default function Story () {
                     </div>
                 </div>
                 <div className="border border-gray-400/10 rounded-xl relative overflow-hidden shadow-xl">
-                    <img className="absolute top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
-                    <img className="absolute top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
+                    <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
+                    <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
                     <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-10">
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
                             <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-4 px-5 flex justify-center items-center">
                                 {level.length > 0 ? (
-                                    <div className="flex flex-wrap gap-3 justify-center">
+                                    <div className="flex flex-wrap gap-2 justify-center">
                                         {level.map((levelName, index) => (
-                                            <div key={index} className={`px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-                                                levelName === 'elementry' ? 'bg-gradient-to-r from-green-500 to-green-600' : 
-                                                levelName === 'intermediate' ? 'bg-gradient-to-r from-blue-500 to-blue-600' : 
-                                                'bg-gradient-to-r from-red-500 to-red-600'
-                                            }`}>
-                                                {levelName === 'elementry' && <TbBoxMultiple1 className="text-lg" />}
-                                                {levelName === 'intermediate' && <TbBoxMultiple2 className="text-lg" />}
-                                                {levelName === 'advanced' && <TbBoxMultiple3 className="text-lg" />}
+                                            <div
+                                                key={index}
+                                                className={`
+                                                    px-3 py-1 rounded-full text-sm text-gray-700
+                                                    flex items-center gap-2 min-w-[90px] justify-center
+                                                    transition-all duration-200 hover:bg-gray-200 hover:border-gray-400
+                                                    ${levelName === 'elementry' ? 'border-green-200 bg-green-50' : ''}
+                                                    ${levelName === 'intermediate' ? 'border-blue-200 bg-blue-50' : ''}
+                                                    ${levelName === 'advanced' ? 'border-red-200 bg-red-50' : ''}
+                                                `}
+                                                style={{ fontWeight: 500, borderWidth: 1 }}
+                                            >
+                                                <span className={`
+                                                    w-2 h-2 rounded-full inline-block
+                                                    ${levelName === 'elementry' ? 'bg-green-300' : ''}
+                                                    ${levelName === 'intermediate' ? 'bg-blue-300' : ''}
+                                                    ${levelName === 'advanced' ? 'bg-red-300' : ''}
+                                                `}></span>
                                                 {levelName.charAt(0).toUpperCase() + levelName.slice(1)}
                                             </div>
                                         ))}
@@ -361,14 +371,36 @@ export default function Story () {
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lessons :</div>
                             <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border  py-4 px-5 flex justify-center items-center">
                                 {lessons.length > 0 ? (
-                                    <div className="flex flex-wrap gap-3 justify-center">
+                                    <div className="flex flex-wrap gap-2 justify-center">
                                         {lessons.map((lessonNumber, index) => {
                                             const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length
+                                            // پیدا کردن سطح درس
+                                            let lessonLevel: Level = 'elementry';
+                                            for (const levelKey of Object.keys(books) as Level[]) {
+                                                const found = books[levelKey]?.levels[0]?.lessons.some((lesson: any) => lesson.lesson_number === lessonNumber);
+                                                if (found) {
+                                                    lessonLevel = levelKey;
+                                                    break;
+                                                }
+                                            }
                                             return (
-                                                <div key={index} className="px-4 py-2 rounded-full text-sm font-bold text-white shadow-lg flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-xl bg-gradient-to-r from-purple-500 to-purple-600">
-                                                    <FaChevronRight className="text-lg" />
+                                                <div
+                                                    key={index}
+                                                    className={`
+                                                        px-3 py-1 rounded-full text-sm text-gray-700 border border-gray-300
+                                                        flex items-center gap-2 min-w-[90px] justify-center bg-gray-100
+                                                        transition-all duration-200 hover:bg-gray-200 hover:border-gray-400
+                                                    `}
+                                                    style={{ fontWeight: 500 }}
+                                                >
+                                                    <span className={`
+                                                        w-2 h-2 rounded-full inline-block
+                                                        ${lessonLevel === 'elementry' ? 'bg-green-300' : ''}
+                                                        ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''}
+                                                        ${lessonLevel === 'advanced' ? 'bg-red-300' : ''}
+                                                    `}></span>
                                                     Lesson {lessonNumber}
-                                                    <span className="bg-white/20 px-2 py-1 rounded-full text-xs">
+                                                    <span className="bg-white/60 px-2 py-0.5 rounded-full text-xs text-gray-500 border border-gray-200 ml-1">
                                                         {wordsFromLesson} word{wordsFromLesson !== 1 ? 's' : ''}
                                                     </span>
                                                 </div>
@@ -415,11 +447,11 @@ export default function Story () {
                         </div>
                         <div>
                             <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Information :</div>
-                            <textarea placeholder="Write some information for the story that you want!" className="resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400"/>
+                            <textarea placeholder="Write some information for the story that you want!" className="placeholder:select-none resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400"/>
                         </div>
                         <Link 
                             href={words.length >= 1 ? '/' : '#'} 
-                            className={`text-[22px] text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 ${
+                            className={`text-[22px] text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 select-none ${
                                 words.length >= 1 
                                     ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
                                     : 'bg-primaryColor/50 text-white cursor-not-allowed'
