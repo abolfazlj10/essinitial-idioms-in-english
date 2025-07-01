@@ -13,6 +13,10 @@ import { TbBoxMultiple2 } from "react-icons/tb";
 import { TbBoxMultiple3 } from "react-icons/tb";
 import { FaSpinner , FaCheck } from "react-icons/fa";
 import Appbar from "@/components/appbar";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { RxLineHeight } from "react-icons/rx";
+import { TbLineHeight } from "react-icons/tb";
+import GroupButton from "@/components/ui/group-button";
 const MAX_WORDS_LIMIT = 6;
 
 export default function Story () {
@@ -32,7 +36,13 @@ export default function Story () {
     const [storyFa, setStoryFa] = useState<string>("");
     const [storyEn, setStoryEn] = useState<string>("");
     const [loadingStory, setLoadingStory] = useState<boolean>(false);
-    const [showStory, setShowStory] = useState<boolean>(true);
+    const [showStory, setShowStory] = useState<boolean>(false);
+    const [fontSize, setFontSize] = useState(20);
+    const [lineHeight, setLineHeight] = useState(2);
+    const [focusMode, setFocusMode] = useState<'all' | 'en' | 'fa'>('all');
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const highlightColorEn = 'bg-blue-100';
+    const highlightColorFa = 'bg-green-100';
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -131,7 +141,7 @@ export default function Story () {
         const apiKey = 'AIzaSyCDXMKBUSPiT5eL13KBgAdP4GMX_Q9S_PY'
         const theWords = words.join(' - ');
         // Updated prompt for both Persian and English (in English)
-        const prompt = `Write a story using these idioms for a language learner. First, provide the story in Persian (Farsi) and then its English translation, each clearly labeled.\nIdioms: ${theWords}.${information ? '\nAdditional information: ' + information : ''}\nOutput format:\nPersian:\n[FA]\nEnglish:\n[EN]`;
+        const prompt = `Write a story using these idioms for a language learner. First, provide the story in Persian (Farsi) and then its English translation, each clearly labeled.\nIn both the Persian and English stories, put the exact translation or equivalent of each idiom in [brackets] so it can be highlighted.\nIdioms: ${theWords}.${information ? '\nAdditional information: ' + information : ''}\nOutput format:\nPersian:\n[FA]\nEnglish:\n[EN]`;
         setLoadingStory(true);
         setStory("");
         setStoryFa("");
@@ -226,27 +236,173 @@ export default function Story () {
         else if(words.length == 0 && lessons.length != 0)
             setSteper(2)
     },[words])
+
+    // Utility function to split text into sentences or paragraphs
+    function splitSentences(text: string, lang: 'en' | 'fa') {
+        let parts: string[] = [];
+        if (lang === 'fa') {
+            parts = text.split(/\n+/).filter(Boolean);
+            if (parts.length === 1) {
+                parts = text.split(/(?<=[.!؟])\s+/).filter(Boolean);
+            }
+        } else {
+            parts = text.split(/\n+/).filter(Boolean);
+            if (parts.length === 1) {
+                parts = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+            }
+        }
+        return parts;
+    }
+
+    // هایلایت اصطلاحات انتخاب‌شده در متن
+    function highlightIdioms(text: string, idioms: string[], lang: 'en' | 'fa') {
+        if (!idioms.length) return text;
+        // ترتیب طولانی‌ترها اول برای جلوگیری از تداخل
+        const sortedIdioms = [...idioms].sort((a, b) => b.length - a.length);
+        let replaced = text;
+        sortedIdioms.forEach(idiom => {
+            // برای انگلیسی: حساس به حروف کوچک/بزرگ نباشد
+            const pattern = lang === 'en'
+                ? new RegExp(`(${idiom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi')
+                : new RegExp(`(${idiom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
+            replaced = replaced.replace(pattern, '<span class="bg-primaryColor/20 font-bold rounded px-1">$1</span>');
+        });
+        return replaced;
+    }
+
+    function splitAndSyncHighlight(text: string, lang: 'en' | 'fa') {
+        let parts: string[] = [];
+        if (lang === 'fa') {
+            parts = text.split(/\n+/).filter(Boolean);
+            if (parts.length === 1) {
+                parts = text.split(/(?<=[.!؟])\s+/).filter(Boolean);
+            }
+        } else {
+            parts = text.split(/\n+/).filter(Boolean);
+            if (parts.length === 1) {
+                parts = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+            }
+        }
+        const highlightColor = lang === 'fa' ? highlightColorFa : highlightColorEn;
+        return (
+            <span>
+                {parts.map((part, idx) => {
+                    let html = part;
+                    // هایلایت عبارات داخل [ ] در هر دو زبان
+                    html = part.replace(/\[([^\]]+)\]/g, '<span class="bg-primaryColor/20 font-bold rounded px-1">$1</span>');
+                    return (
+                        <span
+                            key={idx}
+                            className={`transition-all duration-300 rounded px-0.5 animate-fadein ${hoveredIndex === idx ? highlightColor + ' ring-2 ring-primaryColor/60 shadow-lg' : ''}`}
+                            onMouseEnter={() => setHoveredIndex(idx)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            style={{cursor: 'pointer'}}
+                            dangerouslySetInnerHTML={{ __html: html }}
+                        />
+                    );
+                })}
+            </span>
+        );
+    }
+
     return(
         <div className="h-full flex flex-col gap-5 overflow-hidden">
-            <Appbar onBackClick={() => setShowStory(false)} />
             {showStory ? (
-                <div className="flex flex-col gap-5 overflow-hidden flex-1">
-                    <div className="text-[40px] font-semibold flex items-center gap-2">The Story <img src='./icon/Otter.svg'/></div>
-                    {/* Show both Persian and English if available */}
+                <div className="flex flex-col flex-1 gap-5 overflow-hidden p-2">
+                    <div className="flex items-center justify-between mb-2">
+                        <button
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/80 hover:bg-white shadow border border-gray-200 text-gray-700 font-semibold transition-all duration-150 cursor-pointer"
+                            onClick={() => setShowStory(false)}
+                        >
+                            <span className="text-lg">←</span> Back
+                        </button>
+                        <div className="text-[32px] font-semibold flex items-center gap-2 select-none">
+                            The Story <img src='./icon/Otter.svg' className="w-8 h-8"/>
+                        </div>
+                        <button
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primaryColor/90 hover:bg-primaryColor text-white shadow font-semibold transition-all duration-150 cursor-pointer"
+                            onClick={() => { setShowStory(false); setWords([]); setLessons([]); setLevel(['elementry']); setStory(''); setStoryFa(''); setStoryEn(''); setInformation(''); }}
+                        >
+                            + New Story
+                        </button>
+                    </div>
+                    <>
+                    <div className="flex justify-center mb-4 gap-6 flex-wrap">
+                        {/* Language Group */}
+                        <div className="flex flex-col items-center gap-1">
+                            <div className="text-xs font-bold text-gray-500 mb-1">Language</div>
+                            <GroupButton
+                                options={[
+                                    { label: "Both", value: "all", icon: null },
+                                    { label: "EN", value: "en", icon: <img src="/icon/Flag England.svg" alt="EN" className="w-5 h-5" /> },
+                                    { label: "FA", value: "fa", icon: <img src="/icon/Flag Iran.svg" alt="FA" className="w-5 h-5" /> },
+                                ]}
+                                value={focusMode}
+                                onChange={val => setFocusMode(val as typeof focusMode)}
+                                className="mb-2"
+                            />
+                        </div>
+                        {/* Typography Group */}
+                        <div className="flex flex-col items-center gap-1">
+                            <div className="text-xs font-bold text-gray-500 mb-1">Typography</div>
+                            <GroupButton
+                                options={[
+                                    {  value: "decFont", icon: <AiOutlineMinus /> },
+                                    {  value: "incFont", icon: <AiOutlinePlus /> },
+                                    {  value: "decLine", icon: <TbLineHeight /> },
+                                    {  value: "incLine", icon: <RxLineHeight /> },
+                                ]}
+                                value={""}
+                                onChange={val => {
+                                    if (val === "incFont") setFontSize(f => Math.min(40, f+2));
+                                    else if (val === "decFont") setFontSize(f => Math.max(14, f-2));
+                                    else if (val === "incLine") setLineHeight(l => Math.min(3, l+0.2));
+                                    else if (val === "decLine") setLineHeight(l => Math.max(1.2, l-0.2));
+                                }}
+                                className="mb-2"
+                            />
+                        </div>
+                    </div>
+                    
                     {storyFa && storyEn ? (
-                        <div className="flex flex-col flex-1">
-                            <div className="text-xl leading-8 flex-1 space-y-2">
-                                <div className="font-bold">English:</div>
-                                <div>{storyEn}</div>
+                        <div className="flex flex-col md:flex-row gap-8 flex-1 items-stretch">
+                            {/* English Box */}
+                            <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-100 shadow-2xl z-10' : ''}`}>
+                                <div className="flex items-center gap-2 mb-2">
+                                    <span className="w-3 h-3 rounded-full bg-blue-400"></span>
+                                    <img src="/icon/Flag England.svg" alt="English" className="w-6 h-6" />
+                                    <span className="font-bold text-2xl text-blue-700">English</span>
+                                </div>
+                                <div className="text-gray-800 whitespace-pre-line" style={{fontSize, lineHeight}}>
+                                    {splitAndSyncHighlight(storyEn, 'en')}
+                                </div>
+                                <button
+                                    className="absolute top-4 right-4 px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full text-sm font-semibold shadow transition-all duration-150 cursor-pointer"
+                                    onClick={() => {navigator.clipboard.writeText(storyEn)}}
+                                >Copy</button>
                             </div>
-                            <div className="text-xl leading-8 flex-1 space-y-2">
-                                <div className="font-bold">persian:</div>
-                                <div dir="rtl" className="text-right">{storyFa}</div>
+                            {/* Divider */}
+                            <div className="hidden md:block w-px bg-gray-200 mx-6 my-8 self-stretch rounded"></div>
+                            {/* Persian Box */}
+                            <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='en' ? 'opacity-30 blur-[2px]' : focusMode==='fa' ? 'scale-100 shadow-2xl z-10' : ''}`}>
+                                <div className="flex items-center gap-2 mb-2">
+                                    <span className="w-3 h-3 rounded-full bg-green-400"></span>
+                                    <img src="/icon/Flag Iran.svg" alt="Persian" className="w-6 h-6" />
+                                    <span className="font-bold text-2xl text-green-700">Persian</span>
+                                </div>
+                                <div dir="rtl" className="font-iranYekan text-gray-900 whitespace-pre-line text-right" style={{fontSize, lineHeight}}>
+                                    {splitAndSyncHighlight(storyFa, 'fa')}
+                                </div>
+                                <button
+                                    className="absolute top-4 right-4 px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded-full text-sm font-semibold shadow transition-all duration-150 cursor-pointer"
+                                    onClick={() => {navigator.clipboard.writeText(storyFa)}}
+                                >Copy</button>
                             </div>
                         </div>
                     ) : (
                         <div className="text-xl leading-8">{story}</div>
                     )}
+                    </>
                 </div>
             ) : (
                 <>

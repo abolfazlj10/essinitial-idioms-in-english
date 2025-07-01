@@ -2,20 +2,12 @@
 @import "tw-animate-css";
 
 @font-face {
-  font-family: 'lexend';
-  src: url('/fonts/Lexend-VariableFont_wght.ttf');
-}
-@font-face {
   font-family: 'interVariable';
   src: url('/fonts/Inter-VariableFont_opsz,wght.ttf');
 }
 @font-face {
-  font-family: 'opensans';
-  src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf');
-}
-@font-face {
-  font-family: 'funnelSans';
-  src: url('/fonts/FunnelSans-VariableFont_wght.ttf');
+  font-family: 'iranYekan';
+  src: url('/fonts/IRANYekanX-Regular.woff2');
 }
 
 
@@ -59,10 +51,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-lexend: 'lexend';
   --font-interVariable: 'interVariable';
-  --font-openSans: 'opensans';
-  --font-funnelSans: 'funnelSans';
+  --font-iranYekan:'iranYekan';
   --color-bgColor:#a5b2ff;
   --color-primaryColor:#5c6bec;
   --color-hilightColor:#A855F7;
