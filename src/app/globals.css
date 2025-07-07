@@ -56,6 +56,10 @@
   --color-bgColor:#a5b2ff;
   --color-primaryColor:#5c6bec;
   --color-hilightColor:#A855F7;
+  --breakpoint-mobile:640px;
+  --breakpoint-tablet:768px;
+  --breakpoint-laptop:1024px;
+  --breakpoint-desktop:1280px;
 }
 
 body {
