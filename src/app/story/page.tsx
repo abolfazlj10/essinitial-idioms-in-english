@@ -344,7 +344,8 @@ export default function Story () {
     }, []);
 
     return(
-        <div className="h-full border-2 p-5 desktop:border-black laptop:border-blue-400 tablet:border-green-400 mobile:border-purple-400">
+        // <div className="h-full border-2 p-5 desktop:border-black laptop:border-blue-400 tablet:border-green-400 mobile:border-purple-700">
+        <div className="h-full border-2 p-5">
             <div className="h-full flex flex-col gap-5 max-[1500px]:gap-4">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
@@ -443,67 +444,79 @@ export default function Story () {
                 ) : (
                     <>
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : <button className="border rounded p-1">details</button>}/>
-                        <div className="flex gap-5 select-none px-2">
-                            <div className="flex-1 flex flex-col gap-2">
-                                <div className={`w-full h-[8px] bg-gradient-to-r from-primaryColor from-40% to-bgColor rounded ${steper >= 1 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div>Level</div>
+                        <div className="flex gap-5 max-laptop:gap-2 select-none px-2">
+                            <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
+                                <div className={`w-full h-[8px] max-laptop:h-[6px] bg-gradient-to-r from-primaryColor from-40% to-bgColor rounded ${steper >= 1 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className=" max-laptop:text-sm">Level</div>
                             </div>
-                            <div className="flex-1 flex flex-col gap-2">
-                                <div className={`w-full h-[8px] bg-[#eaeced] rounded  ${steper >= 2 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className="text-gray-400">Lessons</div>
+                            <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
+                                <div className={`w-full h-[8px] max-laptop:h-[6px] bg-[#eaeced] rounded  ${steper >= 2 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className="text-gray-400 max-laptop:text-sm">Lessons</div>
                             </div>
-                            <div className="flex-1 flex flex-col gap-2">
-                                <div className={`w-full h-[8px] bg-[#eaeced] rounded  ${steper >= 3 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className="text-gray-400">Words</div>
+                            <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
+                                <div className={`w-full h-[8px] max-laptop:h-[6px] bg-[#eaeced] rounded  ${steper >= 3 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className="text-gray-400 max-laptop:text-sm">Words</div>
                             </div>
                         </div>
-                        <div className="grid desktop:grid-cols-[7fr_2fr] grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3">
-                            <div className="flex flex-col gap-9 overflow-hidden">
-                                <div className="flex flex-col gap-3 select-none px-2">
-                                    <div className="text-[30px] font-semibold">Select Level</div>
-                                    <div className="text-gray-400 text-lg">Select your level that you wanna see its words</div>
+                        <div className="grid desktop:grid-cols-[7fr_2fr] grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
+                            <div className="flex flex-col gap-9 max-desktop:gap-5 overflow-hidden">
+                                <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2">
+                                    <div className="text-[30px] max-laptop:text-[25px] font-semibold">Select Level</div>
+                                    <div className="text-gray-400 text-lg max-laptop:text-base">Select your level that you wanna see its words</div>
                                 </div>
-                                <div className="flex gap-10 px-2 max-[2000px]:gap-5">
-                                    <div onClick={()=> selectLevel('elementry')} className={`border-3 flex-1 p-6 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
+                                <div className="flex gap-10 px-2 max-[2000px]:gap-5 max-laptop:flex-col">
+                                    <div onClick={()=> selectLevel('elementry')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
                                         {currentSelectedLevel === 'elementry' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
                                         <div className="text-4xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
-                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm">Start with common, everyday idioms.</div>
+                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">Start with common, everyday idioms.</div>
+                                        <div className="min-laptop:hidden flex flex-col gap-2">
+                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-laptop:text-sm">Start with common, everyday idioms.</div>
+                                        </div>
                                     </div>
-                                    <div onClick={()=> selectLevel('intermediate')} className={`border-3 flex-1 p-6 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
+                                    <div onClick={()=> selectLevel('intermediate')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
                                         {currentSelectedLevel === 'intermediate' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
                                         <div className="text-4xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
-                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm">Explore more complex and nuanced phrases.</div>
+                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">Explore more complex and nuanced phrases.</div>
+                                        <div className="min-laptop:hidden flex flex-col gap-2">
+                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-laptop:text-sm">Explore more complex and nuanced phrases.</div>
+                                        </div>
                                     </div>
-                                    <div onClick={()=> selectLevel('advanced')} className={`border-3 flex-1 p-6 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
+                                    <div onClick={()=> selectLevel('advanced')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
                                         {currentSelectedLevel === 'advanced' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
                                         <div className="text-4xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
-                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm">Master sophisticated and specialized idioms.</div>
+                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">Master sophisticated and specialized idioms.</div>
+                                        <div className="min-laptop:hidden flex flex-col gap-2">
+                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-laptop:text-sm">Master sophisticated and specialized idioms.</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-8 flex-1 overflow-hidden px-2">
-                                    <div className="flex flex-col gap-3 select-none">
-                                        <div className="text-[30px] font-semibold">Select Words</div>
-                                        <div className="text-gray-400 text-lg">Select your words after that you selected the lesson</div>
+                                    <div className="flex flex-col gap-3 max-laptop:gap-1 select-none">
+                                        <div className="text-[30px] max-laptop:text-[25px] font-semibold">Select Words</div>
+                                        <div className="text-gray-400 text-lg max-laptop:text-base">Select your words after that you selected the lesson</div>
                                         {/* Word count progress */}
                                         <div className="flex items-center gap-3">
-                                            <div className="flex-1 bg-gray-100 rounded-full h-2 shadow-inner border border-gray-200">
+                                            <div className="flex-1 bg-gray-100 rounded-full h-2 max-laptop:h-1 shadow-inner border border-gray-200">
                                                 <div 
-                                                    className={`h-2 rounded-full transition-all duration-500 ease-out shadow-sm bg-gradient-to-r from-bgColor ${words.length >= MAX_WORDS_LIMIT ? 'to-primaryColor/80' : 'to-primaryColor/100'}`}
+                                                    className={`h-2 max-laptop:h-1 rounded-full transition-all duration-500 ease-out shadow-sm bg-gradient-to-r from-bgColor ${words.length >= MAX_WORDS_LIMIT ? 'to-primaryColor/80' : 'to-primaryColor/100'}`}
                                                     style={{ 
                                                         width: `${(words.length / MAX_WORDS_LIMIT) * 100}%`,
                                                         boxShadow: words.length > 0
@@ -527,8 +540,8 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div className="flex-1 flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
-                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 laptop:flex-none  laptop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
-                                            <div className="h-full w-full grid grid-cols-2 gap-2 p-2" dir="ltr">
+                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
+                                            <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
                                                         // پیدا کردن سطح درس
@@ -579,8 +592,8 @@ export default function Story () {
                                         </div>
                                         <div className="p-5 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
-                                                <div className="space-y-3 h-full flex flex-col laptop:overflow-hidden">
-                                                    <div className="text-lg laptop:text-sm max-[1440px]:hidden desktop:block laptop:hidden font-semibold text-gray-600 border-b pb-2">
+                                                <div className="space-y-3 h-full flex flex-col max-desktop:overflow-hidden">
+                                                    <div className="text-lg max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
                                                     <div className="flex flex-wrap gap-3 max-[1430px]:overflow-y-auto desktop:flex-none p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
@@ -618,7 +631,7 @@ export default function Story () {
                                                     </div>
                                                 </div>
                                             : 
-                                                <div className="h-full flex items-center justify-center">at first you should select the lesson which you want</div>
+                                                <div className="h-full flex items-center justify-center max-desktop:text-sm">at first you should select the lesson which you want</div>
                                             }
                                         </div>
                                     </div>
@@ -787,9 +800,8 @@ export default function Story () {
                                 </div>
                             </div>
                             <div className="mx-2 desktop:hidden">
-                                <div className="flex flex-col gap-3 select-none px-2">
-                                    <div className="text-[30px] font-semibold">Informations</div>
-                                    {/* <div className="text-gray-400 text-lg">Write what you want in this story, AI will build it!</div> */}
+                                <div className="select-none px-2 mb-3 max-laptop:mb-1">
+                                    <div className="text-[30px] max-laptop:text-[25px] font-semibold">Informations</div>
                                 </div>
                                 <div className="flex">
                                     <div className="flex-1">
