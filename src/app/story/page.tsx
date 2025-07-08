@@ -47,6 +47,7 @@ export default function Story () {
     const highlightColorEn = 'bg-blue-100';
     const highlightColorFa = 'bg-green-100';
     const [clickedButton, setClickedButton] = useState<string | null>(null);
+    const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -327,9 +328,24 @@ export default function Story () {
         );
     }
 
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(min-width: 1280px)');
+        const handleChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
+
+        // Set initial value
+        setIsLargeScreen(mediaQuery.matches);
+
+        // Listen for changes
+        mediaQuery.addEventListener('change', handleChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleChange);
+        };
+    }, []);
+
     return(
-        <div className="h-full border-2 p-5">
-            <div className="h-full flex flex-col gap-5">
+        <div className="h-full border-2 p-5 desktop:border-black laptop:border-blue-400 tablet:border-green-400 mobile:border-purple-400">
+            <div className="h-full flex flex-col gap-5 max-[1500px]:gap-4">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
                         <Appbar onBackClick={()=> setShowStory(false)} title='The story' iconSrc="./icon/Otter.svg" rightButton={(
@@ -426,7 +442,7 @@ export default function Story () {
                     </div>
                 ) : (
                     <>
-                        <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={false}/>
+                        <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : <button className="border rounded p-1">details</button>}/>
                         <div className="flex gap-5 select-none px-2">
                             <div className="flex-1 flex flex-col gap-2">
                                 <div className={`w-full h-[8px] bg-gradient-to-r from-primaryColor from-40% to-bgColor rounded ${steper >= 1 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
@@ -441,42 +457,42 @@ export default function Story () {
                                 <div className="text-gray-400">Words</div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-[7fr_2fr] gap-10 flex-1 overflow-hidden">
+                        <div className="grid desktop:grid-cols-[7fr_2fr] grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3">
                             <div className="flex flex-col gap-9 overflow-hidden">
                                 <div className="flex flex-col gap-3 select-none px-2">
                                     <div className="text-[30px] font-semibold">Select Level</div>
                                     <div className="text-gray-400 text-lg">Select your level that you wanna see its words</div>
                                 </div>
-                                <div className="flex gap-10 px-2">
-                                    <div onClick={()=> selectLevel('elementry')} className={`border-3 flex-1 p-6 rounded-xl shadow-lg flex flex-col gap-5 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
+                                <div className="flex gap-10 px-2 max-[2000px]:gap-5">
+                                    <div onClick={()=> selectLevel('elementry')} className={`border-3 flex-1 p-6 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
                                         {currentSelectedLevel === 'elementry' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
                                         <div className="text-4xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
-                                        <div className="text-xl font-semibold flex select-none items-center gap-5"><span>Elementry</span><span className="text-sm text-blue-400">{elementry.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg">Start with common, everyday idioms.</div>
+                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm">Start with common, everyday idioms.</div>
                                     </div>
-                                    <div onClick={()=> selectLevel('intermediate')} className={`border-3 flex-1 p-6 rounded-xl shadow-lg flex flex-col gap-5 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
+                                    <div onClick={()=> selectLevel('intermediate')} className={`border-3 flex-1 p-6 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
                                         {currentSelectedLevel === 'intermediate' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
                                         <div className="text-4xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
-                                        <div className="text-xl font-semibold flex select-none items-center gap-5"><span>Intermediate</span><span className="text-sm text-blue-400">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg">Explore more complex and nuanced phrases.</div>
+                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm">Explore more complex and nuanced phrases.</div>
                                     </div>
-                                    <div onClick={()=> selectLevel('advanced')} className={`border-3 flex-1 p-6 rounded-xl shadow-lg flex flex-col gap-5 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
+                                    <div onClick={()=> selectLevel('advanced')} className={`border-3 flex-1 p-6 max-[2000px]:p-4 max-[1500px]:py-2 rounded-xl shadow-lg flex flex-col gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
                                         {currentSelectedLevel === 'advanced' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
                                         <div className="text-4xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
-                                        <div className="text-xl font-semibold flex select-none items-center gap-5"><span>Advanced</span><span className="text-sm text-blue-400">{advanced.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg">Master sophisticated and specialized idioms.</div>
+                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm">Master sophisticated and specialized idioms.</div>
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-8 flex-1 overflow-hidden px-2">
@@ -510,8 +526,8 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-1 bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
-                                        <div ref={scroller} className="scroll-smooth overflow-y-scroll h-full w-3/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
+                                    <div className="flex-1 flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
+                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 laptop:flex-none  laptop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
@@ -543,7 +559,7 @@ export default function Story () {
                                                                     setLessons(prev => [...prev, item.lesson_number])
                                                                 }
                                                             }}
-                                                                className={`border rounded-lg px-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
+                                                                className={`border rounded-lg pl-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
                                                                     ${lessons.includes(item.lesson_number) ? 'border-primaryColor' : 'border-gray-200/40'}
                                                                     ${currentViewingLesson === item.lesson_number ? `${selectedBg} ${selectedBorder} shadow-md scale-[1.04] ${selectedText} border-2` : ''}
                                                                 `}
@@ -551,13 +567,8 @@ export default function Story () {
                                                                 key={index}
                                                             >
                                                                 <div className="flex items-center gap-2">
-                                                                    <span className={`w-2 h-2 rounded-full inline-block
-                                                                        ${lessonLevel === 'elementry' ? 'bg-green-300' : ''}
-                                                                        ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''}
-                                                                        ${lessonLevel === 'advanced' ? 'bg-red-300' : ''}
-                                                                        ${currentViewingLesson === item.lesson_number ? selectedDot : ''}
-                                                                    `}></span>
-                                                                    <span className="text-base font-semibold">Lesson {item.lesson_number}</span>
+                                                                    <span className={`w-2 h-2 rounded-full inline-block ${lessonLevel === 'elementry' ? 'bg-green-300' : ''} ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''} ${lessonLevel === 'advanced' ? 'bg-red-300' : ''} ${currentViewingLesson === item.lesson_number ? selectedDot : ''}`}></span>
+                                                                    <span className="text-lg max-[1510px]:text-base max-[1440px]:text-sm font-semibold">Lesson {item.lesson_number}</span>
                                                                 </div>
                                                                 <div className="text-xs text-gray-400">{books[currentSelectedLevel]?.levels[0]?.lessons[0]?.idioms.length} idioms</div>
                                                             </div>
@@ -566,13 +577,13 @@ export default function Story () {
                                                 ))}
                                             </div>
                                         </div>
-                                        <div className="p-5 flex-2 space-y-3 border-l-2 border-bgColor">
+                                        <div className="p-5 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
-                                                <div className="space-y-3">
-                                                    <div className="text-lg font-semibold text-gray-600 border-b pb-2">
+                                                <div className="space-y-3 h-full flex flex-col laptop:overflow-hidden">
+                                                    <div className="text-lg laptop:text-sm max-[1440px]:hidden desktop:block laptop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
-                                                    <div className="flex flex-wrap gap-3">
+                                                    <div className="flex flex-wrap gap-3 max-[1430px]:overflow-y-auto desktop:flex-none p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
                                                         {(() => {
                                                             const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
                                                             return lessonIndex !== -1 ? 
@@ -587,7 +598,7 @@ export default function Story () {
                                                                                     addWord(item.english_phrase, lessonIndex)
                                                                                 }
                                                                             }} 
-                                                                            className={`text-lg select-none font-bold shadow border-3 transition-all duration-200 rounded-full px-4 py-3 inline-flex items-center justify-center gap-2 ${
+                                                                            className={`text-lg max-[1800px]:text-base max-[1440px]:text-sm select-none font-bold shadow border-3 transition-all duration-200 rounded-full px-4 py-3 inline-flex items-center justify-center gap-2 ${
                                                                                 isSelected 
                                                                                     ? 'bg-primaryColor text-white border-primaryColor/80 shadow-lg scale-105 cursor-pointer' 
                                                                                     : isLimitReached 
@@ -598,7 +609,7 @@ export default function Story () {
                                                                             title={isLimitReached ? `Maximum ${MAX_WORDS_LIMIT} words reached. Remove some words first.` : ''}
                                                                         >
                                                                             {item.english_phrase}
-                                                                            {isSelected && <FaCheck className="text-sm" />}
+                                                                            {isSelected && <FaCheck className="text-sm max-[1440px]:text-xs" />}
                                                                         </div>
                                                                     )
                                                                 })
@@ -613,10 +624,10 @@ export default function Story () {
                                     </div>
                                 </div>
                             </div>
-                            <div className="border border-gray-400/10 rounded-xl relative overflow-hidden shadow-lg mx-2 mb-5">
+                            <div className="border border-gray-400/10 rounded-xl relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg mx-2 mb-5 hidden desktop:block">
                                 <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
                                 <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
-                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-4">
+                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-4 ">
                                     <div>
                                         <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
                                         <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
@@ -713,14 +724,14 @@ export default function Story () {
                                     </div>
                                     <div>
                                         <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
-                                        <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
+                                        <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                             {words.length ?
                                                 words.map((item,index)=>{
                                                     const level = wordLevels[item];
                                                     const dot = level === 'elementry' ? 'bg-green-400' : level === 'intermediate' ? 'bg-blue-400' : 'bg-red-400';
                                                     const removeHover = level === 'elementry' ? 'hover:text-green-600' : level === 'intermediate' ? 'hover:text-blue-600' : 'hover:text-red-600';
                                                     return (
-                                                        <div key={index} className={`relative rounded-full px-3 py-1 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-3 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
+                                                        <div key={index} className={`max-[1500px]:w-full max-[1500px]:justify-between max-[1500px]:py-2 relative rounded-full px-3 py-1 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-3 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
                                                             <span className={`w-2 h-2 rounded-full inline-block ${dot}`}></span>
                                                             <span className="font-medium text-sm select-none">{item}</span>
                                                             <button onClick={()=> removeWord(index)} className={`ml-1 rounded-full bg-transparent text-gray-500 ${removeHover} transition-colors duration-150 select-none cursor-pointer text-base leading-none`}>×</button>
@@ -732,22 +743,22 @@ export default function Story () {
                                             }
                                         </div>
                                         {/* Word count and legend row */}
-                                        <div className="flex items-center justify-between mt-2 mb-3 text-sm">
-                                            <div className="flex gap-4">
+                                        <div className="flex items-center justify-between max-[1500px]:flex-wrap gap-2 mt-2 mb-3 text-sm max-[2432px]:text-xs">
+                                            <div className="flex gap-4 max-[2432px]:gap-2">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                                                    <div className="w-3 h-3 bg-green-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
                                                     <span>Elementary</span>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                                                    <div className="w-3 h-3 bg-blue-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
                                                     <span>Intermediate</span>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                                                    <div className="w-3 h-3 bg-red-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
                                                     <span>Advanced</span>
                                                 </div>
                                             </div>
-                                            <div className={`text-sm font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
+                                            <div className={`text-sm ml-auto font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
                                         </div>
                                     </div>
                                     <div>
@@ -771,7 +782,36 @@ export default function Story () {
                                             }
                                         }}
                                     >
-                                        {loadingStory ? <span className="flex items-center gap-2 ">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
+                                        {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mx-2 desktop:hidden">
+                                <div className="flex flex-col gap-3 select-none px-2">
+                                    <div className="text-[30px] font-semibold">Informations</div>
+                                    {/* <div className="text-gray-400 text-lg">Write what you want in this story, AI will build it!</div> */}
+                                </div>
+                                <div className="flex">
+                                    <div className="flex-1">
+                                        <textarea className="border min-h-[100px] w-full rounded-xl p-2 outline-0" placeholder="Write what you want in this story, AI will build it!"></textarea>
+                                    </div>
+                                </div>
+                                <div className="flex-1 mt-2">
+                                    <div 
+                                        className={`text-[22px] flex-1 text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 select-none flex justify-center items-center ${
+                                            loadingStory
+                                                ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
+                                                : words.length >= 1 
+                                                    ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
+                                                    : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
+                                        }`}
+                                        onClick={() => {
+                                            if (words.length >= 1 && !loadingStory) {
+                                                StoryCreator()
+                                            }
+                                        }}
+                                    >
+                                        {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
                                     </div>
                                 </div>
                             </div>
