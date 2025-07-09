@@ -471,12 +471,12 @@ export default function Story () {
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
-                                        <div className="text-4xl max-tablet:text-3xl max-mobile:xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
+                                        <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
                                         <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">Start with common, everyday idioms.</div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
                                         <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
-                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{elementry.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">Start with common, everyday idioms.</div>
+                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{elementry.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
                                         </div>
                                     </div>
                                     <div onClick={()=> selectLevel('intermediate')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
@@ -485,12 +485,12 @@ export default function Story () {
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
-                                        <div className="text-4xl max-tablet:text-3xl max-mobile:xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
+                                        <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
                                         <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">Explore more complex and nuanced phrases.</div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
                                         <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
-                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">Explore more complex and nuanced phrases.</div>
+                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
                                         </div>
                                     </div>
                                     <div onClick={()=> selectLevel('advanced')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
@@ -499,12 +499,12 @@ export default function Story () {
                                                 <span className="text-white text-xs">✓</span>
                                             </div>
                                         )}
-                                        <div className="text-4xl max-tablet:text-3xl max-mobile:xl px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
+                                        <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
                                         <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">Master sophisticated and specialized idioms.</div>
+                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
                                         <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
-                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{advanced.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">Master sophisticated and specialized idioms.</div>
+                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{advanced.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
                                         </div>
                                     </div>
                                 </div>
