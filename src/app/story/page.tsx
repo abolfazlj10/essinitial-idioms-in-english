@@ -344,8 +344,8 @@ export default function Story () {
     }, []);
 
     return(
-        // <div className="h-full border-2 p-5 desktop:border-black laptop:border-blue-400 tablet:border-green-400 mobile:border-purple-700">
-        <div className="h-full border-2 p-5">
+        <div className="h-full border-2 p-5 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
+        {/* <div className="h-full border-2 p-5"> */}
             <div className="h-full flex flex-col gap-5 max-[1500px]:gap-4">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
@@ -631,7 +631,7 @@ export default function Story () {
                                                     </div>
                                                 </div>
                                             : 
-                                                <div className="h-full flex items-center justify-center max-desktop:text-sm">at first you should select the lesson which you want</div>
+                                                <div className="h-full flex items-center justify-center max-desktop:text-sm max-laptop:text-xs">at first you should select the lesson which you want</div>
                                             }
                                         </div>
                                     </div>
