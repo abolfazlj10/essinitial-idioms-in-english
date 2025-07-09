@@ -344,8 +344,8 @@ export default function Story () {
     }, []);
 
     return(
-        <div className="h-full border-2 p-5 max-tablet:px-3 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
-        {/* <div className="h-full border-2 p-5"> */}
+        // <div className="h-full border-2 p-5 max-tablet:px-3 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
+        <div className="h-full border-2 p-5">
             <div className="h-full flex flex-col gap-5 max-[1500px]:gap-4">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
@@ -464,7 +464,7 @@ export default function Story () {
                                     <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
                                     <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your level that you wanna see its words</div>
                                 </div>
-                                <div className="flex gap-10 px-2 max-[2000px]:gap-5 max-laptop:flex-col">
+                                <div className="flex gap-10 px-2 max-[2000px]:gap-5 max-tablet:gap-3 max-laptop:flex-col">
                                     <div onClick={()=> selectLevel('elementry')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
                                         {currentSelectedLevel === 'elementry' && (
                                             <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-green-500 rounded-full flex items-center justify-center">
