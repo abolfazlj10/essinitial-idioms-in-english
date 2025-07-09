@@ -642,7 +642,7 @@ export default function Story () {
                                     <div className="select-none px-2 mb-3 max-laptop:mb-1">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
                                     </div>
-                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
+                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
                                     <div className="flex-1 mt-2">
                                         <div 
                                             className={`text-[22px] max-tablet:text-lg flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
