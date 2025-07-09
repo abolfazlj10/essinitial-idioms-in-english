@@ -345,7 +345,7 @@ export default function Story () {
 
     return(
         // <div className="h-full border-2 p-5 max-tablet:px-3 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
-        <div className="h-full border-2 p-5">
+        <div className="h-full border-2 p-5 max-mobile:py-3 max-mobile:px-2">
             <div className="h-full flex flex-col gap-3">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
@@ -460,12 +460,12 @@ export default function Story () {
                         </div>
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
                             <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-tablet:min-h-[200px] max-laptop:overflow-y-scroll">
-                                <div className="flex flex-col gap-3 px-2">
-                                    <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2">
+                                <div className="flex flex-col gap-3 px-2 max-mobile:px-0">
+                                    <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
                                         <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your level that you wanna see its words</div>
                                     </div>
-                                    <div className="flex gap-10 px-2 max-[2000px]:gap-5 max-tablet:gap-3 max-laptop:flex-col">
+                                    <div className="flex gap-10 px-2 max-mobile:px-0 max-mobile:pr-2 max-[2000px]:gap-5 max-tablet:gap-3 max-laptop:flex-col">
                                         <div onClick={()=> selectLevel('elementry')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
                                             {currentSelectedLevel === 'elementry' && (
                                                 <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-green-500 rounded-full flex items-center justify-center">
@@ -510,7 +510,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-3 flex-1 overflow-hidden px-2 max-tablet:overflow-visible max-tablet:min-h-[300px]">
+                                <div className="flex flex-col gap-3 flex-1 overflow-hidden px-2 max-mobile:px-0 max-tablet:overflow-visible max-tablet:min-h-[300px]">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Words</div>
                                         <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
@@ -541,7 +541,7 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex-1 max-tablet:min-h-[200px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
+                                    <div className="flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
                                         <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
@@ -639,7 +639,7 @@ export default function Story () {
                                     </div>
                                 </div>
                                 <div className="mx-2 desktop:hidden">
-                                    <div className="select-none px-2 mb-3 max-laptop:mb-1">
+                                    <div className="select-none px-2 max-mobile:px-0 mb-3 max-laptop:mb-1">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
                                     </div>
                                     <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
