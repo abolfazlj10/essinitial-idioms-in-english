@@ -3,8 +3,8 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 interface AppbarProps {
   onBackClick?: () => void;
-  title:String;
-  iconSrc:String;
+  title:string;
+  iconSrc:string;
   rightButton:React.ReactNode;
 }
 
