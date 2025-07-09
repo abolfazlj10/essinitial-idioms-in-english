@@ -14,7 +14,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="relative min-h-screen max-h-screen max-mobile:max-h-none min-w-screen max-w-screen h-screen max-mobile:h-auto w-screen flex justify-center items-center py-22 max-tablet:py-12 max-mobile:py-0 z-10">
+        {/* <div className="relative min-h-screen max-h-screen max-mobile:max-h-none min-w-screen max-mobile:min-h-0 max-w-screen h-screen max-mobile:h-auto w-screen flex justify-center items-center py-22 max-tablet:py-12 max-mobile:py-0 z-10"> */}
+        <div className="relative w-screen h-screen max-mobile:h-auto max-mobile:min-h-0 max-mobile:max-h-none flex justify-center items-center py-22 max-tablet:py-12 max-mobile:py-0 z-10">
           <img className="z-10 w-[800px] left-[200px] absolute opacity-20 -bottom-32 select-none  max-[3100px]:-left-[150px]" src="/blob3.svg"/>
           <img className="z-10 w-[500px] left-[500px] absolute top-0 opacity-80 select-none max-[3100px]:left-[200px] max-[2640px]:left-[50px]" src="/blob2.svg"/>
           <img className="z-10 w-[350px] absolute right-[500px] bottom-0 opacity-50 select-none max-[3100px]:right-[400px] max-[2808px]:right-[100px]" src="/blob2.svg"/>
