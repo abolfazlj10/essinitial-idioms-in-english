@@ -346,7 +346,7 @@ export default function Story () {
     return(
         // <div className="h-full border-2 p-5 max-tablet:px-3 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
         <div className="h-full border-2 p-5">
-            <div className="h-full flex flex-col gap-5 max-[1500px]:gap-4">
+            <div className="h-full flex flex-col gap-3">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
                         <Appbar onBackClick={()=> setShowStory(false)} title='The story' iconSrc="./icon/Otter.svg" rightButton={(
@@ -458,57 +458,59 @@ export default function Story () {
                                 <div className="text-gray-400 max-laptop:text-sm max-tablet:text-[10px]">Words</div>
                             </div>
                         </div>
-                        <div className="grid desktop:grid-cols-[7fr_2fr] grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
-                            <div className="flex flex-col gap-9 max-desktop:gap-5 overflow-hidden">
-                                <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2">
-                                    <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
-                                    <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your level that you wanna see its words</div>
+                        <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
+                            <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-tablet:min-h-[200px] max-laptop:overflow-y-scroll">
+                                <div className="flex flex-col gap-3 px-2">
+                                    <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2">
+                                        <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
+                                        <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your level that you wanna see its words</div>
+                                    </div>
+                                    <div className="flex gap-10 px-2 max-[2000px]:gap-5 max-tablet:gap-3 max-laptop:flex-col">
+                                        <div onClick={()=> selectLevel('elementry')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
+                                            {currentSelectedLevel === 'elementry' && (
+                                                <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-green-500 rounded-full flex items-center justify-center">
+                                                    <span className="text-white text-xs">✓</span>
+                                                </div>
+                                            )}
+                                            <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
+                                            <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
+                                            <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
+                                                <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{elementry.levels[0].lessons.length} lesson</span></div>
+                                                <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
+                                            </div>
+                                        </div>
+                                        <div onClick={()=> selectLevel('intermediate')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
+                                            {currentSelectedLevel === 'intermediate' && (
+                                                <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                                    <span className="text-white text-xs">✓</span>
+                                                </div>
+                                            )}
+                                            <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
+                                            <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
+                                            <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
+                                                <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                                <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
+                                            </div>
+                                        </div>
+                                        <div onClick={()=> selectLevel('advanced')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
+                                            {currentSelectedLevel === 'advanced' && (
+                                                <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-red-500 rounded-full flex items-center justify-center">
+                                                    <span className="text-white text-xs">✓</span>
+                                                </div>
+                                            )}
+                                            <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
+                                            <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
+                                            <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
+                                                <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{advanced.levels[0].lessons.length} lesson</span></div>
+                                                <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="flex gap-10 px-2 max-[2000px]:gap-5 max-tablet:gap-3 max-laptop:flex-col">
-                                    <div onClick={()=> selectLevel('elementry')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
-                                        {currentSelectedLevel === 'elementry' && (
-                                            <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-green-500 rounded-full flex items-center justify-center">
-                                                <span className="text-white text-xs">✓</span>
-                                            </div>
-                                        )}
-                                        <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
-                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
-                                        <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
-                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{elementry.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
-                                        </div>
-                                    </div>
-                                    <div onClick={()=> selectLevel('intermediate')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
-                                        {currentSelectedLevel === 'intermediate' && (
-                                            <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                                                <span className="text-white text-xs">✓</span>
-                                            </div>
-                                        )}
-                                        <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
-                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
-                                        <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
-                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
-                                        </div>
-                                    </div>
-                                    <div onClick={()=> selectLevel('advanced')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
-                                        {currentSelectedLevel === 'advanced' && (
-                                            <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-red-500 rounded-full flex items-center justify-center">
-                                                <span className="text-white text-xs">✓</span>
-                                            </div>
-                                        )}
-                                        <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
-                                        <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
-                                        <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
-                                        <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
-                                            <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{advanced.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col gap-8 flex-1 overflow-hidden px-2">
+                                <div className="flex flex-col gap-3 flex-1 overflow-hidden px-2 max-tablet:overflow-visible max-tablet:min-h-[300px]">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Words</div>
                                         <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
@@ -539,7 +541,7 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex-1 flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
+                                    <div className="flex-1 max-tablet:min-h-[200px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
                                         <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
@@ -592,11 +594,11 @@ export default function Story () {
                                         </div>
                                         <div className="p-5 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
-                                                <div className="space-y-3 h-full flex flex-col max-desktop:overflow-hidden">
+                                                <div className="space-y-3 h-full flex flex-col">
                                                     <div className="text-lg max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
-                                                    <div className="flex flex-wrap gap-3 max-[1430px]:overflow-y-auto desktop:flex-none p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
+                                                    <div className="flex flex-wrap gap-3 overflow-y-auto desktop:flex-none p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
                                                         {(() => {
                                                             const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
                                                             return lessonIndex !== -1 ? 
@@ -636,6 +638,30 @@ export default function Story () {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="mx-2 desktop:hidden">
+                                    <div className="select-none px-2 mb-3 max-laptop:mb-1">
+                                        <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
+                                    </div>
+                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
+                                    <div className="flex-1 mt-2">
+                                        <div 
+                                            className={`text-[22px] max-tablet:text-lg flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
+                                                loadingStory
+                                                    ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
+                                                    : words.length >= 1 
+                                                        ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
+                                                        : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
+                                            }`}
+                                            onClick={() => {
+                                                if (words.length >= 1 && !loadingStory) {
+                                                    StoryCreator()
+                                                }
+                                            }}
+                                        >
+                                            {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="border border-gray-400/10 rounded-xl relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg mx-2 mb-5 hidden desktop:block">
                                 <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
@@ -652,17 +678,7 @@ export default function Story () {
                                                         const isLastAndOdd = index === level.length - 1 && level.length % 2 !== 0;
 
                                                         return (
-                                                            <div
-                                                                key={index}
-                                                                className={`
-                                                                    px-4 py-3 rounded-xl text-base 
-                                                                    flex items-center justify-center gap-3
-                                                                    transition-all duration-200 
-                                                                    bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40
-                                                                    ${isLastAndOdd ? 'col-span-2' : ''}
-                                                                `}
-                                                                style={{ borderWidth: 1 }}
-                                                            >
+                                                            <div key={index} className={`px-4 py-3 rounded-xl text-base flex items-center justify-center gap-3 transition-all duration-200 bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40 ${isLastAndOdd ? 'col-span-2' : ''}`} style={{ borderWidth: 1 }}>
                                                                 <IconComponent className={`${iconColor} text-2xl`} />
                                                                 <span className="font-semibold text-gray-800">{levelName.charAt(0).toUpperCase() + levelName.slice(1)}</span>
                                                             </div>
@@ -783,34 +799,6 @@ export default function Story () {
                                     </div>
                                     <div 
                                         className={`text-[22px] text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 select-none flex justify-center items-center ${
-                                            loadingStory
-                                                ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
-                                                : words.length >= 1 
-                                                    ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
-                                                    : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
-                                        }`}
-                                        onClick={() => {
-                                            if (words.length >= 1 && !loadingStory) {
-                                                StoryCreator()
-                                            }
-                                        }}
-                                    >
-                                        {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="mx-2 desktop:hidden">
-                                <div className="select-none px-2 mb-3 max-laptop:mb-1">
-                                    <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
-                                </div>
-                                <div className="flex">
-                                    <div className="flex-1">
-                                        <textarea className="border min-h-[100px] w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
-                                    </div>
-                                </div>
-                                <div className="flex-1 mt-2">
-                                    <div 
-                                        className={`text-[22px] max-tablet:text-lg flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
                                             loadingStory
                                                 ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
                                                 : words.length >= 1 
