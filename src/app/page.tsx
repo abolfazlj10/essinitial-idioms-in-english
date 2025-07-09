@@ -66,7 +66,7 @@ interface QuickAccessCardProps {
   description: string;
 }
 
-export function QuickAccessCard({icon, title, description}: QuickAccessCardProps) {
+function QuickAccessCard({icon, title, description}: QuickAccessCardProps) {
   return (
     <div className="flex flex-col gap-5 border rounded-3xl pl-6 pr-14 py-8 bg-[#f9f9f9]/30 shadow-lg">
       <div className="bg-[#5c6bec] text-white rounded-full self-start p-2 text-2xl">
