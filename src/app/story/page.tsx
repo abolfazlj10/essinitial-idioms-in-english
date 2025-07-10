@@ -19,6 +19,7 @@ import { RxLineHeight } from "react-icons/rx";
 import { TbLineHeight } from "react-icons/tb";
 import GroupButton from "@/components/ui/group-button";
 const MAX_WORDS_LIMIT = 6;
+const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
 
 export default function Story () {
 
@@ -311,7 +312,6 @@ export default function Story () {
             <span>
                 {parts.map((part, idx) => {
                     let html = part;
-                    // هایلایت عبارات داخل [ ] در هر دو زبان
                     html = part.replace(/\[([^\]]+)\]/g, '<span class="bg-primaryColor/20 font-bold rounded px-1">$1</span>');
                     return (
                         <span
@@ -459,7 +459,7 @@ export default function Story () {
                             </div>
                         </div>
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
-                            <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-tablet:min-h-[200px] max-laptop:overflow-y-scroll">
+                            <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px]">
                                 <div className="flex flex-col gap-3 px-2 max-mobile:px-0">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
@@ -510,11 +510,10 @@ export default function Story () {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-3 flex-1 overflow-hidden px-2 max-mobile:px-0 max-tablet:overflow-visible max-tablet:min-h-[300px]">
+                                <div className="flex flex-col gap-3 flex-1 overflow-hidden max-tablet:overflow-visible px-2 max-mobile:px-0 max-tablet:min-h-[300px] max-mobile:min-h-auto">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Words</div>
                                         <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
-                                        {/* Word count progress */}
                                         <div className="flex items-center gap-3">
                                             <div className="flex-1 bg-gray-100 rounded-full h-2 max-laptop:h-1 shadow-inner border border-gray-200">
                                                 <div 
@@ -541,7 +540,7 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
+                                    <div className="hidden mobile:flex flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
                                         <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
@@ -631,6 +630,95 @@ export default function Story () {
                                                             : []
                                                         })()}
                                                     </div>
+                                                </div>
+                                            : 
+                                                <div className="h-full flex items-center justify-center max-desktop:text-sm max-laptop:text-xs">at first you should select the lesson which you want</div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="mobile:hidden flex-1 flex flex-col gap-5 overflow-hidden">
+                                        <div className={`flex-1 grid grid-cols-3 gap-2 border rounded-xl p-2 overflow-y-scroll min-h-[100px]   ${scrollBarStyle}`}>
+                                            {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
+                                                    (() => {
+                                                        // پیدا کردن سطح درس
+                                                        let lessonLevel: Level = 'elementry';
+                                                        for (const levelKey of Object.keys(books) as Level[]) {
+                                                            const found = books[levelKey]?.levels[0]?.lessons.some((lesson: any) => lesson.lesson_number === item.lesson_number);
+                                                            if (found) {
+                                                                lessonLevel = levelKey;
+                                                                break;
+                                                            }
+                                                        }
+                                                        // تعیین کلاس‌های انتخاب‌شده بر اساس سطح
+                                                        const selectedBg = lessonLevel === 'elementry' ? 'bg-green-100' : lessonLevel === 'intermediate' ? 'bg-blue-100' : 'bg-red-100';
+                                                        const selectedBorder = lessonLevel === 'elementry' ? 'border-green-400' : lessonLevel === 'intermediate' ? 'border-blue-400' : 'border-red-400';
+                                                        const selectedText = lessonLevel === 'elementry' ? 'text-green-700' : lessonLevel === 'intermediate' ? 'text-blue-700' : 'text-red-700';
+                                                        const selectedDot = lessonLevel === 'elementry' ? 'bg-green-500' : lessonLevel === 'intermediate' ? 'bg-blue-500' : 'bg-red-500';
+                                                        return (
+                                                            <div dir="ltr" onClick={() => {
+                                                                // Check if current lesson has any words selected
+                                                                const currentLessonHasWords = Object.values(wordLessons).some(lessonNumber => lessonNumber === currentViewingLesson)
+                                                                // If current lesson has no words, remove it from lessons array
+                                                                if (currentViewingLesson !== null && !currentLessonHasWords) {
+                                                                    setLessons(prev => prev.filter(l => l !== currentViewingLesson))
+                                                                }
+                                                                setCurrentViewingLesson(item.lesson_number)
+                                                                // Add new lesson to lessons array if not already present
+                                                                if (!lessons.includes(item.lesson_number)) {
+                                                                    setLessons(prev => [...prev, item.lesson_number])
+                                                                }
+                                                            }}
+                                                                className={`border rounded-lg pl-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
+                                                                    ${lessons.includes(item.lesson_number) ? 'border-primaryColor' : 'border-gray-200/40'}
+                                                                    ${currentViewingLesson === item.lesson_number ? `${selectedBg} ${selectedBorder} shadow-md scale-[1.04] ${selectedText} border-2` : ''}
+                                                                `}
+                                                                style={{ fontWeight: 500 }}
+                                                                key={index}
+                                                            >
+                                                                <div className="flex items-center gap-2">
+                                                                    <span className={`w-2 h-2 rounded-full inline-block ${lessonLevel === 'elementry' ? 'bg-green-300' : ''} ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''} ${lessonLevel === 'advanced' ? 'bg-red-300' : ''} ${currentViewingLesson === item.lesson_number ? selectedDot : ''}`}></span>
+                                                                    <span className="text-lg max-[1510px]:text-base max-[1440px]:text-sm font-semibold">Lesson {item.lesson_number}</span>
+                                                                </div>
+                                                                <div className="text-xs text-gray-400">{books[currentSelectedLevel]?.levels[0]?.lessons[0]?.idioms.length} idioms</div>
+                                                            </div>
+                                                        );
+                                                    })()
+                                            ))}
+                                        </div>
+                                        <div className={`flex-1 border rounded-xl p-2 overflow-y-scroll min-h-[100px]   ${scrollBarStyle}`}>
+                                            {currentViewingLesson !== null ? 
+                                                <div className="flex flex-wrap gap-3 desktop:flex-none p-2">
+                                                    {(() => {
+                                                        const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
+                                                        return lessonIndex !== -1 ? 
+                                                            books[currentSelectedLevel]?.levels[0]?.lessons[lessonIndex]?.idioms.map((item: any, key: number) => {
+                                                                const isSelected = words.includes(item.english_phrase)
+                                                                const isLimitReached = words.length >= MAX_WORDS_LIMIT && !isSelected
+                                                                
+                                                                return (
+                                                                    <div 
+                                                                        onClick={() => {
+                                                                            if (!isLimitReached) {
+                                                                                addWord(item.english_phrase, lessonIndex)
+                                                                            }
+                                                                        }} 
+                                                                        className={`text-lg max-[1800px]:text-base max-[1440px]:text-sm select-none font-bold shadow border-3 transition-all duration-200 rounded-full px-4 py-3 inline-flex items-center justify-center gap-2 ${
+                                                                            isSelected 
+                                                                                ? 'bg-primaryColor text-white border-primaryColor/80 shadow-lg scale-105 cursor-pointer' 
+                                                                                : isLimitReached 
+                                                                                    ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed opacity-50' 
+                                                                                    : 'bg-[#f9f9f9] border-primaryColor border-dashed cursor-pointer hover:bg-primaryColor/10 hover:scale-105'
+                                                                        }`} 
+                                                                        key={key}
+                                                                        title={isLimitReached ? `Maximum ${MAX_WORDS_LIMIT} words reached. Remove some words first.` : ''}
+                                                                    >
+                                                                        {item.english_phrase}
+                                                                        {isSelected && <FaCheck className="text-sm max-[1440px]:text-xs" />}
+                                                                    </div>
+                                                                )
+                                                            })
+                                                        : []
+                                                    })()}
                                                 </div>
                                             : 
                                                 <div className="h-full flex items-center justify-center max-desktop:text-sm max-laptop:text-xs">at first you should select the lesson which you want</div>
