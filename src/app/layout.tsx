@@ -19,7 +19,7 @@ export default function RootLayout({
         font-interVariable">
 
         <div className="relative
-            w-screen h-screen max-mobile:min-h-screen max-mobile:max-h-screen
+            w-screen h-dvh max-mobile:min-h-dvh max-mobile:max-h-dvh
             max-mobile:overflow-hidden
             flex justify-center items-center py-22 max-tablet:py-12 max-mobile:py-5 z-10 p-5">
           <img className="z-10 w-[800px] left-[200px] absolute opacity-20 -bottom-32 select-none max-[3100px]:-left-[150px]" src="/blob3.svg"/>
