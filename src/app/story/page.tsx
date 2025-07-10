@@ -510,7 +510,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-3 flex-1 overflow-hidden px-2 max-mobile:px-0 max-tablet:overflow-visible max-tablet:min-h-[300px]">
+                                <div className="flex-1 flex flex-col gap-3 overflow-hidden max-tablet:overflow-visible max-mobile:overflow-auto px-2 max-mobile:px-0 max-tablet:min-h-[300px]">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Words</div>
                                         <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
@@ -541,9 +541,16 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
-                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
-                                            <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
+                                    <div className="flex-1 flex max-mobile:flex-col 
+                                        overflow-hidden {max-mobile:overflow-auto} 
+                                        max-tablet:min-h-[200px] max-mobile:max-h-none
+                                        bg-white/20 max-mobile:bg-none backdrop-blur-sm border max-mobile:border-0 border-primaryColor/20 rounded-xl shadow-lg max-mobile:shadow-none px-2 py-4 gap-5 mb-5">
+                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 
+                                            max-[1800px]:w-4/12 max-[1440px]:w-full 
+                                            max-[1440px]:flex-1 max-desktop:flex-none max-mobile:flex-2 
+                                            max-desktop:w-4/12 max-mobile:w-full max-mobile:min-h-[150px] max-mobile:max-h-[400px]
+                                            [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
+                                            <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 max-mobile:grid-cols-3 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
                                                         // پیدا کردن سطح درس
@@ -592,7 +599,7 @@ export default function Story () {
                                                 ))}
                                             </div>
                                         </div>
-                                        <div className="p-5 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
+                                        <div className="p-5 max-mobile:p-2 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0 max-mobile:min-h-[150px] max-mobile:max-h-[300px] max-mobile:border-2 max-mobile:rounded-xl">
                                             {currentViewingLesson !== null ? 
                                                 <div className="space-y-3 h-full flex flex-col">
                                                     <div className="text-lg max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
@@ -642,7 +649,7 @@ export default function Story () {
                                     <div className="select-none px-2 max-mobile:px-0 mb-3 max-laptop:mb-1">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
                                     </div>
-                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
+                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs max-tablet:text-xs max-mobile:bg-white" placeholder="Write what you want in this story, AI will build it!"></textarea>
                                     <div className="flex-1 mt-2">
                                         <div 
                                             className={`text-[22px] max-tablet:text-lg flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
