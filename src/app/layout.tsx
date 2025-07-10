@@ -12,16 +12,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <div className="relative w-screen h-screen max-mobile:h-full max-mobile:min-h-0 max-mobile:max-h-none flex justify-center items-center py-22 max-tablet:py-12 max-mobile:py-0 z-10 max-mobile:overflow-hidden">
-          <img className="z-10 w-[800px] left-[200px] absolute opacity-20 -bottom-32 select-none  max-[3100px]:-left-[150px]" src="/blob3.svg"/>
+    <html lang="en" className="overflow-x-hidden max-mobile:overflow-y-auto ">
+
+      <body className="overflow-x-hidden
+        overflow-y-hidden max-mobile:overflow-y-auto
+        font-interVariable">
+
+        <div className="relative
+            w-screen h-screen max-mobile:min-h-screen max-mobile:max-h-screen
+            max-mobile:overflow-hidden
+            flex justify-center items-center py-22 max-tablet:py-12 max-mobile:py-5 z-10 p-5">
+          <img className="z-10 w-[800px] left-[200px] absolute opacity-20 -bottom-32 select-none max-[3100px]:-left-[150px]" src="/blob3.svg"/>
           <img className="z-10 w-[500px] left-[500px] absolute top-0 opacity-80 select-none max-[3100px]:left-[200px] max-[2640px]:left-[50px]" src="/blob2.svg"/>
           <img className="z-10 w-[350px] absolute right-[500px] bottom-0 opacity-50 select-none max-[3100px]:right-[400px] max-[2808px]:right-[100px]" src="/blob2.svg"/>
-          <div className="h-full w-full max-h-[1200px] max-tablet:max-h-[1000px] max-mobile:max-h-full max-w-[2000px] mx-60 max-[2000px]:mx-24 max-[1315px]:mx-16 max-tablet:mx-5 max-mobile:mx-0 border-4 max-tablet:border-2 bg-[#fff] max-tablet:bg-[#fff]/50 max-tablet:backdrop-blur-2xl shadow-2xl rounded-2xl text-black z-20 ">
+
+          <div className="h-full w-full
+           max-w-[2000px] max-h-[1200px] 
+           max-mobile:overflow-y-scroll max-mobile:p-0
+           max-tablet:max-h-[1000px] 
+           max-mobile:max-h-full
+           mx-60 max-[2000px]:mx-24 max-[1315px]:mx-16 max-tablet:mx-5 max-mobile:mx-0 border-4 max-tablet:border-2 bg-[#fff] max-tablet:bg-[#fff]/50 max-tablet:backdrop-blur-2xl shadow-2xl rounded-2xl text-black z-20">
             {children}
           </div>
+
         </div>
+
       </body>
     </html>
   );
