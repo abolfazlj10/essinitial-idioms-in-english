@@ -675,9 +675,9 @@ export default function Story () {
                                                                 style={{ fontWeight: 500 }}
                                                                 key={index}
                                                             >
-                                                                <div className="flex items-center gap-2">
+                                                                <div className="flex items-center gap-1">
                                                                     <span className={`w-[6px] h-[6px] rounded-full inline-block ${lessonLevel === 'elementry' ? 'bg-green-300' : ''} ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''} ${lessonLevel === 'advanced' ? 'bg-red-300' : ''} ${currentViewingLesson === item.lesson_number ? selectedDot : ''}`}></span>
-                                                                    <span className="text-sm font-semibold">Lesson {item.lesson_number}</span>
+                                                                    <span className="text-[12px] font-semibold">Lesson {item.lesson_number}</span>
                                                                 </div>
                                                                 <div className="text-[9px] text-gray-400">{books[currentSelectedLevel]?.levels[0]?.lessons[0]?.idioms.length} idioms</div>
                                                             </div>
