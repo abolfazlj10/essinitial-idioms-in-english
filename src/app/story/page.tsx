@@ -635,7 +635,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div className="mobile:hidden flex-1 flex flex-col gap-5 overflow-hidden">
-                                        <div ref={mobileScroller} className={`scroll-smooth flex-1 grid grid-cols-3 gap-2 border rounded-xl p-2 overflow-y-scroll max-h-[200px] min-h-[200px] ${scrollBarStyle}`}>
+                                        <div ref={mobileScroller} className={`flex-1 grid grid-cols-3 gap-2 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 mr-1 scroll-smooth ${scrollBarStyle}`}>
                                             {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
                                                         // پیدا کردن سطح درس
@@ -683,7 +683,7 @@ export default function Story () {
                                                     })()
                                             ))}
                                         </div>
-                                        <div className={`flex-1 border rounded-xl p-2 overflow-y-scroll max-h-[200px] min-h-[200px] ${scrollBarStyle}`}>
+                                        <div className={`flex-1 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 mr-1 ${scrollBarStyle}`}>
                                             {currentViewingLesson !== null ? 
                                                 <div className="flex flex-wrap gap-3 desktop:flex-none p-2">
                                                     {(() => {
