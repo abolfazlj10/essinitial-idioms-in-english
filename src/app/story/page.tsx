@@ -20,6 +20,7 @@ import { TbLineHeight } from "react-icons/tb";
 import GroupButton from "@/components/ui/group-button";
 const MAX_WORDS_LIMIT = 6;
 const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] max-mobile:[&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
+const gradientScroll = `-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);`
 
 export default function Story () {
 
@@ -457,7 +458,7 @@ export default function Story () {
                             </div>
                         </div>
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
-                            <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px]">
+                            <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] max-mobile:[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_92%,transparent_100%)]">
                                 <div className="flex flex-col gap-3 px-2 max-mobile:px-0">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
