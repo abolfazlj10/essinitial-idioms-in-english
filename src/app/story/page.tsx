@@ -886,7 +886,7 @@ export default function Story () {
                         </div>
                         <div className="mt-2 desktop:hidden">
                             <div 
-                                className={`text-[22px] max-tablet:text-lg max-mobile:text-base flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 max-mobile:py-2 shadow-xl duration-200 select-none flex justify-center items-center ${
+                                className={`text-[22px] max-tablet:text-lg max-mobile:text-base flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 max-mobile:py-[10px] shadow-xl duration-200 select-none flex justify-center items-center ${
                                     loadingStory
                                         ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
                                         : words.length >= 1 
