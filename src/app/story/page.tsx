@@ -19,7 +19,7 @@ import { RxLineHeight } from "react-icons/rx";
 import { TbLineHeight } from "react-icons/tb";
 import GroupButton from "@/components/ui/group-button";
 const MAX_WORDS_LIMIT = 6;
-const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
+const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] max-mobile:[&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
 
 export default function Story () {
 
@@ -30,6 +30,7 @@ export default function Story () {
     const [lessons,setLessons] = useState<Array<number>>([])
     const [currentViewingLesson, setCurrentViewingLesson] = useState<number | null>(null)
     const scroller = useRef<HTMLDivElement | null>(null)
+    const mobileScroller = useRef<HTMLDivElement | null>(null)
     const [steper,setSteper] = useState<number>(1)
     const [words,setWords] = useState<Array<string>>([])
     const [wordLevels, setWordLevels] = useState<Record<string, Level>>({})
@@ -193,10 +194,6 @@ export default function Story () {
             setLoadingStory(false);
         }
     }    
-
-    useEffect(()=>{
-        console.log(story)
-    },[story])
     
     useEffect(() => {
         setCurrentViewingLesson(null)
@@ -236,10 +233,11 @@ export default function Story () {
         
         if(words.length == 0)
             setSteper(1)        
-
-        if(scroller.current)
-            scroller.current.scrollTo(0,0)
-
+        
+        if(scroller.current){
+            scroller.current?.scrollTo(0,0)
+            mobileScroller.current?.scrollTo(0,0)
+        }
     }, [currentSelectedLevel]);
 
     useEffect(()=>{
@@ -637,7 +635,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div className="mobile:hidden flex-1 flex flex-col gap-5 overflow-hidden">
-                                        <div className={`flex-1 grid grid-cols-3 gap-2 border rounded-xl p-2 overflow-y-scroll max-h-[200px] min-h-[200px] ${scrollBarStyle}`}>
+                                        <div ref={mobileScroller} className={`scroll-smooth flex-1 grid grid-cols-3 gap-2 border rounded-xl p-2 overflow-y-scroll max-h-[200px] min-h-[200px] ${scrollBarStyle}`}>
                                             {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
                                                         // پیدا کردن سطح درس
