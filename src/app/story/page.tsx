@@ -729,24 +729,6 @@ export default function Story () {
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
                                     </div>
                                     <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
-                                    <div className="flex-1 mt-2">
-                                        <div 
-                                            className={`text-[22px] max-tablet:text-lg flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
-                                                loadingStory
-                                                    ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
-                                                    : words.length >= 1 
-                                                        ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
-                                                        : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
-                                            }`}
-                                            onClick={() => {
-                                                if (words.length >= 1 && !loadingStory) {
-                                                    StoryCreator()
-                                                }
-                                            }}
-                                        >
-                                            {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div className="border border-gray-400/10 rounded-xl relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg mx-2 mb-5 hidden desktop:block">
@@ -900,6 +882,24 @@ export default function Story () {
                                         {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="mt-2">
+                            <div 
+                                className={`text-[22px] max-tablet:text-lg flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
+                                    loadingStory
+                                        ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
+                                        : words.length >= 1 
+                                            ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
+                                            : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
+                                }`}
+                                onClick={() => {
+                                    if (words.length >= 1 && !loadingStory) {
+                                        StoryCreator()
+                                    }
+                                }}
+                            >
+                                {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
                             </div>
                         </div>
                     </>
