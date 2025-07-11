@@ -377,7 +377,7 @@ export default function Story () {
 
     return(
         // <div className="h-full border-2 p-5 max-tablet:px-3 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
-        <div className="h-full border-2 max-mobile:border-0 p-5 max-mobile:py-3 max-mobile:px-2">
+        <div className="h-full border-2 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2">
             <div className="h-full flex flex-col gap-3">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
@@ -918,23 +918,15 @@ export default function Story () {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-2 desktop:hidden">
-                            <div 
-                                className={`text-[22px] max-tablet:text-lg max-mobile:text-base flex-1 text-center font-bold mt-auto border rounded-xl py-4 max-tablet:py-3 max-mobile:py-[10px] shadow-xl duration-200 select-none flex justify-center items-center ${
-                                    loadingStory
-                                        ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
-                                        : words.length >= 1 
-                                            ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
-                                            : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'
-                                }`}
-                                onClick={() => {
-                                    if (words.length >= 1 && !loadingStory) {
-                                        StoryCreator()
-                                    }
-                                }}
-                            >
-                                {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
-                            </div>
+                        <div className={`desktop:hidden text-[22px] max-tablet:text-lg max-mobile:text-base text-center font-bold mt-auto border rounded-xl max-mobile:rounded-lg py-4 max-tablet:py-3 max-mobile:py-[10px] shadow-xl duration-200 select-none flex justify-center items-center ${
+                                loadingStory ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait': words.length >= 1 ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'}`}
+                            onClick={() => {
+                                if (words.length >= 1 && !loadingStory) {
+                                    StoryCreator()
+                                }
+                            }}
+                        >
+                            {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
                         </div>
                     </>
                 )}
