@@ -20,7 +20,6 @@ import { TbLineHeight } from "react-icons/tb";
 import GroupButton from "@/components/ui/group-button";
 const MAX_WORDS_LIMIT = 6;
 const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] max-mobile:[&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
-const gradientScroll = `-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);`
 
 export default function Story () {
 
@@ -51,6 +50,8 @@ export default function Story () {
     const highlightColorFa = 'bg-green-100';
     const [clickedButton, setClickedButton] = useState<string | null>(null);
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
+    const [statusGradientScroll,setStatusGradientScroll] = useState<{top:boolean,bottom:boolean}>({top:false,bottom:true})
+    const contentRef = useRef<HTMLDivElement | null>(null)
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -195,6 +196,37 @@ export default function Story () {
             setLoadingStory(false);
         }
     }    
+    const setGradientStyles = (): string => {
+        if(statusGradientScroll.top && statusGradientScroll.bottom)
+            return 'max-mobile:[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_92%,transparent_100%)]'
+        else if(statusGradientScroll.top)
+            return 'max-mobile:[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%)]'
+        else if(statusGradientScroll.bottom)
+            return 'max-mobile:[mask-image:linear-gradient(to_top,transparent_0%,black_8%)]'
+        return '' // رفع خطای linter
+    }
+    // Improved scroll fade logic for top/bottom
+    const handleContentScroll = (e: React.UIEvent<HTMLDivElement>): void => {
+        const scrollTop = e.currentTarget.scrollTop;
+        const scrollHeight = e.currentTarget.scrollHeight;
+        const clientHeight = e.currentTarget.clientHeight;
+        const node = contentRef.current;
+        if (!node) return;
+
+        // Top fade: active if scrolled more than 10px from top
+        if (scrollTop > 10) {
+            node.classList.add('fade-top');
+        } else {
+            node.classList.remove('fade-top');
+        }
+
+        // Bottom fade: inactive if less than 10px to bottom
+        if (scrollHeight - (scrollTop + clientHeight) < 10) {
+            node.classList.remove('fade-bottom');
+        } else {
+            node.classList.add('fade-bottom');
+        }
+    }
     
     useEffect(() => {
         setCurrentViewingLesson(null)
@@ -328,6 +360,7 @@ export default function Story () {
     }
 
     useEffect(() => {
+        // contentRef?.current?.addEventListener('scroll',handleContentScroll) // This line is removed as per the edit hint.
         const mediaQuery = window.matchMedia('(min-width: 1280px)');
         const handleChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
 
@@ -458,7 +491,7 @@ export default function Story () {
                             </div>
                         </div>
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
-                            <div className="flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] max-mobile:[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_92%,transparent_100%)]">
+                            <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px]`}>
                                 <div className="flex flex-col gap-3 px-2 max-mobile:px-0">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
@@ -539,7 +572,7 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="hidden mobile:flex flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] flex bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
+                                    <div className="hidden mobile:flex flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
                                         <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
@@ -892,7 +925,7 @@ export default function Story () {
                                         ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
                                         : words.length >= 1 
                                             ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
-                                            : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
+                                            : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'
                                 }`}
                                 onClick={() => {
                                     if (words.length >= 1 && !loadingStory) {

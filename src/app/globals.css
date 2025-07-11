@@ -134,6 +134,19 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+.fade-top {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 100%);
+}
+.fade-bottom {
+  mask-image: linear-gradient(to top, transparent 0%, black 8%, black 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 8%, black 100%);
+}
+.fade-top.fade-bottom {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -141,8 +154,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-.scroll-gradient {
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
 }
