@@ -196,31 +196,20 @@ export default function Story () {
             setLoadingStory(false);
         }
     }    
-    const setGradientStyles = (): string => {
-        if(statusGradientScroll.top && statusGradientScroll.bottom)
-            return 'max-mobile:[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%,black_92%,transparent_100%)]'
-        else if(statusGradientScroll.top)
-            return 'max-mobile:[mask-image:linear-gradient(to_bottom,transparent_0%,black_8%)]'
-        else if(statusGradientScroll.bottom)
-            return 'max-mobile:[mask-image:linear-gradient(to_top,transparent_0%,black_8%)]'
-        return '' // رفع خطای linter
-    }
-    // Improved scroll fade logic for top/bottom
     const handleContentScroll = (e: React.UIEvent<HTMLDivElement>): void => {
         const scrollTop = e.currentTarget.scrollTop;
         const scrollHeight = e.currentTarget.scrollHeight;
         const clientHeight = e.currentTarget.clientHeight;
         const node = contentRef.current;
         if (!node) return;
-
-        // Top fade: active if scrolled more than 10px from top
+        
         if (scrollTop > 10) {
             node.classList.add('fade-top');
         } else {
             node.classList.remove('fade-top');
         }
 
-        // Bottom fade: inactive if less than 10px to bottom
+        
         if (scrollHeight - (scrollTop + clientHeight) < 10) {
             node.classList.remove('fade-bottom');
         } else {
@@ -231,18 +220,15 @@ export default function Story () {
     useEffect(() => {
         setCurrentViewingLesson(null)
         
-        // Only clean up when we're actually switching levels (not on initial load)
-        if (level.length > 1) {
-            // Remove lessons with 0 words from the previous level
+        if (level.length > 1) {            
             setLessons(prev => prev.filter(lessonNumber => {
                 const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length
                 return wordsFromLesson > 0
             }))
             
-            // Remove levels that have no lessons after filtering, but keep the current selected level
+            
             setLevel(prev => {
                 const levelsToKeep = prev.filter(levelName => {
-                    // Always keep the current selected level
                     if (levelName === currentSelectedLevel) return true
                     
                     const lessonsFromLevel = lessons.filter(lessonNumber => {
@@ -360,14 +346,11 @@ export default function Story () {
     }
 
     useEffect(() => {
-        // contentRef?.current?.addEventListener('scroll',handleContentScroll) // This line is removed as per the edit hint.
         const mediaQuery = window.matchMedia('(min-width: 1280px)');
         const handleChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
 
-        // Set initial value
         setIsLargeScreen(mediaQuery.matches);
-
-        // Listen for changes
+        
         mediaQuery.addEventListener('change', handleChange);
 
         return () => {
@@ -491,7 +474,7 @@ export default function Story () {
                             </div>
                         </div>
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
-                            <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px]`}>
+                            <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
                                 <div className="flex flex-col gap-3 px-2 max-mobile:px-0">
                                     <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
