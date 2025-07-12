@@ -361,7 +361,6 @@ export default function Story () {
     }, []);
 
     return(
-        // <div className="h-full border-2 p-5 max-tablet:px-3 desktop:border-black laptop:border-blue-400 tablet:border-green-400 max-tablet:border-purple-700 max-mobile:border-red-500">
         <div className="h-full border-2 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2">
             <div className="h-full flex flex-col gap-3">
                 {showStory ? (
@@ -461,7 +460,7 @@ export default function Story () {
                 ) : (
                     <>
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
-                            <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:p-[6px] cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
+                            <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:py-[6px] max-tablet:px-2 cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
                         <div className="flex gap-5 max-laptop:gap-2 max-tablet:gap-1 select-none px-2">
                             <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
                                 <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150 ${steper >= 1 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
@@ -919,12 +918,12 @@ export default function Story () {
                             <div className="modal-box bg-white p-0 rounded-xl border border-gray-400/10 relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg">
                                 <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
                                 <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
-                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-6 flex flex-col gap-4">
+                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative pt-7 pb-4 px-6 flex flex-col gap-4">
                                     <form method="dialog" className="absolute right-3 top-3">
                                         <button className="border rounded-lg shadow-lg p-2 cursor-pointer duration-100 hover:bg-bgColor"><MdClose /></button>
                                     </form>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Levels :</div>
+                                        <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Levels :</div>
                                         <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {level.length > 0 ? (
                                                 <div className="grid grid-cols-2 gap-3 w-full">
@@ -935,19 +934,19 @@ export default function Story () {
 
                                                         return (
                                                             <div key={index} className={`px-4 py-3 rounded-xl text-base flex items-center justify-center gap-3 transition-all duration-200 bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40 ${isLastAndOdd ? 'col-span-2' : ''}`} style={{ borderWidth: 1 }}>
-                                                                <IconComponent className={`${iconColor} text-2xl`} />
+                                                                <IconComponent className={`${iconColor}`} />
                                                                 <span className="font-semibold text-gray-800">{levelName.charAt(0).toUpperCase() + levelName.slice(1)}</span>
                                                             </div>
                                                         )
                                                     })}
                                                 </div>
                                             ) : (
-                                                <div className="text-gray-400 text-lg">No levels selected</div>
+                                                <div className="text-gray-400 text-sm">No levels selected</div>
                                             )}
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Lessons :</div>
+                                        <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Lessons :</div>
                                         <div className="font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {lessons.length > 0 ? (
                                                 <div className="grid grid-cols-2 gap-3 w-full">
@@ -979,7 +978,7 @@ export default function Story () {
                                                                 )}
                                                                 <div className="flex items-center gap-2">
                                                                     <span className={`
-                                                                        w-2 h-2 rounded-full inline-block
+                                                                        w-[6px] h-[6px] rounded-full inline-block
                                                                         ${lessonLevel === 'elementry' ? 'bg-green-400' : ''}
                                                                         ${lessonLevel === 'intermediate' ? 'bg-blue-400' : ''}
                                                                         ${lessonLevel === 'advanced' ? 'bg-red-400' : ''}
@@ -991,12 +990,12 @@ export default function Story () {
                                                     })}
                                                 </div>
                                             ) : (
-                                                <div className="text-gray-400 text-lg ">Select lessons to continue</div>
+                                                <div className="text-gray-400 text-sm">Select lessons to continue</div>
                                             )}
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-3xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
+                                        <div className="border-3 backdrop-blur-3xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
                                         <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                             {words.length ?
                                                 words.map((item,index)=>{
@@ -1005,14 +1004,14 @@ export default function Story () {
                                                     const removeHover = level === 'elementry' ? 'hover:text-green-600' : level === 'intermediate' ? 'hover:text-blue-600' : 'hover:text-red-600';
                                                     return (
                                                         <div key={index} className={`w-full justify-between py-2 relative rounded-full px-3 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-2 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
-                                                            <span className={`w-2 h-2 rounded-full inline-block ${dot}`}></span>
-                                                            <span className="font-medium text-sm select-none">{item}</span>
+                                                            <span className={`w-[6px] h-[6px] rounded-full inline-block ${dot}`}></span>
+                                                            <span className="font-medium text-xs select-none">{item}</span>
                                                             <button onClick={()=> removeWord(index)} className={`ml-1 rounded-full bg-transparent text-gray-500 ${removeHover} transition-colors duration-150 select-none cursor-pointer text-lg leading-none`}>×</button>
                                                         </div>
                                                     )
                                                 })
                                                 :
-                                                <div className="m-auto text-gray-400 text-lg">Choose your favorite words</div>
+                                                <div className="m-auto text-gray-400 text-sm">Choose your favorite words</div>
                                             }
                                         </div>
                                         {/* Word count and legend row */}
