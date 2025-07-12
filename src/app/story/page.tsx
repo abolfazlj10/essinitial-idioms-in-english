@@ -12,6 +12,8 @@ import advanced from '../../data/book/advanced.json'
 import { TbBoxMultiple1 } from "react-icons/tb";
 import { TbBoxMultiple2 } from "react-icons/tb";
 import { TbBoxMultiple3 } from "react-icons/tb";
+import { MdClose } from "react-icons/md";
+import { TbTimeline } from "react-icons/tb";
 import { FaSpinner , FaCheck } from "react-icons/fa";
 import Appbar from "@/components/appbar";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
@@ -50,8 +52,8 @@ export default function Story () {
     const highlightColorFa = 'bg-green-100';
     const [clickedButton, setClickedButton] = useState<string | null>(null);
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
-    const [statusGradientScroll,setStatusGradientScroll] = useState<{top:boolean,bottom:boolean}>({top:false,bottom:true})
-    const contentRef = useRef<HTMLDivElement | null>(null)
+    const contentRef = useRef<HTMLDivElement | null>(null);
+    const dialogModal = useRef<HTMLDialogElement | null>(null)
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -458,19 +460,20 @@ export default function Story () {
                     </div>
                 ) : (
                     <>
-                        <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : <button className="border rounded p-1 max-tablet:text-[10px] max-tablet:px-2">details</button>}/>
+                        <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
+                            <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:p-[6px] cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
                         <div className="flex gap-5 max-laptop:gap-2 max-tablet:gap-1 select-none px-2">
                             <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
-                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] bg-gradient-to-r from-primaryColor from-40% to-bgColor rounded ${steper >= 1 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className=" max-laptop:text-sm max-tablet:text-[10px]">Level</div>
+                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150 ${steper >= 1 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className={`max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 1 && 'text-gray-400'}`}>Level</div>
                             </div>
                             <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
-                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] bg-[#eaeced] rounded  ${steper >= 2 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className="text-gray-400 max-laptop:text-sm max-tablet:text-[10px]">Lessons</div>
+                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 2 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className={`max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 2 && 'text-gray-400'}`}>Lessons</div>
                             </div>
                             <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
-                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] bg-[#eaeced] rounded  ${steper >= 3 ? 'bg-gradient-to-r from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className="text-gray-400 max-laptop:text-sm max-tablet:text-[10px]">Words</div>
+                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 3 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className={`max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 3 && 'text-gray-400'}`}>Words</div>
                             </div>
                         </div>
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
@@ -911,6 +914,141 @@ export default function Story () {
                         >
                             {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
                         </div>
+
+                        <dialog ref={dialogModal} className="modal">
+                            <div className="modal-box bg-white p-0 rounded-xl border border-gray-400/10 relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg">
+                                <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
+                                <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
+                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-10 flex flex-col gap-4">
+                                    <form method="dialog" className="absolute right-3 top-3">
+                                        <button className="border rounded-lg shadow-lg p-2 cursor-pointer duration-100 hover:bg-bgColor"><MdClose /></button>
+                                    </form>
+                                    <div>
+                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
+                                        <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
+                                            {level.length > 0 ? (
+                                                <div className="grid grid-cols-2 gap-3 w-full">
+                                                    {level.map((levelName, index) => {
+                                                        const iconColor = levelName === 'elementry' ? 'text-green-600' : levelName === 'intermediate' ? 'text-blue-600' : 'text-red-600';
+                                                        const IconComponent = levelName === 'elementry' ? TbBoxMultiple1 : levelName === 'intermediate' ? TbBoxMultiple2 : TbBoxMultiple3;
+                                                        const isLastAndOdd = index === level.length - 1 && level.length % 2 !== 0;
+
+                                                        return (
+                                                            <div key={index} className={`px-4 py-3 rounded-xl text-base flex items-center justify-center gap-3 transition-all duration-200 bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40 ${isLastAndOdd ? 'col-span-2' : ''}`} style={{ borderWidth: 1 }}>
+                                                                <IconComponent className={`${iconColor} text-2xl`} />
+                                                                <span className="font-semibold text-gray-800">{levelName.charAt(0).toUpperCase() + levelName.slice(1)}</span>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            ) : (
+                                                <div className="text-gray-400 text-lg">No levels selected</div>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lessons :</div>
+                                        <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
+                                            {lessons.length > 0 ? (
+                                                <div className="grid grid-cols-2 gap-3 w-full">
+                                                    {lessons.map((lessonNumber, index) => {
+                                                        const wordsFromLesson = Object.values(wordLessons).filter(lesson => lesson === lessonNumber).length;
+                                                        
+                                                        let lessonLevel: Level = 'elementry';
+                                                        for (const levelKey of Object.keys(books) as Level[]) {
+                                                            const found = books[levelKey]?.levels[0]?.lessons.some((lesson: any) => lesson.lesson_number === lessonNumber);
+                                                            if (found) {
+                                                                lessonLevel = levelKey;
+                                                                break;
+                                                            }
+                                                        }
+
+                                                        const isLastAndOdd = index === lessons.length - 1 && lessons.length % 2 !== 0;
+                                                        const badgeClass = lessonLevel === 'elementry' ? 'bg-green-500 text-white' : lessonLevel === 'intermediate' ? 'bg-blue-500 text-white' : 'bg-red-500 text-white';
+                                                        const isSemiActive = wordsFromLesson === 0;
+
+                                                        return (
+                                                            <div
+                                                                key={index}
+                                                                className={`
+                                                                    relative
+                                                                    px-3 py-2 rounded-xl text-sm
+                                                                    flex items-center justify-center
+                                                                    transition-all duration-200 backdrop-blur-sm
+                                                                    ${isLastAndOdd ? 'col-span-2' : ''}
+                                                                    ${isSemiActive
+                                                                        ? 'bg-white/10 border-primaryColor/40 opacity-70 hover:opacity-100 hover:bg-white/20'
+                                                                        : 'bg-white/20 border-primaryColor hover:bg-white/40'
+                                                                    }
+                                                                `}
+                                                                style={{ fontWeight: 500, borderWidth: 1 }}
+                                                                title={isSemiActive ? "This lesson has no selected words yet." : `${wordsFromLesson} word(s) selected`}
+                                                            >
+                                                                {wordsFromLesson > 0 && (
+                                                                    <span className={`absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3 w-5 h-5 rounded-full text-xs font-semibold z-10 border-2 border-white flex items-center justify-center ${badgeClass}`}>
+                                                                        {wordsFromLesson}
+                                                                    </span>
+                                                                )}
+                                                                <div className="flex items-center gap-2">
+                                                                    <span className={`
+                                                                        w-2 h-2 rounded-full inline-block
+                                                                        ${lessonLevel === 'elementry' ? 'bg-green-400' : ''}
+                                                                        ${lessonLevel === 'intermediate' ? 'bg-blue-400' : ''}
+                                                                        ${lessonLevel === 'advanced' ? 'bg-red-400' : ''}
+                                                                    `}></span>
+                                                                    <span className="text-gray-800">Lesson {lessonNumber}</span>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            ) : (
+                                                <div className="text-gray-400 text-lg ">Select lessons to continue</div>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
+                                        <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
+                                            {words.length ?
+                                                words.map((item,index)=>{
+                                                    const level = wordLevels[item];
+                                                    const dot = level === 'elementry' ? 'bg-green-400' : level === 'intermediate' ? 'bg-blue-400' : 'bg-red-400';
+                                                    const removeHover = level === 'elementry' ? 'hover:text-green-600' : level === 'intermediate' ? 'hover:text-blue-600' : 'hover:text-red-600';
+                                                    return (
+                                                        <div key={index} className={`max-[1500px]:w-full max-[1500px]:justify-between max-[1500px]:py-2 relative rounded-full px-3 py-1 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-3 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
+                                                            <span className={`w-2 h-2 rounded-full inline-block ${dot}`}></span>
+                                                            <span className="font-medium text-sm select-none">{item}</span>
+                                                            <button onClick={()=> removeWord(index)} className={`ml-1 rounded-full bg-transparent text-gray-500 ${removeHover} transition-colors duration-150 select-none cursor-pointer text-base leading-none`}>×</button>
+                                                        </div>
+                                                    )
+                                                })
+                                                :
+                                                <div className="m-auto text-gray-400 text-lg">Choose your favorite words</div>
+                                            }
+                                        </div>
+                                        {/* Word count and legend row */}
+                                        <div className="flex items-center justify-between max-[1500px]:flex-wrap gap-2 mt-2 mb-3 text-sm max-[2432px]:text-xs">
+                                            <div className="flex gap-4 max-[2432px]:gap-2">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-3 h-3 bg-green-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                    <span>Elementary</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-3 h-3 bg-blue-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                    <span>Intermediate</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-3 h-3 bg-red-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                    <span>Advanced</span>
+                                                </div>
+                                            </div>
+                                            <div className={`text-sm ml-auto font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dialog>
                     </>
                 )}
             </div>
