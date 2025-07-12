@@ -348,7 +348,6 @@ export default function Story () {
     }
 
     useEffect(() => {
-        dialogModal.current.showModal()
         const mediaQuery = window.matchMedia('(min-width: 1280px)');
         const handleChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
 
