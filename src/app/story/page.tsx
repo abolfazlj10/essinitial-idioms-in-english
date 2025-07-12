@@ -348,6 +348,7 @@ export default function Story () {
     }
 
     useEffect(() => {
+        dialogModal.current.showModal()
         const mediaQuery = window.matchMedia('(min-width: 1280px)');
         const handleChange = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
 
@@ -919,12 +920,12 @@ export default function Story () {
                             <div className="modal-box bg-white p-0 rounded-xl border border-gray-400/10 relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg">
                                 <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
                                 <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
-                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-10 flex flex-col gap-4">
+                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-6 flex flex-col gap-4">
                                     <form method="dialog" className="absolute right-3 top-3">
                                         <button className="border rounded-lg shadow-lg p-2 cursor-pointer duration-100 hover:bg-bgColor"><MdClose /></button>
                                     </form>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
+                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Levels :</div>
                                         <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {level.length > 0 ? (
                                                 <div className="grid grid-cols-2 gap-3 w-full">
@@ -947,8 +948,8 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lessons :</div>
-                                        <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
+                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Lessons :</div>
+                                        <div className="font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {lessons.length > 0 ? (
                                                 <div className="grid grid-cols-2 gap-3 w-full">
                                                     {lessons.map((lessonNumber, index) => {
@@ -968,24 +969,12 @@ export default function Story () {
                                                         const isSemiActive = wordsFromLesson === 0;
 
                                                         return (
-                                                            <div
-                                                                key={index}
-                                                                className={`
-                                                                    relative
-                                                                    px-3 py-2 rounded-xl text-sm
-                                                                    flex items-center justify-center
-                                                                    transition-all duration-200 backdrop-blur-sm
-                                                                    ${isLastAndOdd ? 'col-span-2' : ''}
-                                                                    ${isSemiActive
-                                                                        ? 'bg-white/10 border-primaryColor/40 opacity-70 hover:opacity-100 hover:bg-white/20'
-                                                                        : 'bg-white/20 border-primaryColor hover:bg-white/40'
-                                                                    }
-                                                                `}
+                                                            <div key={index} className={`relative px-3 py-2 rounded-xl text-sm flex items-center justify-center transition-all duration-200 backdrop-blur-sm ${isLastAndOdd ? 'col-span-2' : ''} ${isSemiActive ? 'bg-white/10 border-primaryColor/40 opacity-70 hover:opacity-100 hover:bg-white/20' : 'bg-white/20 border-primaryColor hover:bg-white/40'}`}
                                                                 style={{ fontWeight: 500, borderWidth: 1 }}
                                                                 title={isSemiActive ? "This lesson has no selected words yet." : `${wordsFromLesson} word(s) selected`}
                                                             >
                                                                 {wordsFromLesson > 0 && (
-                                                                    <span className={`absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3 w-5 h-5 rounded-full text-xs font-semibold z-10 border-2 border-white flex items-center justify-center ${badgeClass}`}>
+                                                                    <span className={`absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3 w-5 h-5 rounded-full text-[9px] font-semibold z-10 border-2 border-white flex items-center justify-center ${badgeClass}`}>
                                                                         {wordsFromLesson}
                                                                     </span>
                                                                 )}
@@ -1008,7 +997,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
+                                        <div className="border-4 backdrop-blur-3xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
                                         <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                             {words.length ?
                                                 words.map((item,index)=>{
@@ -1016,10 +1005,10 @@ export default function Story () {
                                                     const dot = level === 'elementry' ? 'bg-green-400' : level === 'intermediate' ? 'bg-blue-400' : 'bg-red-400';
                                                     const removeHover = level === 'elementry' ? 'hover:text-green-600' : level === 'intermediate' ? 'hover:text-blue-600' : 'hover:text-red-600';
                                                     return (
-                                                        <div key={index} className={`max-[1500px]:w-full max-[1500px]:justify-between max-[1500px]:py-2 relative rounded-full px-3 py-1 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-3 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
+                                                        <div key={index} className={`w-full justify-between py-2 relative rounded-full px-3 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-2 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
                                                             <span className={`w-2 h-2 rounded-full inline-block ${dot}`}></span>
                                                             <span className="font-medium text-sm select-none">{item}</span>
-                                                            <button onClick={()=> removeWord(index)} className={`ml-1 rounded-full bg-transparent text-gray-500 ${removeHover} transition-colors duration-150 select-none cursor-pointer text-base leading-none`}>×</button>
+                                                            <button onClick={()=> removeWord(index)} className={`ml-1 rounded-full bg-transparent text-gray-500 ${removeHover} transition-colors duration-150 select-none cursor-pointer text-lg leading-none`}>×</button>
                                                         </div>
                                                     )
                                                 })
@@ -1028,22 +1017,22 @@ export default function Story () {
                                             }
                                         </div>
                                         {/* Word count and legend row */}
-                                        <div className="flex items-center justify-between max-[1500px]:flex-wrap gap-2 mt-2 mb-3 text-sm max-[2432px]:text-xs">
-                                            <div className="flex gap-4 max-[2432px]:gap-2">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-green-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                        <div className="flex items-center justify-between flex-wrap gap-2 mt-2 mb-3 text-xs max-mobile:text-[10px]">
+                                            <div className="flex gap-2">
+                                                <div className="flex items-center gap-1">
+                                                    <div className="h-2 w-2 max-mobile:h-[6px] max-mobile:w-[6px] bg-green-400 rounded-full"></div>
                                                     <span>Elementary</span>
                                                 </div>
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-blue-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                <div className="flex items-center gap-1">
+                                                    <div className="h-2 w-2 max-mobile:h-[6px] max-mobile:w-[6px] bg-blue-400 rounded-full"></div>
                                                     <span>Intermediate</span>
                                                 </div>
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-red-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                <div className="flex items-center gap-1">
+                                                    <div className="h-2 w-2 max-mobile:h-[6px] max-mobile:w-[6px] bg-red-400 rounded-full"></div>
                                                     <span>Advanced</span>
                                                 </div>
                                             </div>
-                                            <div className={`text-sm ml-auto font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
+                                            <div className={`text-xs ml-auto font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
                                         </div>
                                     </div>
                                 </div>
