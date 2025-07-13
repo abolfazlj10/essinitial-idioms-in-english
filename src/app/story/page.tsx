@@ -612,7 +612,13 @@ export default function Story () {
                                                                 }
                                                             }}
                                                                 className={`border rounded-lg pl-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
-                                                                    ${lessons.includes(item.lesson_number) ? 'border-primaryColor' : 'border-gray-200/40'}
+                                                                    ${lessons.includes(item.lesson_number)
+                                                                        ? lessonLevel === 'elementry'
+                                                                            ? 'border-green-400'
+                                                                            : lessonLevel === 'intermediate'
+                                                                                ? 'border-blue-400'
+                                                                                : 'border-red-400'
+                                                                        : 'border-gray-200/40'}
                                                                     ${currentViewingLesson === item.lesson_number ? `${selectedBg} ${selectedBorder} shadow-md scale-[1.04] ${selectedText} border-2` : ''}
                                                                 `}
                                                                 style={{ fontWeight: 500 }}
@@ -707,7 +713,13 @@ export default function Story () {
                                                                 }
                                                             }}
                                                                 className={`border rounded-lg pl-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
-                                                                    ${lessons.includes(item.lesson_number) ? 'border-primaryColor' : 'border-gray-200/40'}
+                                                                    ${lessons.includes(item.lesson_number)
+                                                                        ? lessonLevel === 'elementry'
+                                                                            ? 'border-green-400'
+                                                                            : lessonLevel === 'intermediate'
+                                                                                ? 'border-blue-400'
+                                                                                : 'border-red-400'
+                                                                        : 'border-gray-200/40'}
                                                                     ${currentViewingLesson === item.lesson_number ? `${selectedBg} ${selectedBorder} shadow-md scale-[1.04] ${selectedText} border-2` : ''}
                                                                 `}
                                                                 style={{ fontWeight: 500 }}
@@ -860,7 +872,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
+                                        <div className="border-4 !backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
                                         <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                             {words.length ?
                                                 words.map((item,index)=>{
@@ -1015,7 +1027,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-3 backdrop-blur-3xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
+                                        <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
                                         <div
                                             ref={idiomsContentRef}
                                             onScroll={handleIdiomsContentScroll}
