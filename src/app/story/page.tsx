@@ -54,6 +54,27 @@ export default function Story () {
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
     const contentRef = useRef<HTMLDivElement | null>(null);
     const dialogModal = useRef<HTMLDialogElement | null>(null)
+    const idiomsContentRef = useRef<HTMLDivElement | null>(null);
+    const [idiomsFadeTop, setIdiomsFadeTop] = useState(false);
+    const [idiomsFadeBottom, setIdiomsFadeBottom] = useState(true);
+
+    const handleIdiomsContentScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const node = e.currentTarget;
+        const scrollTop = node.scrollTop;
+        const scrollHeight = node.scrollHeight;
+        const clientHeight = node.clientHeight;
+        setIdiomsFadeTop(scrollTop > 10);
+        setIdiomsFadeBottom(scrollHeight - (scrollTop + clientHeight) > 10);
+    };
+
+    useEffect(() => {
+        // Reset fade states on idioms list change
+        if (idiomsContentRef.current) {
+            const node = idiomsContentRef.current;
+            setIdiomsFadeTop(node.scrollTop > 10);
+            setIdiomsFadeBottom(node.scrollHeight - (node.scrollTop + node.clientHeight) > 10);
+        }
+    }, [words.length]);
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -904,7 +925,7 @@ export default function Story () {
                             </div>
                         </div>
                         <div className={`desktop:hidden text-[22px] max-tablet:text-lg max-mobile:text-base text-center font-bold mt-auto border rounded-xl max-mobile:rounded-lg py-4 max-tablet:py-3 max-mobile:py-[10px] shadow-xl duration-200 select-none flex justify-center items-center ${
-                                loadingStory ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait': words.length >= 1 ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'}`}
+                            loadingStory ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait': words.length >= 1 ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'}`}
                             onClick={() => {
                                 if (words.length >= 1 && !loadingStory) {
                                     StoryCreator()
@@ -925,15 +946,15 @@ export default function Story () {
                                         <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Levels :</div>
                                         <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {level.length > 0 ? (
-                                                <div className="grid grid-cols-2 gap-3 w-full">
+                                                <div className="grid grid-cols-2 max-mobile:grid-cols-1 gap-3 w-full">
                                                     {level.map((levelName, index) => {
                                                         const iconColor = levelName === 'elementry' ? 'text-green-600' : levelName === 'intermediate' ? 'text-blue-600' : 'text-red-600';
                                                         const IconComponent = levelName === 'elementry' ? TbBoxMultiple1 : levelName === 'intermediate' ? TbBoxMultiple2 : TbBoxMultiple3;
                                                         const isLastAndOdd = index === level.length - 1 && level.length % 2 !== 0;
 
                                                         return (
-                                                            <div key={index} className={`px-4 py-3 rounded-xl text-base flex items-center justify-center gap-3 transition-all duration-200 bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40 ${isLastAndOdd ? 'col-span-2' : ''}`} style={{ borderWidth: 1 }}>
-                                                                <IconComponent className={`${iconColor}`} />
+                                                            <div key={index} className={`px-4 py-3 rounded-xl text-base flex items-center justify-center gap-3 transition-all duration-200 bg-white/20 backdrop-blur-sm border-primaryColor hover:bg-white/40`} style={{ borderWidth: 1 }}>
+                                                                <IconComponent className={`${iconColor} text-2xl`} />
                                                                 <span className="font-semibold text-gray-800">{levelName.charAt(0).toUpperCase() + levelName.slice(1)}</span>
                                                             </div>
                                                         )
@@ -995,7 +1016,11 @@ export default function Story () {
                                     </div>
                                     <div>
                                         <div className="border-3 backdrop-blur-3xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
-                                        <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
+                                        <div
+                                            ref={idiomsContentRef}
+                                            onScroll={handleIdiomsContentScroll}
+                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ${idiomsFadeTop ? 'fade-top' : ''} ${idiomsFadeBottom ? 'fade-bottom' : ''}`}
+                                        >
                                             {words.length ?
                                                 words.map((item,index)=>{
                                                     const level = wordLevels[item];
