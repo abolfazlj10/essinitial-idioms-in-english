@@ -913,14 +913,13 @@ export default function Story () {
                         >
                             {loadingStory ? <span className="flex items-center gap-2">Generating<FaSpinner className="animate-spin text-2xl" /></span> : 'Create Story =>'} 
                         </div>
-
                         <dialog ref={dialogModal} className="modal">
                             <div className="modal-box bg-white p-0 rounded-xl border border-gray-400/10 relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg">
                                 <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
                                 <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
                                 <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative pt-7 pb-4 px-6 flex flex-col gap-4">
                                     <form method="dialog" className="absolute right-3 top-3">
-                                        <button className="border rounded-lg shadow-lg p-2 cursor-pointer duration-100 hover:bg-bgColor"><MdClose /></button>
+                                        <button className="border bg-white rounded-lg shadow-lg p-2 cursor-pointer duration-100 hover:bg-bgColor backdrop-blur-2xl"><MdClose /></button>
                                     </form>
                                     <div>
                                         <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Levels :</div>
