@@ -21,6 +21,7 @@ import { RxLineHeight } from "react-icons/rx";
 import { TbLineHeight } from "react-icons/tb";
 import GroupButton from "@/components/ui/group-button";
 import SideBarDetail from '@/components/story/sidebar'
+import Stepper from "@/components/story/stepper"
 const MAX_WORDS_LIMIT = 6;
 const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] max-mobile:[&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
 
@@ -483,20 +484,7 @@ export default function Story () {
                     <>
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
                             <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:py-[6px] max-tablet:px-2 cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
-                        <div className="flex gap-5 max-laptop:gap-2 max-tablet:gap-1 select-none px-2">
-                            <div className="flex-1 flex flex-col gap-1 max-laptop:gap-1">
-                                <div className={`w-full h-[5px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150 ${steper >= 1 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className={`text-xs max-laptop:text-xs max-tablet:text-[10px] duration-100 ${steper < 1 && 'text-gray-400'}`}>Level</div>
-                            </div>
-                            <div className="flex-1 flex flex-col gap-1 max-laptop:gap-1">
-                                <div className={`w-full h-[5px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 2 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className={`text-xs max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 2 && 'text-gray-400'}`}>Lessons</div>
-                            </div>
-                            <div className="flex-1 flex flex-col gap-1 max-laptop:gap-1">
-                                <div className={`w-full h-[5px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 3 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className={`text-xs max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 3 && 'text-gray-400'}`}>Words</div>
-                            </div>
-                        </div>
+                        <Stepper steper={steper} />
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-3 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
                             <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
                                 <div className="flex flex-col gap-3 max-mobile:px-0">
