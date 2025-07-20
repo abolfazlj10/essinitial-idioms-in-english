@@ -61,6 +61,9 @@
   --breakpoint-tablet:768px;
   --breakpoint-laptop:1024px;
   --breakpoint-desktop:1280px;
+  --text-2xs: 10px;
+  --text-3xs: 8px;
+  --text-4xs: 6px;
 }
 ::selection {
   @apply bg-hilightColor/50 duration-200;

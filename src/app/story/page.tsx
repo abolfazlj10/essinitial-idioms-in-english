@@ -382,7 +382,7 @@ export default function Story () {
     }, []);
 
     return(
-        <div className="h-full border-2 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2">
+        <div className="h-full border-1 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2">
             <div className="h-full flex flex-col gap-3">
                 {showStory ? (
                     <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
@@ -483,64 +483,64 @@ export default function Story () {
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
                             <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:py-[6px] max-tablet:px-2 cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
                         <div className="flex gap-5 max-laptop:gap-2 max-tablet:gap-1 select-none px-2">
-                            <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
-                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150 ${steper >= 1 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className={`max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 1 && 'text-gray-400'}`}>Level</div>
+                            <div className="flex-1 flex flex-col gap-1 max-laptop:gap-1">
+                                <div className={`w-full h-[5px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150 ${steper >= 1 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className={`text-xs max-laptop:text-xs max-tablet:text-[10px] duration-100 ${steper < 1 && 'text-gray-400'}`}>Level</div>
                             </div>
-                            <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
-                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 2 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className={`max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 2 && 'text-gray-400'}`}>Lessons</div>
+                            <div className="flex-1 flex flex-col gap-1 max-laptop:gap-1">
+                                <div className={`w-full h-[5px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 2 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className={`text-xs max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 2 && 'text-gray-400'}`}>Lessons</div>
                             </div>
-                            <div className="flex-1 flex flex-col gap-2 max-laptop:gap-1">
-                                <div className={`w-full h-[8px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 3 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
-                                <div className={`max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 3 && 'text-gray-400'}`}>Words</div>
+                            <div className="flex-1 flex flex-col gap-1 max-laptop:gap-1">
+                                <div className={`w-full h-[5px] max-laptop:h-[6px] max-tablet:h-[4px] rounded duration-150  ${steper >= 3 ? 'bg-gradient-to-l from-primaryColor from-40% to-bgColor' : 'bg-[#eaeced]'}`}></div>
+                                <div className={`text-xs max-laptop:text-sm max-tablet:text-[10px] duration-100 ${steper < 3 && 'text-gray-400'}`}>Words</div>
                             </div>
                         </div>
-                        <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-10 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
+                        <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-3 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
                             <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
-                                <div className="flex flex-col gap-3 px-2 max-mobile:px-0">
-                                    <div className="flex flex-col gap-3 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
-                                        <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Level</div>
-                                        <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your level that you wanna see its words</div>
+                                <div className="flex flex-col gap-3 max-mobile:px-0">
+                                    <div className="flex flex-col gap-1 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
+                                        <div className="text-2xl max-laptop:text-lg max-tablet:text-base font-semibold">Select Level</div>
+                                        <div className="text-gray-400 text-sm max-laptop:text-xs max-tablet:text-xs">Select your level that you wanna see its words</div>
                                     </div>
-                                    <div className="flex gap-10 px-2 max-mobile:px-0 max-mobile:pr-2 max-[2000px]:gap-5 max-tablet:gap-3 max-laptop:flex-col">
-                                        <div onClick={()=> selectLevel('elementry')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
+                                    <div className="flex gap-10 px-2 max-mobile:px-0 max-mobile:pr-2 max-[2000px]:gap-3 max-tablet:gap-3 max-laptop:flex-col">
+                                        <div onClick={()=> selectLevel('elementry')} className={`border-2 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'elementry' ? 'border-green-400' : 'border-gray-300 hover:border-green-300'}`}>
                                             {currentSelectedLevel === 'elementry' && (
-                                                <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-green-500 rounded-full flex items-center justify-center">
+                                                <div className="absolute -top-2 -right-2 w-5 h-5 max-tablet:w-4 max-tablet:h-5 bg-green-500 rounded-full flex items-center justify-center">
                                                     <span className="text-white text-xs">✓</span>
                                                 </div>
                                             )}
-                                            <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
-                                            <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
+                                            <div className="text-3xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple1 /></div>
+                                            <div className="text-base font-semibold flex select-none items-center gap-2 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Elementry</span><span className="text-2xs text-blue-400 max-[1340px]:text-xs">{elementry.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-[2000px]:text-xs max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
                                             <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
                                                 <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Elementry</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{elementry.levels[0].lessons.length} lesson</span></div>
                                                 <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
                                             </div>
                                         </div>
-                                        <div onClick={()=> selectLevel('intermediate')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
+                                        <div onClick={()=> selectLevel('intermediate')} className={`border-2 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'intermediate' ? 'border-blue-400' : 'border-gray-300 hover:border-blue-300'}`}>
                                             {currentSelectedLevel === 'intermediate' && (
-                                                <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                                                <div className="absolute -top-2 -right-2 w-5 h-5 max-tablet:w-4 max-tablet:h-5 bg-blue-500 rounded-full flex items-center justify-center">
                                                     <span className="text-white text-xs">✓</span>
                                                 </div>
                                             )}
-                                            <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
-                                            <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
+                                            <div className="text-3xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple2 /></div>
+                                            <div className="text-base font-semibold flex select-none items-center gap-2 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Intermediate</span><span className="text-2xs text-blue-400 max-[1340px]:text-xs">{intermediate.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-[2000px]:text-xs max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
                                             <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
                                                 <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Intermediate</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{intermediate.levels[0].lessons.length} lesson</span></div>
                                                 <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
                                             </div>
                                         </div>
-                                        <div onClick={()=> selectLevel('advanced')} className={`border-3 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
+                                        <div onClick={()=> selectLevel('advanced')} className={`border-2 max-laptop:border-2 flex-1 p-6 max-laptop:py-4 max-[2000px]:p-4 max-[1500px]:py-2 max-tablet:py-2 max-tablet:px-2 rounded-xl shadow-lg flex flex-col max-laptop:grid max-laptop:grid-cols-[auto_8fr] gap-5 max-[2000px]:gap-3 items-start duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-2xl relative ${currentSelectedLevel === 'advanced' ? 'border-red-400' : 'border-gray-300 hover:border-red-300'}`}>
                                             {currentSelectedLevel === 'advanced' && (
-                                                <div className="absolute -top-2 -right-2 w-6 h-6 max-tablet:w-5 max-tablet:h-5 bg-red-500 rounded-full flex items-center justify-center">
+                                                <div className="absolute -top-2 -right-2 w-5 h-5 max-tablet:w-4 max-tablet:h-5 bg-red-500 rounded-full flex items-center justify-center">
                                                     <span className="text-white text-xs">✓</span>
                                                 </div>
                                             )}
-                                            <div className="text-4xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
-                                            <div className="text-xl max-[1500px]:text-lg font-semibold flex select-none items-center gap-5 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
-                                            <div className="text-gray-400 text-lg max-[2000px]:text-sm max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
+                                            <div className="text-3xl max-tablet:text-3xl max-mobile:lg px-2 py-1 border border-gray-400/10 rounded-lg"><TbBoxMultiple3 /></div>
+                                            <div className="text-base font-semibold flex select-none items-center gap-2 max-laptop:flex-col max-laptop:gap-1 max-laptop:hidden"><span>Advanced</span><span className="text-2xs text-blue-400 max-[1340px]:text-xs">{advanced.levels[0].lessons.length} lesson</span></div>
+                                            <div className="text-gray-400 max-[2000px]:text-xs max-[1315px]:text-sm max-laptop:mt-auto max-laptop:hidden">lorem ipsum a text for testing.</div>
                                             <div className="min-laptop:hidden flex flex-col gap-2 max-tablet:gap-1">
                                                 <div className="font-semibold grid grid-cols-[auto_1fr] gap-4 items-center select-none text-lg max-tablet:text-base max-mobile:text-sm"><span>Advanced</span><span className="text-sm text-blue-400 max-[1340px]:text-xs max-tablet:text-[10px]">{advanced.levels[0].lessons.length} lesson</span></div>
                                                 <div className="text-gray-400 max-laptop:text-sm max-tablet:text-xs">lorem ipsum a text for testing.</div>
@@ -549,13 +549,13 @@ export default function Story () {
                                     </div>
                                 </div>
                                 <div className="flex flex-col gap-3 flex-1 overflow-hidden max-tablet:overflow-visible px-2 max-mobile:px-0 max-tablet:min-h-[300px] max-mobile:min-h-auto">
-                                    <div className="flex flex-col gap-3 max-laptop:gap-1 select-none">
-                                        <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Select Words</div>
-                                        <div className="text-gray-400 text-lg max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
+                                    <div className="flex flex-col gap-1 max-laptop:gap-1 select-none">
+                                        <div className="text-2xl max-laptop:text-lg max-tablet:text-base font-semibold">Select Words</div>
+                                        <div className="text-gray-400 text-sm max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
                                         <div className="flex items-center gap-3">
-                                            <div className="flex-1 bg-gray-100 rounded-full h-2 max-laptop:h-1 shadow-inner border border-gray-200">
+                                            <div className="flex-1 bg-gray-100 rounded-full h-[6px] max-laptop:h-1 shadow-inner border border-gray-200">
                                                 <div 
-                                                    className={`h-2 max-laptop:h-1 rounded-full transition-all duration-500 ease-out shadow-sm bg-gradient-to-r from-bgColor ${words.length >= MAX_WORDS_LIMIT ? 'to-primaryColor/80' : 'to-primaryColor/100'}`}
+                                                    className={`h-[6px] max-laptop:h-1 rounded-full transition-all duration-500 ease-out shadow-sm bg-gradient-to-r from-bgColor ${words.length >= MAX_WORDS_LIMIT ? 'to-primaryColor/80' : 'to-primaryColor/100'}`}
                                                     style={{ 
                                                         width: `${(words.length / MAX_WORDS_LIMIT) * 100}%`,
                                                         boxShadow: words.length > 0
@@ -565,8 +565,8 @@ export default function Story () {
                                                 ></div>
                                             </div>
                                             <div className="flex flex-col items-center min-w-[60px]">
-                                                <span className={`text-sm max-tablet:text-xs font-bold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-primaryColor/80'}`}>{words.length}/{MAX_WORDS_LIMIT}</span>
-                                                <span className="text-xs max-tablet:text-[9px] font-medium text-gray-500">
+                                                <span className={`text-xs max-tablet:text-xs font-bold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-primaryColor/80'}`}>{words.length}/{MAX_WORDS_LIMIT}</span>
+                                                <span className="text-2xs max-tablet:text-[9px] font-medium text-gray-500">
                                                     {words.length >= MAX_WORDS_LIMIT 
                                                         ? 'Completed!' 
                                                         : words.length >= MAX_WORDS_LIMIT * 0.8 
@@ -611,7 +611,7 @@ export default function Story () {
                                                                     setLessons(prev => [...prev, item.lesson_number])
                                                                 }
                                                             }}
-                                                                className={`border rounded-lg pl-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
+                                                                className={`border-1 rounded-lg pl-3 py-2 select-none bg-white/20 backdrop-blur-sm hover:bg-white/40 cursor-pointer duration-200 flex flex-col items-start gap-1 transition-all
                                                                     ${lessons.includes(item.lesson_number)
                                                                         ? lessonLevel === 'elementry'
                                                                             ? 'border-green-400'
@@ -624,24 +624,24 @@ export default function Story () {
                                                                 style={{ fontWeight: 500 }}
                                                                 key={index}
                                                             >
-                                                                <div className="flex items-center gap-2">
-                                                                    <span className={`w-2 h-2 rounded-full inline-block ${lessonLevel === 'elementry' ? 'bg-green-300' : ''} ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''} ${lessonLevel === 'advanced' ? 'bg-red-300' : ''} ${currentViewingLesson === item.lesson_number ? selectedDot : ''}`}></span>
-                                                                    <span className="text-lg max-[1510px]:text-base max-[1440px]:text-sm font-semibold">Lesson {item.lesson_number}</span>
+                                                                <div className="flex items-center gap-[6px]">
+                                                                    <span className={`w-[6px] h-[6px] rounded-full inline-block ${lessonLevel === 'elementry' ? 'bg-green-300' : ''} ${lessonLevel === 'intermediate' ? 'bg-blue-300' : ''} ${lessonLevel === 'advanced' ? 'bg-red-300' : ''} ${currentViewingLesson === item.lesson_number ? selectedDot : ''}`}></span>
+                                                                    <span className="text-sm max-[1440px]:text-xs font-semibold">Lesson {item.lesson_number}</span>
                                                                 </div>
-                                                                <div className="text-xs text-gray-400">{books[currentSelectedLevel]?.levels[0]?.lessons[0]?.idioms.length} idioms</div>
+                                                                <div className="text-2xs text-gray-400">{books[currentSelectedLevel]?.levels[0]?.lessons[0]?.idioms.length} idioms</div>
                                                             </div>
                                                         );
                                                     })()
                                                 ))}
                                             </div>
                                         </div>
-                                        <div className="p-5 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
+                                        <div className="px-4 py-2 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
                                                 <div className="space-y-3 h-full flex flex-col">
-                                                    <div className="text-lg max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
+                                                    <div className="text-sm max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
-                                                    <div className="flex flex-wrap gap-3 overflow-y-auto desktop:flex-none p-2 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
+                                                    <div className="flex flex-wrap gap-3 overflow-y-auto desktop:flex-none p-2 pb-5 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
                                                         {(() => {
                                                             const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
                                                             return lessonIndex !== -1 ? 
@@ -656,7 +656,7 @@ export default function Story () {
                                                                                     addWord(item.english_phrase, lessonIndex)
                                                                                 }
                                                                             }} 
-                                                                            className={`text-lg max-[1800px]:text-base max-[1440px]:text-sm select-none font-bold shadow border-3 transition-all duration-200 rounded-full px-4 py-3 inline-flex items-center justify-center gap-2 ${
+                                                                            className={`text-sm max-[1440px]:text-xs select-none font-bold shadow border-2 transition-all duration-200 rounded-full px-3 py-2 inline-flex items-center justify-center gap-2 ${
                                                                                 isSelected 
                                                                                     ? 'bg-primaryColor text-white border-primaryColor/80 shadow-lg scale-105 cursor-pointer' 
                                                                                     : isLimitReached 
@@ -667,7 +667,7 @@ export default function Story () {
                                                                             title={isLimitReached ? `Maximum ${MAX_WORDS_LIMIT} words reached. Remove some words first.` : ''}
                                                                         >
                                                                             {item.english_phrase}
-                                                                            {isSelected && <FaCheck className="text-sm max-[1440px]:text-xs" />}
+                                                                            {isSelected && <FaCheck className="text-xs max-[1440px]:text-xs" />}
                                                                         </div>
                                                                     )
                                                                 })
@@ -676,7 +676,7 @@ export default function Story () {
                                                     </div>
                                                 </div>
                                             : 
-                                                <div className="h-full flex items-center justify-center max-desktop:text-sm max-laptop:text-xs">at first you should select the lesson which you want</div>
+                                                <div className="h-full flex items-center justify-center text-xs">at first you must select the lesson which you want</div>
                                             }
                                         </div>
                                     </div>
@@ -752,7 +752,7 @@ export default function Story () {
                                                                                 addWord(item.english_phrase, lessonIndex)
                                                                             }
                                                                         }} 
-                                                                        className={`text-xs select-none font-bold shadow border-2 transition-all duration-200 rounded-full px-3 py-2 inline-flex items-center justify-center gap-2 ${
+                                                                        className={`text-xs select-none font-bold shadow border-1 transition-all duration-200 rounded-full px-3 py-2 inline-flex items-center justify-center gap-2 ${
                                                                             isSelected 
                                                                                 ? 'bg-primaryColor text-white border-primaryColor/80 shadow-lg scale-105 cursor-pointer' 
                                                                                 : isLimitReached 
@@ -763,7 +763,7 @@ export default function Story () {
                                                                         title={isLimitReached ? `Maximum ${MAX_WORDS_LIMIT} words reached. Remove some words first.` : ''}
                                                                     >
                                                                         {item.english_phrase}
-                                                                        {isSelected && <FaCheck className="text-[10px]" />}
+                                                                        {isSelected && <FaCheck className="text-2xs" />}
                                                                     </div>
                                                                 )
                                                             })
@@ -771,7 +771,7 @@ export default function Story () {
                                                     })()}
                                                 </div>
                                             : 
-                                                <div className="h-full flex items-center justify-center max-desktop:text-sm max-laptop:text-xs">at first you should select the lesson which you want</div>
+                                                <div className="h-full flex items-center justify-center max-desktop:text-sm max-laptop:text-xs">at first you must select the lesson which you want</div>
                                             }
                                         </div>
                                     </div>
@@ -780,15 +780,15 @@ export default function Story () {
                                     <div className="select-none px-2 max-mobile:px-0 mb-3 max-laptop:mb-1">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
                                     </div>
-                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 placeholder:max-tablet:text-xs max-tablet:text-xs" placeholder="Write what you want in this story, AI will build it!"></textarea>
+                                    <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 text-sm placeholder:max-tablet:text-sm max-tablet:text-sm" placeholder="Write what you want in this story, AI will build it!"></textarea>
                                 </div>
                             </div>
                             <div className="border border-gray-400/10 rounded-xl relative overflow-hidden min-w-[370px] max-[1500px]:min-w-[320px] shadow-lg mx-2 mb-5 hidden desktop:block">
                                 <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
                                 <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
-                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-7 px-5 flex flex-col gap-4 ">
+                                <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-3 px-5 flex flex-col gap-4 ">
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
+                                        <div className="border-3 text-sm backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
                                         <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {level.length > 0 ? (
                                                 <div className="grid grid-cols-2 gap-3 w-full">
@@ -806,12 +806,12 @@ export default function Story () {
                                                     })}
                                                 </div>
                                             ) : (
-                                                <div className="text-gray-400 text-lg">No levels selected</div>
+                                                <div className="text-gray-400 text-sm">No levels selected</div>
                                             )}
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lessons :</div>
+                                        <div className="border-3 text-sm backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Lessons :</div>
                                         <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
                                             {lessons.length > 0 ? (
                                                 <div className="grid grid-cols-2 gap-3 w-full">
@@ -867,12 +867,12 @@ export default function Story () {
                                                     })}
                                                 </div>
                                             ) : (
-                                                <div className="text-gray-400 text-lg ">Select lessons to continue</div>
+                                                <div className="text-gray-400 text-sm font-normal">Select lessons to continue</div>
                                             )}
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 !backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
+                                        <div className="border-3 text-sm backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
                                         <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
                                             {words.length ?
                                                 words.map((item,index)=>{
@@ -880,47 +880,47 @@ export default function Story () {
                                                     const dot = level === 'elementry' ? 'bg-green-400' : level === 'intermediate' ? 'bg-blue-400' : 'bg-red-400';
                                                     const removeHover = level === 'elementry' ? 'hover:text-green-600' : level === 'intermediate' ? 'hover:text-blue-600' : 'hover:text-red-600';
                                                     return (
-                                                        <div key={index} className={`max-[1500px]:w-full max-[1500px]:justify-between max-[1500px]:py-2 relative rounded-full px-3 py-1 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-3 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
-                                                            <span className={`w-2 h-2 rounded-full inline-block ${dot}`}></span>
+                                                        <div key={index} className={`max-[1500px]:w-full max-[1500px]:justify-between max-[1500px]:py-2 relative rounded-full px-3 py-1 flex items-center gap-2 bg-white/20 backdrop-blur-sm border-2 border-primaryColor border-dashed text-gray-800 transition-all duration-150 hover:shadow-sm hover:bg-white/30`}>
+                                                            <span className={`w-[6px] h-[6px] rounded-full inline-block ${dot}`}></span>
                                                             <span className="font-medium text-sm select-none">{item}</span>
                                                             <button onClick={()=> removeWord(index)} className={`ml-1 rounded-full bg-transparent text-gray-500 ${removeHover} transition-colors duration-150 select-none cursor-pointer text-base leading-none`}>×</button>
                                                         </div>
                                                     )
                                                 })
                                                 :
-                                                <div className="m-auto text-gray-400 text-lg">Choose your favorite words</div>
+                                                <div className="m-auto text-gray-400 text-sm">Choose your favorite words</div>
                                             }
                                         </div>
                                         {/* Word count and legend row */}
-                                        <div className="flex items-center justify-between max-[1500px]:flex-wrap gap-2 mt-2 mb-3 text-sm max-[2432px]:text-xs">
-                                            <div className="flex gap-4 max-[2432px]:gap-2">
+                                        <div className="flex items-center justify-between max-[1500px]:flex-wrap gap-2 mt-2 mb-3 text-2xs max-[2432px]:text-2xs">
+                                            <div className="flex gap-1 max-[2432px]:gap-1">
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-green-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                    <div className="w-3 h-3 bg-green-400 rounded-full max-[2432px]:h-[6px] max-[2432px]:w-[6px]"></div>
                                                     <span>Elementary</span>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-blue-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                    <div className="w-3 h-3 bg-blue-400 rounded-full max-[2432px]:h-[6px] max-[2432px]:w-[6px]"></div>
                                                     <span>Intermediate</span>
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <div className="w-3 h-3 bg-red-400 rounded-full max-[2432px]:h-2 max-[2432px]:w-2"></div>
+                                                    <div className="w-3 h-3 bg-red-400 rounded-full max-[2432px]:h-[6px] max-[2432px]:w-[6px]"></div>
                                                     <span>Advanced</span>
                                                 </div>
                                             </div>
-                                            <div className={`text-sm ml-auto font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
+                                            <div className={`text-xs ml-auto font-semibold ${words.length >= MAX_WORDS_LIMIT ? 'text-primaryColor' : 'text-gray-600'}`}>{words.length} / {MAX_WORDS_LIMIT}</div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="border-4 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Information :</div>
-                                        <textarea placeholder="Write some information for the story that you want!" className="placeholder:select-none resize-none min-h-[100px] text-lg font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-lg placeholder:text-gray-400" 
+                                        <div className="border-3 text-sm backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Information :</div>
+                                        <textarea placeholder="Write some information for the story that you want!" className="placeholder:select-none resize-none min-h-[100px] text-base font-semibold text-center rounded-xl bg-white/20 border pt-6 px-5 w-full outline-0 placeholder:text-xs placeholder:text-lg placeholder:text-gray-400" 
                                             value={information}
                                             onChange={e => setInformation(e.target.value)}
                                         />
                                     </div>
                                     <div 
-                                        className={`text-[22px] text-center font-bold mt-auto border rounded-xl py-4 shadow-xl duration-200 select-none flex justify-center items-center ${
+                                        className={`text-lg text-center font-bold mt-auto border rounded-xl py-3 shadow-xl duration-200 select-none flex justify-center items-center ${
                                             loadingStory
-                                                ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait'
+                                                ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-default'
                                                 : words.length >= 1 
                                                     ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' 
                                                     : 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-not-allowed'
@@ -937,7 +937,7 @@ export default function Story () {
                             </div>
                         </div>
                         <div className={`desktop:hidden text-[22px] max-tablet:text-lg max-mobile:text-base text-center font-bold mt-auto border rounded-xl max-mobile:rounded-lg py-4 max-tablet:py-3 max-mobile:py-[10px] shadow-xl duration-200 select-none flex justify-center items-center ${
-                            loadingStory ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-wait': words.length >= 1 ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'}`}
+                            loadingStory ? 'bg-gradient-to-br from-primaryColor/50 to-blue-600/50 text-white cursor-default': words.length >= 1 ? 'bg-gradient-to-br from-primaryColor to-blue-600 text-white hover:shadow-2xl hover:scale-105 cursor-pointer' : 'bg-gradient-to-br from-blue-600/60 to-blue-600/60 text-white cursor-not-allowed shadow-none'}`}
                             onClick={() => {
                                 if (words.length >= 1 && !loadingStory) {
                                     StoryCreator()
