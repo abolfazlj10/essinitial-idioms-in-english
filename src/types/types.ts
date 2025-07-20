@@ -14,4 +14,5 @@ export type Book= {
     levels: LevelData[];
 }
 export type Level = 'elementry' | 'intermediate' | 'advanced'
+
 export type LevelArray = Level[]

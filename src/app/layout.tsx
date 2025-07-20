@@ -21,9 +21,9 @@ export default function RootLayout({
             w-screen h-dvh max-mobile:min-h-dvh max-mobile:max-h-dvh
             max-mobile:overflow-hidden
             flex justify-center items-center py-14 max-tablet:py-12 max-mobile:py-0 z-10">
-          <img className="z-10 w-[500px] left-[200px] absolute opacity-20 -bottom-32 select-none max-[3100px]:-left-[150px]" src="/blob3.svg"/>
-          <img className="z-10 w-[300px] left-[0px] absolute top-0 opacity-80 select-none max-[0px]:left-[0px]" src="/blob2.svg"/>
-          <img className="z-10 w-[350px] absolute right-[100px] -bottom-10 opacity-50 select-none" src="/blob2.svg"/>
+          <img className="z-10 w-[500px] left-[200px] absolute opacity-20 -bottom-32 select-none max-[3100px]:-left-[150px] min-[2500px]:-left-[0x]" src="/blob3.svg"/>
+          <img className="z-10 w-[300px] left-[0px] absolute top-0 opacity-80 select-none max-[0px]:left-[0px] min-[2500px]:left-[500px] min-[2500px]:w-[500px]" src="/blob2.svg"/>
+          <img className="z-10 w-[350px] absolute right-[100px] -bottom-10 opacity-50 select-none min-[2500px]:w-[600px] min-[2500px]:right-[800px]" src="/blob2.svg"/>
 
           <div className="h-full w-full
            max-w-[2000px] max-h-[1200px] 
