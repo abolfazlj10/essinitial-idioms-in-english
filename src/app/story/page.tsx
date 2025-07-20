@@ -752,7 +752,7 @@ export default function Story () {
                                                                                 addWord(item.english_phrase, lessonIndex)
                                                                             }
                                                                         }} 
-                                                                        className={`text-xs select-none font-bold shadow border-1 transition-all duration-200 rounded-full px-3 py-2 inline-flex items-center justify-center gap-2 ${
+                                                                        className={`text-xs select-none font-bold shadow border-2 transition-all duration-200 rounded-full px-3 py-2 inline-flex items-center justify-center gap-2 ${
                                                                             isSelected 
                                                                                 ? 'bg-primaryColor text-white border-primaryColor/80 shadow-lg scale-105 cursor-pointer' 
                                                                                 : isLimitReached 
