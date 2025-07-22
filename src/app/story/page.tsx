@@ -317,7 +317,7 @@ export default function Story () {
                     <>
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
                             <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:py-[6px] max-tablet:px-2 cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
-                        {/* <Stepper steper={steper} /> */}
+                        <Stepper steper={steper} />
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-3 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
                             <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
                                 <div className="flex flex-col gap-3 max-mobile:px-0">
