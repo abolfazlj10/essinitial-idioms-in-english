@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden max-mobile:overflow-y-auto ">
 
-      <body className="overflow-x-hidden **:duration-150
+      <body className="overflow-x-hidden
         overflow-y-hidden max-mobile:overflow-y-auto
         font-interVariable">
         <div className="relative

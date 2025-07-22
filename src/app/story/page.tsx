@@ -16,12 +16,9 @@ import { MdClose } from "react-icons/md";
 import { TbTimeline } from "react-icons/tb";
 import { FaSpinner , FaCheck } from "react-icons/fa";
 import Appbar from "@/components/appbar";
-import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
-import { RxLineHeight } from "react-icons/rx";
-import { TbLineHeight } from "react-icons/tb";
-import GroupButton from "@/components/ui/group-button";
 import SideBarDetail from '@/components/story/sidebar'
 import Stepper from "@/components/story/stepper"
+import ResultStory from "@/components/story/result";
 const MAX_WORDS_LIMIT = 6;
 const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] max-mobile:[&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
 
@@ -41,24 +38,17 @@ export default function Story () {
     const [wordLessons, setWordLessons] = useState<Record<string, number>>({})
     const [currentSelectedLevel, setCurrentSelectedLevel] = useState<Level>('elementry')
     const [information, setInformation] = useState<string>("");
-    const [story, setStory] = useState<string>("");
-    const [storyFa, setStoryFa] = useState<string>("");
-    const [storyEn, setStoryEn] = useState<string>("");
     const [loadingStory, setLoadingStory] = useState<boolean>(false);
     const [showStory, setShowStory] = useState<boolean>(false);
-    const [fontSize, setFontSize] = useState(20);
-    const [lineHeight, setLineHeight] = useState(2);
-    const [focusMode, setFocusMode] = useState<'all' | 'en' | 'fa'>('all');
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const highlightColorEn = 'bg-blue-100';
-    const highlightColorFa = 'bg-green-100';
-    const [clickedButton, setClickedButton] = useState<string | null>(null);
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
     const contentRef = useRef<HTMLDivElement | null>(null);
     const dialogModal = useRef<HTMLDialogElement | null>(null)
     const idiomsContentRef = useRef<HTMLDivElement | null>(null);
     const [idiomsFadeTop, setIdiomsFadeTop] = useState(false);
     const [idiomsFadeBottom, setIdiomsFadeBottom] = useState(true);
+    const [story, setStory] = useState<string>("");
+    const [storyFa, setStoryFa] = useState<string>("");
+    const [storyEn, setStoryEn] = useState<string>("");
 
     const handleIdiomsContentScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const node = e.currentTarget;
@@ -177,6 +167,7 @@ export default function Story () {
         // Updated prompt for both Persian and English (in English)
         const prompt = `Write a story using these idioms for a language learner. First, provide the story in Persian (Farsi) and then its English translation, each clearly labeled.\nIn both the Persian and English stories, put the exact translation or equivalent of each idiom in [brackets] so it can be highlighted.\nIdioms: ${theWords}.${information ? '\nAdditional information: ' + information : ''}\nOutput format:\nPersian:\n[FA]\nEnglish:\n[EN]`;
         setLoadingStory(true);
+        
         setStory("");
         setStoryFa("");
         setStoryEn("");
@@ -336,39 +327,6 @@ export default function Story () {
         return replaced;
     }
 
-    function splitAndSyncHighlight(text: string, lang: 'en' | 'fa') {
-        let parts: string[] = [];
-        if (lang === 'fa') {
-            parts = text.split(/\n+/).filter(Boolean);
-            if (parts.length === 1) {
-                parts = text.split(/(?<=[.!؟])\s+/).filter(Boolean);
-            }
-        } else {
-            parts = text.split(/\n+/).filter(Boolean);
-            if (parts.length === 1) {
-                parts = text.split(/(?<=[.!?])\s+/).filter(Boolean);
-            }
-        }
-        const highlightColor = lang === 'fa' ? highlightColorFa : highlightColorEn;
-        return (
-            <span>
-                {parts.map((part, idx) => {
-                    let html = part;
-                    html = part.replace(/\[([^\]]+)\]/g, '<span class="bg-primaryColor/20 font-bold rounded px-1">$1</span>');
-                    return (
-                        <span
-                            key={idx}
-                            className={`transition-all duration-300 rounded px-0.5 animate-fadein ${hoveredIndex === idx ? highlightColor + ' ring-2 ring-primaryColor/60 shadow-lg' : ''}`}
-                            onMouseEnter={() => setHoveredIndex(idx)}
-                            onMouseLeave={() => setHoveredIndex(null)}
-                            style={{cursor: 'pointer'}}
-                            dangerouslySetInnerHTML={{ __html: html }}
-                        />
-                    );
-                })}
-            </span>
-        );
-    }
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(min-width: 1280px)');
@@ -387,99 +345,7 @@ export default function Story () {
         <div className="h-full border-1 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2">
             <div className="h-full flex flex-col gap-3">
                 {showStory ? (
-                    <div className="flex flex-col flex-1 gap-7 overflow-hidden p-4 md:p-8 rounded-2xl animate-fadein">
-                        <Appbar onBackClick={()=> setShowStory(false)} title='The story' iconSrc="./icon/Otter.svg" rightButton={(
-                            <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primaryColor/90 hover:bg-primaryColor text-white shadow-lg font-semibold max-tablet:text-xs transition-all duration-150 cursor-pointer">+ New Story</button>
-                        )}/>
-                        <>
-                        <div className="flex justify-center mb-4 gap-6 flex-wrap">
-                            {/* Language Group */}
-                            <div className="flex flex-col items-center gap-1">
-                                <div className="text-xs font-bold text-gray-500 mb-1">Language</div>
-                                <GroupButton
-                                    options={[
-                                        { label: "Both", value: "all", icon: null },
-                                        { label: "EN", value: "en", icon: <img src="/icon/Flag England.svg" alt="EN" className="w-5 h-5" /> },
-                                        { label: "FA", value: "fa", icon: <img src="/icon/Flag Iran.svg" alt="FA" className="w-5 h-5" /> },
-                                    ]}
-                                    value={focusMode}
-                                    onChange={val => {
-                                        setClickedButton(val);
-                                        setTimeout(() => setClickedButton(null), 150);
-                                        setFocusMode(val as typeof focusMode);
-                                    }}
-                                    clickedButton={clickedButton}
-                                    className="mb-2"
-                                />
-                            </div>
-                            {/* Typography Group */}
-                            <div className="flex flex-col items-center gap-1">
-                                <div className="text-xs font-bold text-gray-500 mb-1">Typography</div>
-                                <GroupButton
-                                    options={[
-                                        { value: "decFont", icon: <AiOutlineMinus />, label: "" },
-                                        { value: "incFont", icon: <AiOutlinePlus />, label: "" },
-                                        { value: "decLine", icon: <TbLineHeight />, label: "" },
-                                        { value: "incLine", icon: <RxLineHeight />, label: "" },
-                                    ]}
-                                    value={""}
-                                    onChange={val => {
-                                        setClickedButton(val);
-                                        setTimeout(() => setClickedButton(null), 150);
-                                        if (val === "incFont") setFontSize(f => Math.min(40, f+2));
-                                        else if (val === "decFont") setFontSize(f => Math.max(14, f-2));
-                                        else if (val === "incLine") setLineHeight(l => Math.min(3, l+0.2));
-                                        else if (val === "decLine") setLineHeight(l => Math.max(1.2, l-0.2));
-                                    }}
-                                    clickedButton={clickedButton}
-                                    className="mb-2"
-                                />
-                            </div>
-                        </div>
-                        
-                        {storyFa && storyEn ? (
-                            <div className="flex flex-col md:flex-row gap-8 flex-1 items-stretch">
-                                {/* English Box */}
-                                <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-100 shadow-2xl z-10' : ''}`}>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="w-3 h-3 rounded-full bg-blue-400"></span>
-                                        <img src="/icon/Flag England.svg" alt="English" className="w-6 h-6" />
-                                        <span className="font-bold text-2xl text-blue-700">English</span>
-                                    </div>
-                                    <div className="text-gray-800 whitespace-pre-line" style={{fontSize, lineHeight}}>
-                                        {splitAndSyncHighlight(storyEn, 'en')}
-                                    </div>
-                                    <button
-                                        className="absolute top-4 right-4 px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full text-sm font-semibold shadow transition-all duration-150 cursor-pointer"
-                                        onClick={() => {navigator.clipboard.writeText(storyEn)}}
-                                    >Copy</button>
-                                </div>
-                                {/* Divider */}
-                                <div className="hidden md:block w-px bg-gray-200 mx-6 my-8 self-stretch rounded"></div>
-                                {/* Persian Box */}
-                                <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='en' ? 'opacity-30 blur-[2px]' : focusMode==='fa' ? 'scale-100 shadow-2xl z-10' : ''}`}>
-                                    <div className="flex items-center gap-2 mb-2">
-                                        <span className="w-3 h-3 rounded-full bg-green-400"></span>
-                                        <img src="/icon/Flag Iran.svg" alt="Persian" className="w-6 h-6" />
-                                        <span className="font-bold text-2xl text-green-700">Persian</span>
-                                    </div>
-                                    <div dir="rtl" className="font-iranYekan text-gray-900 whitespace-pre-line text-right" style={{fontSize, lineHeight}}>
-                                        {splitAndSyncHighlight(storyFa, 'fa')}
-                                    </div>
-                                    <button
-                                        className="absolute top-4 right-4 px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded-full text-sm font-semibold shadow transition-all duration-150 cursor-pointer"
-                                        onClick={() => {navigator.clipboard.writeText(storyFa)}}
-                                    >Copy</button>
-                                </div>
-                            </div>
-                        ) : story ? (
-                            <div className="text-xl leading-8 bg-red-50 border border-red-200 rounded-xl p-6 text-red-700 font-mono">
-                                <b>Unstructured output:</b>
-                                <br/>{story}
-                            </div>
-                        ) : null}
-                        </>
-                    </div>
+                    <ResultStory isShow={setShowStory} theStory={story} storyPersian={storyFa} storyEnglish={storyEn}  />
                 ) : (
                     <>
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
