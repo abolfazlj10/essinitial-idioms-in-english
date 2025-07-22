@@ -132,7 +132,7 @@ export const ResultStory = ({
                 </div>
             </div>
             
-            {!storyPersian && !storyEnglish ? (
+            {storyPersian && storyEnglish ? (
                 <div className="flex flex-col md:flex-row flex-1 items-stretch overflow-y-scroll">
                     {/* English Box */}
                     <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-100 shadow-2xl z-10' : ''}`}>
@@ -143,7 +143,7 @@ export const ResultStory = ({
                         </div>
                         <div className="text-gray-800 whitespace-pre-line overflow-y-auto" style={{fontSize, lineHeight}}>
                             {splitAndSyncHighlight(storyEnglish, 'en')}
-                            {loremIP}
+                            {/* {loremIP} */}
                         </div>
                         <button
                             className="absolute top-4 right-4 px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-xl text-xs max-laptop:text-2xs font-semibold shadow transition-all duration-150 cursor-pointer"
@@ -161,7 +161,7 @@ export const ResultStory = ({
                         </div>
                         <div dir="rtl" className="font-iranYekan text-gray-900 whitespace-pre-line text-right overflow-y-auto" style={{fontSize, lineHeight}}>
                             {splitAndSyncHighlight(storyPersian, 'fa')}
-                            {loremIP}
+                            {/* {loremIP} */}
                         </div>
                         <button
                             className="absolute top-4 right-4 px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded-xl text-xs max-laptop:text-2xs font-semibold shadow transition-all duration-150 cursor-pointer"
