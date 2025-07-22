@@ -87,7 +87,7 @@ export const ResultStory = ({
                 <button className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-primaryColor/90 hover:bg-primaryColor text-white shadow-lg font-semibold max-tablet:text-xs transition-all duration-150 cursor-pointer">+ New Story</button>
             )}/>
             <>
-            <div className="flex justify-center gap-6 flex-wrap">
+            <div className="flex justify-center gap-6 max-[428px]:gap-2">
                 {/* Language Group */}
                 <div className="flex flex-col items-center gap-1">
                     <div className="text-xs font-bold text-gray-500 mb-1">Language</div>
@@ -132,10 +132,10 @@ export const ResultStory = ({
                 </div>
             </div>
             
-            {storyPersian && storyEnglish ? (
-                <div className="flex flex-col md:flex-row flex-1 items-stretch overflow-hidden">
+            {!storyPersian && !storyEnglish ? (
+                <div className="flex flex-col md:flex-row flex-1 items-stretch overflow-y-scroll">
                     {/* English Box */}
-                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-100 shadow-2xl z-10' : ''}`}>
+                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-100 shadow-2xl z-10' : ''}`}>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="w-2 h-2 rounded-full bg-blue-400"></span>
                             <img src="/icon/Flag England.svg" alt="English" className="w-6 h-6" />
@@ -143,7 +143,7 @@ export const ResultStory = ({
                         </div>
                         <div className="text-gray-800 whitespace-pre-line overflow-y-auto" style={{fontSize, lineHeight}}>
                             {splitAndSyncHighlight(storyEnglish, 'en')}
-                            {/* {loremIP} */}
+                            {loremIP}
                         </div>
                         <button
                             className="absolute top-4 right-4 px-3 py-1 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-xl text-xs max-laptop:text-2xs font-semibold shadow transition-all duration-150 cursor-pointer"
@@ -153,7 +153,7 @@ export const ResultStory = ({
                     {/* Divider */}
                     <div className="laptop:block hidden w-px bg-gray-200 mx-6 my-8 self-stretch rounded"></div>
                     {/* Persian Box */}
-                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='en' ? 'opacity-30 blur-[2px]' : focusMode==='fa' ? 'scale-100 shadow-2xl z-10' : ''}`}>
+                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='en' ? 'opacity-30 blur-[2px]' : focusMode==='fa' ? 'scale-100 shadow-2xl z-10' : ''}`}>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="w-2 h-2 rounded-full bg-green-400"></span>
                             <img src="/icon/Flag Iran.svg" alt="Persian" className="w-6 h-6" />
@@ -161,7 +161,7 @@ export const ResultStory = ({
                         </div>
                         <div dir="rtl" className="font-iranYekan text-gray-900 whitespace-pre-line text-right overflow-y-auto" style={{fontSize, lineHeight}}>
                             {splitAndSyncHighlight(storyPersian, 'fa')}
-                            {/* {loremIP} */}
+                            {loremIP}
                         </div>
                         <button
                             className="absolute top-4 right-4 px-3 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded-xl text-xs max-laptop:text-2xs font-semibold shadow transition-all duration-150 cursor-pointer"
