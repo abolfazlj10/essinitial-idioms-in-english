@@ -94,8 +94,8 @@ export const ResultStory = ({
                     <GroupButton 
                         options={[
                             { label: "Both", value: "all", icon: null },
-                            { label: "EN", value: "en", icon: <img src="/icon/Flag England.svg" alt="EN" className="w-5 h-5" /> },
-                            { label: "FA", value: "fa", icon: <img src="/icon/Flag Iran.svg" alt="FA" className="w-5 h-5" /> },
+                            { label: "EN", value: "en", icon: <img src="/icon/Flag England.svg" alt="EN" className="w-4 h-4" /> },
+                            { label: "FA", value: "fa", icon: <img src="/icon/Flag Iran.svg" alt="FA" className="w-4 h-4" /> },
                         ]}
                         value={focusMode}
                         onChange={val => {
@@ -104,7 +104,7 @@ export const ResultStory = ({
                             setFocusMode(val as typeof focusMode);
                         }}
                         clickedButton={clickedButton}
-                        className="flex-1 mb-2 text-xs max-laptop:text-2xs"
+                        className="flex-1 mb-2 text-xs max-laptop:text-2xs max-[450px]:[&>button]:p-2"
                     />
                 </div>
                 {/* Typography Group */}
@@ -127,7 +127,7 @@ export const ResultStory = ({
                             else if (val === "decLine") setLineHeight(l => Math.max(1.2, l-0.2));
                         }}
                         clickedButton={clickedButton}
-                        className="flex-1 mb-2 text-xs max-laptop:text-2xs"
+                        className="flex-1 mb-2 text-xs max-laptop:text-2xs max-[450px]:[&>button]:px-3"
                     />
                 </div>
             </div>
@@ -135,7 +135,7 @@ export const ResultStory = ({
             {storyPersian && storyEnglish ? (
                 <div className="flex flex-col md:flex-row flex-1 items-stretch overflow-y-scroll">
                     {/* English Box */}
-                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-100 shadow-2xl z-10' : ''}`}>
+                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-90 ${focusMode==='fa' ? 'opacity-30 blur-[2px]' : focusMode==='en' ? 'scale-95 shadow-2xl z-10' : ''}`}>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="w-2 h-2 rounded-full bg-blue-400"></span>
                             <img src="/icon/Flag England.svg" alt="English" className="w-6 h-6" />
@@ -153,7 +153,7 @@ export const ResultStory = ({
                     {/* Divider */}
                     <div className="laptop:block hidden w-px bg-gray-200 mx-6 my-8 self-stretch rounded"></div>
                     {/* Persian Box */}
-                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-95 ${focusMode==='en' ? 'opacity-30 blur-[2px]' : focusMode==='fa' ? 'scale-100 shadow-2xl z-10' : ''}`}>
+                    <div className={`flex-1 bg-gray-50 rounded-2xl shadow-lg p-6 flex flex-col gap-4 max-mobile:gap-0 ring-2 ring-gray-200 border border-gray-100 relative transition-all duration-300 scale-90 ${focusMode==='en' ? 'opacity-30 blur-[2px]' : focusMode==='fa' ? 'scale-95 shadow-2xl z-10' : ''}`}>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="w-2 h-2 rounded-full bg-green-400"></span>
                             <img src="/icon/Flag Iran.svg" alt="Persian" className="w-6 h-6" />
