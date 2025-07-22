@@ -294,39 +294,6 @@ export default function Story () {
             setSteper(2)
     },[words])
 
-    // Utility function to split text into sentences or paragraphs
-    function splitSentences(text: string, lang: 'en' | 'fa') {
-        let parts: string[] = [];
-        if (lang === 'fa') {
-            parts = text.split(/\n+/).filter(Boolean);
-            if (parts.length === 1) {
-                parts = text.split(/(?<=[.!؟])\s+/).filter(Boolean);
-            }
-        } else {
-            parts = text.split(/\n+/).filter(Boolean);
-            if (parts.length === 1) {
-                parts = text.split(/(?<=[.!?])\s+/).filter(Boolean);
-            }
-        }
-        return parts;
-    }
-
-    // هایلایت اصطلاحات انتخاب‌شده در متن
-    function highlightIdioms(text: string, idioms: string[], lang: 'en' | 'fa') {
-        if (!idioms.length) return text;
-        // ترتیب طولانی‌ترها اول برای جلوگیری از تداخل
-        const sortedIdioms = [...idioms].sort((a, b) => b.length - a.length);
-        let replaced = text;
-        sortedIdioms.forEach(idiom => {
-            // برای انگلیسی: حساس به حروف کوچک/بزرگ نباشد
-            const pattern = lang === 'en'
-                ? new RegExp(`(${idiom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi')
-                : new RegExp(`(${idiom.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
-            replaced = replaced.replace(pattern, '<span class="bg-primaryColor/20 font-bold rounded px-1">$1</span>');
-        });
-        return replaced;
-    }
-
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(min-width: 1280px)');
