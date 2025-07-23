@@ -459,7 +459,7 @@ export default function Story () {
                                         </div>
                                         <div className="px-4 py-2 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
-                                                <div className="space-y-3 h-full flex flex-col">
+                                                <div className="space-y-3 h-full flex flex-col overflow-y-auto">
                                                     <div className="text-sm max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
