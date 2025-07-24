@@ -19,6 +19,7 @@ import Appbar from "@/components/appbar";
 import SideBarDetail from '@/components/story/sidebar'
 import Stepper from "@/components/story/stepper"
 import ResultStory from "@/components/story/result";
+import { useScrollFade } from "@/hooks/useScrollFade";
 const MAX_WORDS_LIMIT = 6;
 
 export default function Story () {
@@ -40,7 +41,6 @@ export default function Story () {
     const [loadingStory, setLoadingStory] = useState<boolean>(false);
     const [showStory, setShowStory] = useState<boolean>(false);
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
-    const contentRef = useRef<HTMLDivElement | null>(null);
     const dialogModal = useRef<HTMLDialogElement | null>(null)
     const idiomsContentRef = useRef<HTMLDivElement | null>(null);
     const [idiomsFadeTop, setIdiomsFadeTop] = useState(false);
@@ -48,6 +48,8 @@ export default function Story () {
     const [story, setStory] = useState<string>("");
     const [storyFa, setStoryFa] = useState<string>("");
     const [storyEn, setStoryEn] = useState<string>("");
+
+    const scrollFade = useScrollFade();
 
     const handleIdiomsContentScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const node = e.currentTarget;
@@ -210,26 +212,6 @@ export default function Story () {
         } finally {
             setLoadingStory(false);
         }
-    }    
-    const handleContentScroll = (e: React.UIEvent<HTMLDivElement>): void => {
-        const scrollTop = e.currentTarget.scrollTop;
-        const scrollHeight = e.currentTarget.scrollHeight;
-        const clientHeight = e.currentTarget.clientHeight;
-        const node = contentRef.current;
-        if (!node) return;
-        
-        if (scrollTop > 10) {
-            node.classList.add('fade-top');
-        } else {
-            node.classList.remove('fade-top');
-        }
-
-        
-        if (scrollHeight - (scrollTop + clientHeight) < 10) {
-            node.classList.remove('fade-bottom');
-        } else {
-            node.classList.add('fade-bottom');
-        }
     }
     
     useEffect(() => {
@@ -318,7 +300,7 @@ export default function Story () {
                             <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:py-[6px] max-tablet:px-2 cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
                         <Stepper steper={steper} />
                         <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-3 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
-                            <div ref={contentRef} onScroll={handleContentScroll} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
+                            <div ref={scrollFade} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
                                 <div className="flex flex-col gap-3 max-mobile:px-0">
                                     <div className="flex flex-col gap-1 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-2xl max-laptop:text-lg max-tablet:text-base font-semibold">Select Level</div>
@@ -712,9 +694,8 @@ export default function Story () {
                                     <div>
                                         <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
                                         <div
-                                            ref={idiomsContentRef}
-                                            onScroll={handleIdiomsContentScroll}
-                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative customScrollBarStyle ${idiomsFadeTop ? 'fade-top' : ''} ${idiomsFadeBottom ? 'fade-bottom' : ''}`}
+                                            ref={scrollFade}
+                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative customScrollBarStyle `}
                                         >
                                             {words.length ?
                                                 words.map((item,index)=>{
