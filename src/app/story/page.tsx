@@ -20,7 +20,6 @@ import SideBarDetail from '@/components/story/sidebar'
 import Stepper from "@/components/story/stepper"
 import ResultStory from "@/components/story/result";
 const MAX_WORDS_LIMIT = 6;
-const scrollBarStyle = ' [&::-webkit-scrollbar]:w-[7px] max-mobile:[&::-webkit-scrollbar]:w-[4px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor'
 
 export default function Story () {
 
@@ -401,7 +400,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div className="hidden mobile:flex flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
-                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor" dir="rtl">
+                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 customScrollBarStyle" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
@@ -463,7 +462,7 @@ export default function Story () {
                                                     <div className="text-sm max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
-                                                    <div className="flex flex-wrap gap-3 overflow-y-auto desktop:flex-none p-2 pb-5 [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor">
+                                                    <div className="flex flex-wrap gap-3 overflow-y-auto desktop:flex-none p-2 pb-5 customScrollBarStyle">
                                                         {(() => {
                                                             const lessonIndex = books[currentSelectedLevel]?.levels[0]?.lessons.findIndex((lesson: any) => lesson.lesson_number === currentViewingLesson)
                                                             return lessonIndex !== -1 ? 
@@ -503,7 +502,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div className="mobile:hidden flex-1 flex flex-col gap-5 overflow-hidden">
-                                        <div ref={mobileScroller} className={`flex-1 grid grid-cols-3 gap-2 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 scroll-smooth ${scrollBarStyle}`}>
+                                        <div ref={mobileScroller} className={`flex-1 grid grid-cols-3 gap-2 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 scroll-smooth`}>
                                             {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
                                                         // پیدا کردن سطح درس
@@ -557,7 +556,7 @@ export default function Story () {
                                                     })()
                                             ))}
                                         </div>
-                                        <div className={`flex-1 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 ${scrollBarStyle}`}>
+                                        <div className={`flex-1 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2`}>
                                             {currentViewingLesson !== null ? 
                                                 <div className="flex flex-wrap gap-3 desktop:flex-none p-2">
                                                     {(() => {
@@ -715,7 +714,7 @@ export default function Story () {
                                         <div
                                             ref={idiomsContentRef}
                                             onScroll={handleIdiomsContentScroll}
-                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ${idiomsFadeTop ? 'fade-top' : ''} ${idiomsFadeBottom ? 'fade-bottom' : ''}`}
+                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative customScrollBarStyle ${idiomsFadeTop ? 'fade-top' : ''} ${idiomsFadeBottom ? 'fade-bottom' : ''}`}
                                         >
                                             {words.length ?
                                                 words.map((item,index)=>{
