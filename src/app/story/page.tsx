@@ -419,7 +419,7 @@ export default function Story () {
                                         </div>
                                         <div className="px-4 py-2 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
-                                                <div ref={scrollFade} className="space-y-3 h-full flex flex-col overflow-y-auto fade-bottom">
+                                                <div ref={scrollFade} className="space-y-3 h-full flex flex-col overflow-y-auto fade-bottom customScrollBarStyle">
                                                     <div className="text-sm max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
@@ -463,7 +463,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                     <div className="mobile:hidden flex-1 flex flex-col gap-5 overflow-hidden">
-                                        <div ref={mobileScroller} className={`flex-1 grid grid-cols-3 gap-2 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 scroll-smooth`}>
+                                        <div ref={mobileScroller} className={`flex-1 grid grid-cols-3 gap-2 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 scroll-smooth customScrollBarStyle`}>
                                             {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
                                                         // پیدا کردن سطح درس
@@ -517,7 +517,7 @@ export default function Story () {
                                                     })()
                                             ))}
                                         </div>
-                                        <div className={`flex-1 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2`}>
+                                        <div className={`flex-1 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 customScrollBarStyle`}>
                                             {currentViewingLesson !== null ? 
                                                 <div className="flex flex-wrap gap-3 desktop:flex-none p-2">
                                                     {(() => {
@@ -674,7 +674,7 @@ export default function Story () {
                                         <div className="border-3 backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none text-sm">Idioms :</div>
                                         <div
                                             ref={scrollFade}
-                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative customScrollBarStyle `}
+                                            className={`rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] relative customScrollBarStyle customScrollBarStyle`}
                                         >
                                             {words.length ?
                                                 words.map((item,index)=>{

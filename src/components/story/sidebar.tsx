@@ -39,7 +39,7 @@ const SideBarDetail: React.FC<SideBarDetailProps> = ({
       <img className="absolute select-none top-1/2 -right-20 z-20 scale-x-150" src="./blob-haikei.svg" />
       <img className="absolute select-none top-0 -left-40 z-20 scale-x-150" src="./blob-haikei.svg" />
       <div className="bg-white/30 h-full w-full backdrop-blur-2xl z-30 relative py-3 flex flex-col gap-2">
-        <div ref={scrollFade} className="overflow-y-auto px-5 flex flex-col gap-4">
+        <div ref={scrollFade} className="overflow-y-auto customScrollBarStyle px-5 flex flex-col gap-4">
           <div>
             <div className="border-3 text-sm backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Levels :</div>
             <div className="text-[25px] font-semibold text-center rounded-xl bg-white/20 border py-5 px-5 flex justify-center items-center">
@@ -122,7 +122,7 @@ const SideBarDetail: React.FC<SideBarDetailProps> = ({
           </div>
           <div>
             <div className="border-3 text-sm backdrop-blur-2xl justify-self-start py-1 px-4 font-semibold rounded-xl bg-blue-500/50 -mb-5 -ml-4 z-20 relative select-none">Idioms :</div>
-            <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
+            <div className="rounded-xl bg-white/20 border py-5 px-5 flex gap-2 flex-wrap overflow-y-auto customScrollBarStyle w-full max-h-[200px] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-2xl [&::-webkit-scrollbar-thumb]:rounded-2xl [&::-webkit-scrollbar-thumb]:bg-bgColor/80 [&::-webkit-scrollbar-thumb:hover]:bg-bgColor ">
               {words.length ?
                 words.map((item, index) => {
                   const level = wordLevels[item];
