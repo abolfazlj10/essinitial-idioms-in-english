@@ -1,4 +1,4 @@
-
+// hooks/useScrollFade.ts
 import { useRef, useEffect, useCallback } from 'react';
 
 interface ScrollFadeOptions {
@@ -7,7 +7,10 @@ interface ScrollFadeOptions {
 }
 
 export const useScrollFade = (options?: ScrollFadeOptions) => {
-  const { fadeTopClass = 'fade-top', fadeBottomClass = 'fade-bottom' } = options || {};
+  const { 
+    fadeTopClass = 'fade-top', 
+    fadeBottomClass = 'fade-bottom' 
+  } = options || {};
   
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -16,11 +19,11 @@ export const useScrollFade = (options?: ScrollFadeOptions) => {
     if (!node) return;
 
     const { scrollTop, scrollHeight, clientHeight } = node;
-
     const isScrolledToBottom = scrollHeight - (scrollTop + clientHeight) < 1;
+    const hasOverflow = scrollHeight > clientHeight;
 
     node.classList.toggle(fadeTopClass, scrollTop > 10);
-    node.classList.toggle(fadeBottomClass, !isScrolledToBottom);
+    node.classList.toggle(fadeBottomClass, hasOverflow && !isScrolledToBottom);
 
   }, [fadeTopClass, fadeBottomClass]);
 
@@ -28,16 +31,23 @@ export const useScrollFade = (options?: ScrollFadeOptions) => {
     const node = scrollRef.current;
     if (!node) return;
 
+    // 1. به اسکرول دستی کاربر گوش می‌دهیم
     node.addEventListener('scroll', checkScrollState);
 
-    const resizeObserver = new ResizeObserver(checkScrollState);
-    resizeObserver.observe(node);
+    // 2. آبزرور برای تغییرات محتوای داخلی (اضافه/کم شدن فرزندان)
+    // این راه حل قطعی برای مشکل شماست
+    const observer = new MutationObserver(checkScrollState);
+    observer.observe(node, { childList: true, subtree: true });
 
-    checkScrollState();
+    // 3. اجرای اولیه تابع برای بررسی وضعیت در اولین رندر
+    // گاهی یک تأخیر بسیار کوتاه به مرورگر فرصت می‌دهد تا layout را کامل محاسبه کند
+    const initialCheckTimeout = setTimeout(checkScrollState, 50);
 
+    // Cleanup نهایی
     return () => {
       node.removeEventListener('scroll', checkScrollState);
-      resizeObserver.disconnect();
+      observer.disconnect(); // قطع کردن آبزرور
+      clearTimeout(initialCheckTimeout);
     };
   }, [checkScrollState]);
 

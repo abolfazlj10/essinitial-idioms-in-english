@@ -42,32 +42,11 @@ export default function Story () {
     const [showStory, setShowStory] = useState<boolean>(false);
     const [isLargeScreen, setIsLargeScreen] = useState<boolean>(typeof window !== "undefined" ? window.innerWidth >= 1280 : false);
     const dialogModal = useRef<HTMLDialogElement | null>(null)
-    const idiomsContentRef = useRef<HTMLDivElement | null>(null);
-    const [idiomsFadeTop, setIdiomsFadeTop] = useState(false);
-    const [idiomsFadeBottom, setIdiomsFadeBottom] = useState(true);
     const [story, setStory] = useState<string>("");
     const [storyFa, setStoryFa] = useState<string>("");
     const [storyEn, setStoryEn] = useState<string>("");
 
     const scrollFade = useScrollFade();
-
-    const handleIdiomsContentScroll = (e: React.UIEvent<HTMLDivElement>) => {
-        const node = e.currentTarget;
-        const scrollTop = node.scrollTop;
-        const scrollHeight = node.scrollHeight;
-        const clientHeight = node.clientHeight;
-        setIdiomsFadeTop(scrollTop > 10);
-        setIdiomsFadeBottom(scrollHeight - (scrollTop + clientHeight) > 10);
-    };
-
-    useEffect(() => {
-        // Reset fade states on idioms list change
-        if (idiomsContentRef.current) {
-            const node = idiomsContentRef.current;
-            setIdiomsFadeTop(node.scrollTop > 10);
-            setIdiomsFadeBottom(node.scrollHeight - (node.scrollTop + node.clientHeight) > 10);
-        }
-    }, [words.length]);
 
     // Color mapping for different levels
     const levelColors: Record<Level, string> = {
@@ -440,7 +419,7 @@ export default function Story () {
                                         </div>
                                         <div className="px-4 py-2 flex-2 space-y-3 border-l-2 border-bgColor max-desktop:py-0">
                                             {currentViewingLesson !== null ? 
-                                                <div className="space-y-3 h-full flex flex-col overflow-y-auto">
+                                                <div ref={scrollFade} className="space-y-3 h-full flex flex-col overflow-y-auto fade-bottom">
                                                     <div className="text-sm max-desktop:text-sm max-[1440px]:hidden desktop:block max-desktop:hidden font-semibold text-gray-600 border-b pb-2">
                                                         Lesson {currentViewingLesson}
                                                     </div>
