@@ -1,7 +1,9 @@
 export const Archive = () => {
     return(
         <div className="flex justify-center items-center h-full">
-            <h2 className="text-3xl text-primaryColor font-bold">comming soon...</h2>
+            <div className="text-4xl font-bold">
+                <span className="bg-gradient-to-r from-[#4e5996] to-primaryColor bg-clip-text text-transparent">Comming Soon...</span>
+            </div>
         </div>
     )
 }
