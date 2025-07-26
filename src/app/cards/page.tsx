@@ -1,4 +1,4 @@
-export const Cards = () => {
+const Cards = () => {
     return(
         <div className="flex justify-center items-center h-full">
             <div className="text-4xl font-bold">
