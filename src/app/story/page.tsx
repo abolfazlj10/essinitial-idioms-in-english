@@ -284,7 +284,7 @@ export default function Story () {
     }, []);
 
     return(
-        <div className="h-full border-1 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2">
+        <div ref={scrollFade} className="h-full border-1 max-mobile:border-0 p-5 max-mobile:pt-3 max-mobile:pb-1 max-mobile:px-2 overflow-y-auto">
             <div className="h-full flex flex-col gap-3">
                 {showStory ? (
                     <ResultStory isShow={setShowStory} theStory={story} storyPersian={storyFa} storyEnglish={storyEn}  />
@@ -293,8 +293,10 @@ export default function Story () {
                         <Appbar onBackClick={()=> router.push('/')} title='Story creator' iconSrc="./icon/Otter.svg" rightButton={isLargeScreen ? false : 
                             <button className="border shadow-lg text-xl max-tablet:text-lg bg-gradient-to-br from-primaryColor from-50% to-bgColor text-white rounded-lg p-2 max-tablet:py-[6px] max-tablet:px-2 cursor-pointer" onClick={()=>dialogModal.current?.showModal()}><TbTimeline /></button>}/>
                         <Stepper steper={steper} />
-                        <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-3 flex-1 overflow-hidden max-[1500px]:gap-3 max-laptop:gap-0">
+                        <div className="grid desktop:grid-cols-[7fr_2fr] max-desktop:grid-cols-none gap-3 flex-1 max-[1500px]:gap-3 max-laptop:gap-0">
+                            {/* Level - Lessons - Words */}
                             <div ref={scrollFade} className={`flex flex-col gap-5 max-desktop:gap-5 overflow-hidden max-laptop:overflow-y-scroll max-tablet:min-h-[200px] fade-bottom`}>
+                                {/* desktop => Level Selection */}
                                 <div className="flex flex-col gap-3 max-mobile:px-0">
                                     <div className="flex flex-col gap-1 max-laptop:gap-1 select-none px-2 max-mobile:px-0">
                                         <div className="text-2xl max-laptop:text-lg max-tablet:text-base font-semibold">Select Level</div>
@@ -345,7 +347,9 @@ export default function Story () {
                                         </div>
                                     </div>
                                 </div>
+                                {/* desktop => Words selection  */}
                                 <div className="flex flex-col gap-3 flex-1 overflow-hidden max-tablet:overflow-visible px-2 max-mobile:px-0 max-tablet:min-h-[300px] max-mobile:min-h-auto">
+                                    {/* desktop => title Select Words */}
                                     <div className="flex flex-col gap-1 max-laptop:gap-1 select-none">
                                         <div className="text-2xl max-laptop:text-lg max-tablet:text-base font-semibold">Select Words</div>
                                         <div className="text-gray-400 text-sm max-laptop:text-base max-tablet:text-xs">Select your words after that you selected the lesson</div>
@@ -375,8 +379,9 @@ export default function Story () {
                                             </div>
                                         </div>
                                     </div>
+                                    {/* desktop => Lesson list - Words list */}
                                     <div className="hidden mobile:flex flex-1 max-tablet:min-h-[200px] max-mobile:max-h-[300px] bg-white/20 backdrop-blur-sm border border-primaryColor/20 rounded-xl shadow-lg px-2 py-4 overflow-hidden gap-5 mb-5">
-                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 customScrollBarStyle" dir="rtl">
+                                        <div ref={scroller} className="scroll-smooth overflow-y-auto h-full max-h-[300px] w-3/12 max-[1800px]:w-4/12 max-[1440px]:w-full max-[1440px]:flex-1 max-desktop:flex-none max-desktop:w-4/12 customScrollBarStyle" dir="rtl">
                                             <div className="h-full w-full grid grid-cols-2 max-[892px]:grid-cols-1 gap-2 p-2" dir="ltr">
                                                 {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
                                                     (() => {
@@ -477,6 +482,7 @@ export default function Story () {
                                             }
                                         </div>
                                     </div>
+                                    {/* mobile => Lesson - Words Selection */}
                                     <div className="mobile:hidden flex-1 flex flex-col gap-5 overflow-hidden">
                                         <div ref={mobileScroller} className={`flex-1 grid grid-cols-3 gap-2 max-h-[200px] min-h-[200px] overflow-y-scroll border rounded-xl p-2 scroll-smooth customScrollBarStyle`}>
                                             {books[currentSelectedLevel]?.levels[0]?.lessons.map((item: any,index: number)=>(
@@ -573,6 +579,7 @@ export default function Story () {
                                         </div>
                                     </div>
                                 </div>
+                                {/* mobile => input infomation * bottom selection lesson words */}
                                 <div className="mx-2 desktop:hidden">
                                     <div className="select-none px-2 max-mobile:px-0 mb-3 max-laptop:mb-1">
                                         <div className="text-[30px] max-laptop:text-[25px] max-tablet:text-base font-semibold">Informations</div>
@@ -580,6 +587,7 @@ export default function Story () {
                                     <textarea className="border min-h-[100px] max-tablet:min-h-0 w-full rounded-xl p-2 outline-0 text-sm placeholder:max-tablet:text-sm max-tablet:text-sm" placeholder="Write what you want in this story, AI will build it!"></textarea>
                                 </div>
                             </div>
+                            {/* Sidebar Detail */}
                             <SideBarDetail 
                                 level={level}
                                 lessons={lessons}
