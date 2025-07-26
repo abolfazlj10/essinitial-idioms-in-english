@@ -5,6 +5,7 @@ import { FaBookOpen } from "react-icons/fa";
 import { PiCardsThreeFill } from "react-icons/pi";
 import { MdOutlineFavorite } from "react-icons/md";
 import QuickAccessCard from "@/components/quickAccessCard";
+import { useScrollFade } from "@/hooks/useScrollFade";
 
 export default function Home() {
   const [quickAccess] = useState([
@@ -34,7 +35,7 @@ export default function Home() {
     }
   ]);
   return (
-    <div className="h-full flex flex-col gap-20 p-7 ">
+    <div ref={useScrollFade()} className="h-full flex flex-col gap-20 p-7 overflow-y-auto">
       <div className="flex flex-col gap-6 text-lg">
         <div className="text-5xl font-bold select-none">Leran essenitial idioms with <span className="bg-gradient-to-r from-[#4e5996] to-primaryColor bg-clip-text text-transparent">AI</span></div>
       </div>
@@ -54,7 +55,7 @@ export default function Home() {
       </div>
       <div className="font-bold flex flex-col gap-5">
         <div className="text-lg select-none">Quick Access <img className="w-[30px] inline-block" src="./icon/Backhand Index Pointing Down Medium Skin Tone.svg" /></div>
-        <div className="flex pr-40 gap-5">
+        <div className="flex pr-[1rem] gap-5">
           {quickAccess.map((item,id)=>(
             <QuickAccessCard key={id} route={item.route} icon={item.icon} title={item.title} description={item.description} />
           ))}
