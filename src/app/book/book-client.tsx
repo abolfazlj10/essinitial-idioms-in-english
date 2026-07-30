@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -169,6 +169,7 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
   const [story, setStory] = useState("");
   const [storyFa, setStoryFa] = useState("");
   const [storyEn, setStoryEn] = useState("");
+  const lessonButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const { mutate: createStory, isPending: isStoryGenerating } = useStoryGenerator();
 
   const lessonIdioms = useMemo(
@@ -215,6 +216,11 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
     window.speechSynthesis?.cancel();
     setSpeakingKey(null);
   }, [selectedIdiomId]);
+
+  useEffect(() => {
+    const activeLessonKey = `${activeLevel}:${activeLesson}`;
+    lessonButtonRefs.current[activeLessonKey]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [activeLevel, activeLesson]);
 
   const selectIdiom = (idiom: IdiomEntry): void => {
     setSelectedIdiomId(idiom.id);
@@ -339,7 +345,7 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
   });
 
   return (
-    <main className="relative left-1/2 -my-4 -ml-[50vw] min-h-dvh w-screen bg-[#edece7] text-[#16181c] tablet:flex tablet:items-center tablet:justify-center tablet:p-5">
+    <main className="lesson-study relative left-1/2 -my-4 -ml-[50vw] min-h-dvh w-screen bg-[#edece7] text-[#16181c] tablet:flex tablet:items-center tablet:justify-center tablet:p-5">
       <div className="relative flex min-h-dvh w-full flex-col overflow-hidden bg-white tablet:min-h-0 tablet:max-w-[1440px] tablet:flex-row tablet:rounded-[18px] tablet:border tablet:border-[#e4e1db] tablet:shadow-[0_30px_70px_-40px_rgba(22,24,28,0.45)] laptop:h-[min(900px,calc(100dvh-2.5rem))]">
         <aside className="hidden w-[296px] shrink-0 flex-col border-r border-[#eae7e1] bg-[#faf9f6] tablet:flex">
           <div className="flex flex-col gap-3.5 px-4 pb-3.5 pt-5">
@@ -469,11 +475,13 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
 
             <div className="mt-4 tablet:hidden">
               <div className="flex flex-nowrap items-center gap-2 overflow-x-auto px-0.5 pb-1 customScrollBarStyle">
-                <span className="mr-0.5 shrink-0 text-[10px] font-bold uppercase tracking-[0.12em] text-[#b0ada4]">Lessons</span>
                 {mobileLessons.map((lesson) => (
                   <button
                     key={`${lesson.level}:${lesson.lessonNumber}`}
                     type="button"
+                    ref={(element) => {
+                      lessonButtonRefs.current[`${lesson.level}:${lesson.lessonNumber}`] = element;
+                    }}
                     onClick={() => void selectLesson(lesson.level, lesson.lessonNumber)}
                     aria-label={`${lesson.levelLabel}, Lesson ${lesson.lessonNumber}`}
                     aria-pressed={activeLevel === lesson.level && activeLesson === lesson.lessonNumber}
@@ -592,9 +600,9 @@ function RailList({ idioms, selectedId, onSelect, emptyQuery, onClear }: { idiom
   if (!idioms.length) {
     return <div className="flex flex-1 flex-col items-center gap-2 px-5 py-11 text-center"><Search className="size-[22px] text-[#c9c5bc]" aria-hidden="true" /><span className="text-[13px] font-bold text-[#6c6a65]">Nothing in this lesson</span><span className="text-[12px] leading-5 text-[#a5a29a]">Try a shorter word.</span>{emptyQuery && onClear ? <button type="button" onClick={onClear} className="mt-1 h-[30px] rounded-[9px] border border-[#e6e3dd] bg-white px-3 text-[12px] font-semibold text-[#3d4149]">Clear search</button> : null}</div>;
   }
-  return <div className="flex min-h-0 flex-1 flex-col gap-px overflow-y-auto px-2 pb-3 customScrollBarStyle">{idioms.map((idiom) => {
+  return <div className="flex min-h-0 flex-1 flex-col gap-px overflow-y-auto px-4 pb-3 customScrollBarStyle">{idioms.map((idiom) => {
     const active = idiom.id === selectedId;
     const index = idioms.findIndex((item) => item.id === idiom.id);
-    return <button key={idiom.id} type="button" onClick={() => onSelect(idiom)} aria-current={active ? "true" : undefined} className={cn("grid w-full grid-cols-[26px_minmax(0,1fr)] items-center gap-3 rounded-[11px] border-y-0 border-r-0 border-l-2 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25", active ? "border-l-[#1f4fd8] bg-[#f1efeb] text-[#16181c]" : "border-l-transparent text-[#5f5d58] hover:bg-[#f3f1ed]")}> <span className={cn("text-[11px] font-extrabold tabular-nums", active ? "text-[#1f4fd8]" : "text-[#bfbbb2]")}>{padPosition(index + 1)}</span><span className="flex min-w-0 flex-col gap-px"><span dir="ltr" className="truncate text-[13px] font-bold leading-[19px]">{idiom.english_phrase}</span><span dir="rtl" className="truncate font-iranYekan text-[11px] leading-[19px] text-[#b0ada4]">{idiom.persian_phrase_meaning}</span></span></button>;
+    return <button key={idiom.id} type="button" onClick={() => onSelect(idiom)} aria-current={active ? "true" : undefined} className={cn("grid w-full grid-cols-[26px_minmax(0,1fr)] items-center gap-3 rounded-[11px] border-y-0 border-r-0 border-l-2 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25", active ? "border-l-[#1f4fd8] bg-[#f1efeb] text-[#16181c]" : "border-l-transparent text-[#5f5d58] hover:bg-[#f3f1ed]")}> <span className={cn("text-[11px] ml-2 font-extrabold tabular-nums", active ? "text-[#1f4fd8]" : "text-[#bfbbb2]")}>{padPosition(index + 1)}</span><span className="flex min-w-0 flex-col gap-px"><span dir="ltr" className="truncate text-[13px] font-bold leading-[19px]">{idiom.english_phrase}</span><span dir="rtl" className="truncate font-iranYekan text-[11px] leading-[19px] text-[#b0ada4]">{idiom.persian_phrase_meaning}</span></span></button>;
   })}</div>;
 }
