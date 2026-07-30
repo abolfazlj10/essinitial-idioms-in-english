@@ -23,6 +23,7 @@ import type { Book as BookData, LevelId } from "@/types/types";
 
 const DEFAULT_LEVEL: LevelId = "elementary";
 const STUDY_BLUR_MODE_KEY = "idioms:v1:lesson-study-blur-mode";
+const LAST_STUDY_LESSON_KEY = "idioms:v1:last-lesson-study";
 
 export type StudySearchParams = {
   level?: string | string[];
@@ -54,6 +55,30 @@ function saveStudyBlurMode(mode: StudyBlurMode): void {
     window.localStorage.setItem(STUDY_BLUR_MODE_KEY, mode);
   } catch {
     // The in-memory preference remains useful if storage is unavailable.
+  }
+}
+
+function readLastStudyLesson(levelSummaries: LevelSummary[]): { level: LevelId; lessonNumber: number } | null {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(LAST_STUDY_LESSON_KEY) ?? "null") as { level?: unknown; lessonNumber?: unknown } | null;
+    if (typeof saved?.level !== "string" || typeof saved.lessonNumber !== "number") {
+      return null;
+    }
+
+    const level = levelSummaries.find((summary) => summary.id === saved.level);
+    return level?.lessons.some((lesson) => lesson.lesson_number === saved.lessonNumber)
+      ? { level: level.id, lessonNumber: saved.lessonNumber }
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveLastStudyLesson(level: LevelId, lessonNumber: number): void {
+  try {
+    window.localStorage.setItem(LAST_STUDY_LESSON_KEY, JSON.stringify({ level, lessonNumber }));
+  } catch {
+    // The current lesson remains available when storage is unavailable.
   }
 }
 
@@ -156,7 +181,10 @@ function StudyReference({ idiom }: { idiom: IdiomEntry }): React.ReactElement {
 
 export default function Book({ initialBook, initialLevel, levelSummaries, searchParams }: BookPageProps): React.ReactElement {
   const { books, ensureLevel } = useLevelBooks(initialLevel, initialBook);
-  const requestedLevel = parseLevelParam(getParam(searchParams?.level)) ?? initialLevel ?? DEFAULT_LEVEL;
+  const requestedLevelParam = getParam(searchParams?.level);
+  const requestedLessonParam = getParam(searchParams?.lesson);
+  const requestedLevel = parseLevelParam(requestedLevelParam) ?? initialLevel ?? DEFAULT_LEVEL;
+  const hasExplicitStudyTarget = Boolean(requestedLevelParam || requestedLessonParam);
   const [activeLevel, setActiveLevel] = useState<LevelId>(requestedLevel);
   const [activeLesson, setActiveLesson] = useState(() => getRequestedLesson(levelSummaries, requestedLevel, searchParams));
   const [selectedIdiomId, setSelectedIdiomId] = useState(getParam(searchParams?.idiom) ?? "");
@@ -165,11 +193,13 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
   const [lineOverrides, setLineOverrides] = useState<Record<string, boolean>>({});
   const [bookmarks, setBookmarks] = useState<StoredBookmark[]>([]);
   const [speakingKey, setSpeakingKey] = useState<string | null>(null);
+  const [hasRestoredStudyPosition, setHasRestoredStudyPosition] = useState(false);
   const [showStory, setShowStory] = useState(false);
   const [story, setStory] = useState("");
   const [storyFa, setStoryFa] = useState("");
   const [storyEn, setStoryEn] = useState("");
   const lessonButtonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const didRestoreStudyPosition = useRef(false);
   const { mutate: createStory, isPending: isStoryGenerating } = useStoryGenerator();
 
   const lessonIdioms = useMemo(
@@ -197,10 +227,70 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
   const nextIdiom = lessonIdioms.length ? lessonIdioms[(selectedIndex + 1 + lessonIdioms.length) % lessonIdioms.length] : undefined;
   const previousIdiom = lessonIdioms.length ? lessonIdioms[(selectedIndex - 1 + lessonIdioms.length) % lessonIdioms.length] : undefined;
 
+  const speak = (text: string, speechKey: string): void => {
+    if (!("speechSynthesis" in window)) {
+      toast.error("Pronunciation is not available in this browser.");
+      return;
+    }
+
+    if (speakingKey === speechKey) {
+      window.speechSynthesis.cancel();
+      setSpeakingKey(null);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.onend = () => setSpeakingKey((current) => (current === speechKey ? null : current));
+    utterance.onerror = () => setSpeakingKey((current) => (current === speechKey ? null : current));
+    setSpeakingKey(speechKey);
+    window.speechSynthesis.speak(utterance);
+  };
+
   useEffect(() => {
     setBookmarks(getBookmarks());
     setBlurMode(readStudyBlurMode());
   }, []);
+
+  useEffect(() => {
+    if (didRestoreStudyPosition.current) {
+      return;
+    }
+    didRestoreStudyPosition.current = true;
+
+    if (hasExplicitStudyTarget) {
+      setHasRestoredStudyPosition(true);
+      return;
+    }
+
+    const savedLesson = readLastStudyLesson(levelSummaries);
+    if (!savedLesson) {
+      setHasRestoredStudyPosition(true);
+      return;
+    }
+
+    let cancelled = false;
+    void ensureLevel(savedLesson.level).then(() => {
+      if (cancelled) {
+        return;
+      }
+      setActiveLevel(savedLesson.level);
+      setActiveLesson(savedLesson.lessonNumber);
+      setSelectedIdiomId("");
+      setHasRestoredStudyPosition(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [ensureLevel, hasExplicitStudyTarget, levelSummaries]);
+
+  useEffect(() => {
+    if (hasRestoredStudyPosition) {
+      saveLastStudyLesson(activeLevel, activeLesson);
+    }
+  }, [activeLesson, activeLevel, hasRestoredStudyPosition]);
 
   useEffect(() => {
     if (selectedIdiom && selectedIdiom.id !== selectedIdiomId) {
@@ -267,27 +357,6 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
     });
   };
 
-  const speak = (text: string, speechKey: string): void => {
-    if (!("speechSynthesis" in window)) {
-      toast.error("Pronunciation is not available in this browser.");
-      return;
-    }
-
-    if (speakingKey === speechKey) {
-      window.speechSynthesis.cancel();
-      setSpeakingKey(null);
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    utterance.onend = () => setSpeakingKey((current) => (current === speechKey ? null : current));
-    utterance.onerror = () => setSpeakingKey((current) => (current === speechKey ? null : current));
-    setSpeakingKey(speechKey);
-    window.speechSynthesis.speak(utterance);
-  };
-
   const handleGenerateLessonStory = (): void => {
     if (!storyIdioms.length) {
       toast.error("No idioms found for this lesson.");
@@ -346,7 +415,7 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
 
   return (
     <main className="lesson-study relative left-1/2 -my-4 -ml-[50vw] min-h-dvh w-screen bg-[#edece7] text-[#16181c] tablet:flex tablet:items-center tablet:justify-center tablet:p-5">
-      <div className="relative flex min-h-dvh w-full flex-col overflow-hidden bg-white tablet:min-h-0 tablet:max-w-[1440px] tablet:flex-row tablet:rounded-[18px] tablet:border tablet:border-[#e4e1db] tablet:shadow-[0_30px_70px_-40px_rgba(22,24,28,0.45)] laptop:h-[min(900px,calc(100dvh-2.5rem))]">
+      <div className="relative flex h-dvh min-h-dvh w-full flex-col overflow-hidden bg-white tablet:h-auto tablet:min-h-0 tablet:max-w-[1440px] tablet:flex-row tablet:rounded-[18px] tablet:border tablet:border-[#e4e1db] tablet:shadow-[0_30px_70px_-40px_rgba(22,24,28,0.45)] laptop:h-[min(900px,calc(100dvh-2.5rem))]">
         <aside className="hidden w-[296px] shrink-0 flex-col border-r border-[#eae7e1] bg-[#faf9f6] tablet:flex">
           <div className="flex flex-col gap-3.5 px-4 pb-3.5 pt-5">
             <div className="flex items-center gap-2.5">
@@ -383,7 +452,7 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
         </aside>
 
         <section className="flex min-h-0 min-w-0 flex-1 flex-col">
-          <header className="border-b border-[#efece6] px-5 pb-4 pt-5 tablet:px-9 tablet:pb-5 tablet:pt-[26px]">
+          <header className="relative z-10 shrink-0 border-b border-[#efece6] bg-white px-5 pb-4 pt-5 tablet:px-9 tablet:pb-5 tablet:pt-[26px]">
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0 flex-1">
                 <div className="hidden text-[10.5px] font-bold uppercase tracking-[0.14em] text-[#a5a29a] tabular-nums tablet:block">{positionLabel}</div>
@@ -472,8 +541,10 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
                 <FocusControl mode={blurMode} onChange={setFocusMode} />
               </div>
             </div>
+          </header>
 
-            <div className="mt-4 tablet:hidden">
+          <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-32 pt-[22px] customScrollBarStyle tablet:px-9 tablet:pb-10 tablet:pt-8">
+            <div className="mb-6 tablet:hidden">
               <div className="flex flex-nowrap items-center gap-2 overflow-x-auto px-0.5 pb-1 customScrollBarStyle">
                 {mobileLessons.map((lesson) => (
                   <button
@@ -497,9 +568,6 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
               </div>
               <div className="mt-3.5"><FocusControl mode={blurMode} onChange={setFocusMode} fullWidth /></div>
             </div>
-          </header>
-
-          <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-32 pt-[22px] customScrollBarStyle tablet:px-9 tablet:pb-10 tablet:pt-8">
             {selectedIdiom ? (
               <div key={selectedIdiom.id} className="lesson-pane max-w-[680px]">
                 <div className="flex items-center justify-between gap-4">
@@ -513,14 +581,11 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
                       const englishCovered = isCovered(blurMode, lineOverrides, key, "english");
                       const persianCovered = isCovered(blurMode, lineOverrides, key, "persian");
                       const hasHiddenLine = englishCovered || persianCovered;
-                      const hint = englishCovered && persianCovered ? "Tap either line to reveal" : englishCovered ? "Tap to reveal the English" : persianCovered ? "Tap to reveal the Persian" : "";
-
                       return (
                         <article key={key} className="flex min-w-0 flex-col gap-[13px] rounded-[18px] border border-[#eeebe4] bg-white p-[18px] transition-shadow hover:border-[#e2ded5] hover:shadow-[0_1px_2px_rgba(22,24,28,0.04)] tablet:gap-4 tablet:px-[26px] tablet:py-6">
                           <div className="flex items-center justify-between gap-3.5">
                             <div className="flex min-w-0 items-center gap-3">
                               <span className="inline-flex h-[22px] items-center justify-center rounded-[7px] bg-[#f3f1ec] px-2.5 text-[10px] font-extrabold tracking-[0.1em] text-[#a5a29a] tablet:text-[10.5px]">EX {padPosition(index + 1)}</span>
-                              <span className={cn("hidden h-[22px] items-center rounded-[7px] bg-[#eff2fc] px-2.5 text-[11.5px] font-semibold text-[#5b79d6] tablet:inline-flex", !hasHiddenLine && "opacity-0")}>{hint}</span>
                             </div>
                             <div className="flex shrink-0 items-center gap-1">
                               <button
@@ -541,26 +606,26 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
                           </div>
                           <StudyLine language="english" text={example.english_text} covered={englishCovered} onReveal={() => revealLine(key, "english")} />
                           <StudyLine language="persian" text={example.persian_meaning} covered={persianCovered} onReveal={() => revealLine(key, "persian")} />
-                          <span className={cn("inline-flex w-fit items-center rounded-[7px] bg-[#eff2fc] px-2.5 py-1 text-[11px] font-semibold text-[#5b79d6] tablet:hidden", !hasHiddenLine && "opacity-0")}>{hint}</span>
                         </article>
                       );
                     })}
                   </div>
                 ) : <p className="py-8 text-sm font-semibold text-[#8c8a84]">No examples for this idiom yet.</p>}
                 <StudyReference idiom={selectedIdiom} />
-                <nav className="mt-9 hidden grid-cols-2 gap-3 border-t border-[#f1efea] pt-5 tablet:grid" aria-label="Idiom navigation">
-                  <button type="button" onClick={() => selectNeighbour(-1)} className="flex min-w-0 items-center gap-3 rounded-[14px] border border-[#efece6] bg-white px-4 py-3.5 text-left transition-colors hover:border-[#dcd8cf] hover:bg-[#fcfbf9] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25">
-                    <ArrowLeft className="size-4 shrink-0 text-[#a5a29a]" aria-hidden="true" />
-                    <span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#b0ada4]">Previous</span><span dir="ltr" className="mt-1 block truncate text-[13.5px] font-bold text-[#3d4149]">{previousIdiom?.english_phrase}</span></span>
-                  </button>
-                  <button type="button" onClick={() => selectNeighbour(1)} className="flex min-w-0 items-center justify-end gap-3 rounded-[14px] bg-[#1f4fd8] px-4 py-3.5 text-right transition-colors hover:bg-[#173ca8] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25">
-                    <span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-white/60">Next idiom</span><span dir="ltr" className="mt-1 block truncate text-[13.5px] font-bold text-white">{nextIdiom?.english_phrase}</span></span>
-                    <ArrowRight className="size-4 shrink-0 text-white/85" aria-hidden="true" />
-                  </button>
-                </nav>
               </div>
             ) : <div className="flex h-full items-center justify-center text-sm font-semibold text-[#8c8a84]">No idioms in this lesson yet.</div>}
           </div>
+
+          <nav className="hidden shrink-0 grid-cols-2 gap-3 border-t border-[#f1efea] bg-white px-9 py-5 tablet:grid" aria-label="Idiom navigation">
+            <button type="button" onClick={() => selectNeighbour(-1)} className="flex min-w-0 items-center gap-3 rounded-[14px] border border-[#efece6] bg-white px-4 py-3.5 text-left transition-colors hover:border-[#dcd8cf] hover:bg-[#fcfbf9] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25">
+              <ArrowLeft className="size-4 shrink-0 text-[#a5a29a]" aria-hidden="true" />
+              <span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#b0ada4]">Previous</span><span dir="ltr" className="mt-1 block truncate text-[13.5px] font-bold text-[#3d4149]">{previousIdiom?.english_phrase}</span></span>
+            </button>
+            <button type="button" onClick={() => selectNeighbour(1)} className="flex min-w-0 items-center justify-end gap-3 rounded-[14px] bg-[#1f4fd8] px-4 py-3.5 text-right transition-colors hover:bg-[#173ca8] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25">
+              <span className="min-w-0"><span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-white/60">Next idiom</span><span dir="ltr" className="mt-1 block truncate text-[13.5px] font-bold text-white">{nextIdiom?.english_phrase}</span></span>
+              <ArrowRight className="size-4 shrink-0 text-white/85" aria-hidden="true" />
+            </button>
+          </nav>
 
           <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 px-4 pb-[18px] pt-[22px] tablet:hidden" style={{ background: "linear-gradient(to top, #ffffff 72%, rgba(255,255,255,0))" }}>
             <div className="pointer-events-auto flex items-center gap-2 rounded-full border border-[#e6e3dd] bg-white p-[7px] shadow-[0_14px_30px_-18px_rgba(22,24,28,0.35)]">
