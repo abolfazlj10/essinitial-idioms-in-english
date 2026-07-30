@@ -7,6 +7,7 @@ import {
   Bookmark,
   BookmarkCheck,
   Eye,
+  EyeOff,
   Search,
   Sparkles,
   Volume2,
@@ -566,12 +567,25 @@ export default function Book({ initialBook, initialLevel, levelSummaries, search
                   </button>
                 ))}
               </div>
-              <div className="mt-3.5"><FocusControl mode={blurMode} onChange={setFocusMode} fullWidth /></div>
             </div>
             {selectedIdiom ? (
               <div key={selectedIdiom.id} className="lesson-pane max-w-[680px]">
                 <div className="flex items-center justify-between gap-4">
-                  <h2 className="m-0 text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#9a978f] tablet:text-[11px] tablet:tracking-[0.16em]">In context</h2>
+                  <div className="flex min-w-0 items-center gap-2">
+                    <h2 className="m-0 text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#9a978f] tablet:text-[11px] tablet:tracking-[0.16em]">In context</h2>
+                    <button
+                      type="button"
+                      onClick={() => setFocusMode(blurMode === "persian" ? "none" : "persian")}
+                      aria-label={blurMode === "persian" ? "Show Persian translations" : "Hide Persian translations"}
+                      title={blurMode === "persian" ? "Show Persian translations" : "Hide Persian translations"}
+                      className={cn(
+                        "inline-flex size-7 items-center justify-center rounded-[9px] transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#1f4fd8]/25 tablet:hidden",
+                        blurMode === "persian" ? "bg-[#eff2fc] text-[#1f4fd8]" : "text-[#b0ada4] hover:bg-[#f3f1ec] hover:text-[#3d4149]"
+                      )}
+                    >
+                      {blurMode === "persian" ? <EyeOff className="size-[15px]" aria-hidden="true" /> : <Eye className="size-[15px]" aria-hidden="true" />}
+                    </button>
+                  </div>
                   <span className={cn("hidden text-[11.5px] font-semibold text-[#b0ada4] tablet:inline", !hasCoveredLines && "opacity-0")}>Tap a covered line to reveal</span>
                 </div>
                 {selectedIdiom.examples?.length ? (
