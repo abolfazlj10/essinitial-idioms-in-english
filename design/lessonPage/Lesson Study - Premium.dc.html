@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>
+@font-face{font-family:'interVariable';src:url('assets/Inter-Variable.ttf');font-display:swap;}
+@font-face{font-family:'iranYekan';src:url('assets/IRANYekanX-Regular.woff2');font-display:swap;}
+body{margin:0;background:#EDEBE7;font-family:'interVariable',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+a{color:#1F4FD8;text-decoration:none;}a:hover{color:#173CA8;}
+@keyframes fadeA{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadeB{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes redactSweep{from{background-position:180% 0}to{background-position:-80% 0}}
+</style>
+</helmet>
+
+<section style="padding:72px 72px 40px;display:flex;flex-direction:column;gap:44px">
+
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:760px">
+    <div style="font:800 12px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#8C8A84">Turn 2 · Study Desk, taken further</div>
+    <div style="font:900 34px/1.15 'interVariable';letter-spacing:-.02em;color:#16181C">Study Desk — quiet edition</div>
+    <div style="font:450 16px/1.6 'interVariable';color:#6C6A65">Same rail concept as <a href="#1b">1b</a>, tightened: searchable rail, one sticky idiom header, examples promoted to the top of the reading lane, definitions demoted to a footnote grid, and nav moved into the header so nothing floats over the text.</div>
+  </div>
+
+  <div id="2a" style="display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:26px;padding:0 9px;border-radius:7px;background:#1F4FD8;color:#fff;font:800 12px/1 'interVariable';letter-spacing:.04em">2a</span>
+      <span style="font:800 15px/1 'interVariable';color:#16181C">Quiet edition</span>
+      <span style="font:450 14px/1 'interVariable';color:#8C8A84">Search the rail, click any idiom, click a covered line to reveal it. Fully live.</span>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:28px">
+
+      <div style="display:flex;flex:none;width:1138px;height:900px;background:#FFFFFF;border:1px solid #E4E1DB;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,24,28,.45)">
+
+        <aside style="display:flex;width:296px;flex-shrink:0;flex-direction:column;background:#FAF9F6;border-right:1px solid #EAE7E1">
+          <div style="display:flex;flex-direction:column;gap:14px;padding:20px 16px 14px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <button type="button" aria-label="Go back" style="display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border-radius:9px;border:0;background:transparent;color:#6C6A65;cursor:pointer;transition:background .15s,color .15s" style-hover="background:#F0EDE7;color:#16181C">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <div style="display:flex;flex-direction:column;gap:3px;min-width:0">
+                <span style="font:800 14.5px/1.1 'interVariable';letter-spacing:-.01em;color:#16181C">Lesson 1</span>
+                <span style="font:650 10.5px/1.1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#A5A29A">Elementary level</span>
+              </div>
+            </div>
+
+            <div style="position:relative;display:flex;align-items:center">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A5A29A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:11px;pointer-events:none"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+              <input type="text" value="{{ t2.q }}" onChange="{{ t2.onQ }}" placeholder="Search this lesson" style="width:100%;height:36px;padding:0 12px 0 34px;box-sizing:border-box;border-radius:10px;border:1px solid #E6E3DD;background:#FFFFFF;font:500 13px/1 'interVariable';color:#16181C;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#1F4FD8;box-shadow:0 0 0 3px rgba(31,79,216,.14)">
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+              <span style="font:750 10.5px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#A5A29A">Idioms</span>
+              <span style="font:700 11px/1 'interVariable';color:#A5A29A;font-variant-numeric:tabular-nums">{{ t2.railCount }}</span>
+            </div>
+          </div>
+
+          <div style="flex:1;min-height:0;overflow-y:auto;padding:0 8px 12px;display:flex;flex-direction:column;gap:1px">
+            <sc-for list="{{ t2.rail }}" as="it" hint-placeholder-count="12">
+              <button type="button" onClick="{{ it.onClick }}" style="{{ it.style }}">
+                <span style="{{ it.numStyle }}">{{ it.num }}</span>
+                <span style="display:flex;flex-direction:column;gap:1px;min-width:0">
+                  <span style="font:700 13px/19px 'interVariable';color:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.en }}</span>
+                  <span dir="rtl" style="font-family:'iranYekan';font-size:11px;line-height:19px;color:#B0ADA4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.fa }}</span>
+                </span>
+              </button>
+            </sc-for>
+            <sc-if value="{{ t2.noResults }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:44px 20px;text-align:center">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9C5BC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <span style="font:700 13px/1.4 'interVariable';color:#6C6A65">Nothing in this lesson</span>
+                <span style="font:450 12px/1.5 'interVariable';color:#A5A29A">Try a shorter word, or search all lessons.</span>
+                <button type="button" onClick="{{ t2.clearQ }}" style="margin-top:4px;height:30px;padding:0 12px;border-radius:9px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;font:650 12px/1 'interVariable';cursor:pointer">Clear search</button>
+              </div>
+            </sc-if>
+          </div>
+        </aside>
+
+        <div style="display:flex;min-width:0;flex:1;flex-direction:column">
+
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:26px 36px 20px;border-bottom:1px solid #EFECE6">
+            <div style="flex:1;min-width:0">
+              <div style="font:750 10.5px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#A5A29A;font-variant-numeric:tabular-nums">{{ t2.pos }}</div>
+              <h1 dir="ltr" style="margin:11px 0 0;font:900 34px/1.14 'interVariable';letter-spacing:-.034em;color:#16181C;text-wrap:pretty">{{ t2.cur.en }}</h1>
+              <p dir="rtl" style="margin:9px 0 0;font-family:'iranYekan';font-size:16px;line-height:30px;color:#6C6A65">{{ t2.cur.fa }}</p>
+            </div>
+            <div style="display:flex;flex-shrink:0;flex-direction:column;align-items:flex-end;gap:12px">
+              <div style="display:flex;align-items:center;gap:6px">
+                <button type="button" onClick="{{ t2.prev }}" aria-label="Previous idiom" style="display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                </button>
+                <button type="button" onClick="{{ t2.next }}" aria-label="Next idiom" style="display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </button>
+                <div style="width:1px;height:22px;background:#EAE7E1;margin:0 4px"></div>
+                <button type="button" aria-label="Generate story" style="display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+                </button>
+                <button type="button" aria-label="Save idiom" style="display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+              </div>
+              <div style="display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:11px;background:#F3F1ED">
+                <button type="button" onClick="{{ t2.setFa }}" style="{{ t2.seg.fa }}">Persian hidden</button>
+                <button type="button" onClick="{{ t2.setEn }}" style="{{ t2.seg.en }}">English hidden</button>
+                <button type="button" onClick="{{ t2.setBoth }}" style="{{ t2.seg.both }}">Both</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:1;min-height:0;overflow-y:auto;padding:32px 36px 40px">
+            <div style="{{ t2.paneStyle }}">
+              <div style="max-width:680px">
+
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+                  <h2 style="margin:0;font:800 11px/1 'interVariable';letter-spacing:.16em;text-transform:uppercase;color:#9A978F">In context</h2>
+                  <span style="font:650 11.5px/1 'interVariable';color:#B0ADA4">{{ t2.focusLabel }}</span>
+                </div>
+
+                <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ t2.examples }}" as="ex" hint-placeholder-count="2">
+                    <div style="display:flex;flex-direction:column;gap:16px;border-radius:18px;background:#FFFFFF;border:1px solid #EEEBE4;padding:24px 26px;min-width:0;transition:border-color .18s,box-shadow .18s" style-hover="border-color:#E2DED5;box-shadow:0 1px 2px rgba(22,24,28,.04)">
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
+                        <div style="display:flex;align-items:center;gap:12px;min-width:0">
+                          <span style="display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 9px;border-radius:7px;background:#F3F1EC;font:800 10.5px/1 'interVariable';letter-spacing:.1em;color:#A5A29A;font-variant-numeric:tabular-nums">EX {{ ex.num }}</span>
+                          <span style="{{ ex.hintStyle }}">{{ ex.hint }}</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:4px;flex:none">
+                          <button type="button" aria-label="Play pronunciation" style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;border:0;background:transparent;color:#C4C0B7;cursor:pointer;transition:background .16s,color .16s" style-hover="background:#F3F1EC;color:#3D4149">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg>
+                          </button>
+                          <button type="button" onClick="{{ ex.eyeAll }}" aria-label="Toggle hidden lines" style="{{ ex.eyeStyle }}">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div onClick="{{ ex.enClick }}" style="{{ ex.enWrap }}" style-hover="--rb-a:#EDF1FC;--rb-b:#DFE6F8">
+                        <p dir="ltr" style="margin:0;font:500 21px/34px 'interVariable';letter-spacing:-.01em;text-wrap:pretty;color:#16181C">{{ ex.en }}</p>
+                        <div aria-hidden="true" style="{{ ex.enOverlay }}">
+                          <p dir="ltr" style="margin:0;font:500 21px/34px 'interVariable';letter-spacing:-.01em;text-wrap:pretty"><span style="{{ t2.bar }}">{{ ex.en }}</span></p>
+                        </div>
+                      </div>
+                      <div onClick="{{ ex.faClick }}" style="{{ ex.faWrap }}" style-hover="--rb-a:#EDF1FC;--rb-b:#DFE6F8">
+                        <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:15.5px;line-height:31px;color:#4E4C46">{{ ex.fa }}</p>
+                        <div aria-hidden="true" style="{{ ex.faOverlay }}">
+                          <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:15.5px;line-height:31px"><span style="{{ t2.bar }}">{{ ex.fa }}</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+
+                <h2 style="margin:34px 0 0;font:800 11px/1 'interVariable';letter-spacing:.16em;text-transform:uppercase;color:#9A978F">Reference</h2>
+                <dl style="margin:16px 0 0;display:grid;grid-template-columns:150px minmax(0,1fr);column-gap:24px;row-gap:0">
+                  <dt style="padding:12px 0;font:700 12.5px/24px 'interVariable';color:#A5A29A">Definition</dt>
+                  <dd dir="ltr" style="margin:0;padding:12px 0;font:450 15px/26px 'interVariable';color:#2B2E34">{{ t2.cur.defEn }}</dd>
+                  <dt style="padding:12px 0;border-top:1px solid #F5F3EF;font:700 12.5px/24px 'interVariable';color:#A5A29A">Persian definition</dt>
+                  <dd dir="rtl" style="margin:0;padding:12px 0;border-top:1px solid #F5F3EF;font-family:'iranYekan';font-size:14px;line-height:28px;color:#2B2E34">{{ t2.cur.defFa }}</dd>
+                  <dt style="padding:12px 0;border-top:1px solid #F5F3EF;font:700 12.5px/24px 'interVariable';color:#A5A29A">Usage note</dt>
+                  <dd dir="ltr" style="margin:0;padding:12px 0;border-top:1px solid #F5F3EF;font:450 15px/26px 'interVariable';color:#2B2E34">{{ t2.cur.noteEn }}</dd>
+                  <dt style="padding:12px 0;border-top:1px solid #F5F3EF;font:700 12.5px/24px 'interVariable';color:#A5A29A">Persian note</dt>
+                  <dd dir="rtl" style="margin:0;padding:12px 0;border-top:1px solid #F5F3EF;font-family:'iranYekan';font-size:14px;line-height:28px;color:#2B2E34">{{ t2.cur.noteFa }}</dd>
+                </dl>
+
+                <div style="margin-top:36px;padding-top:20px;border-top:1px solid #F1EFEA;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                  <button type="button" onClick="{{ t2.prev }}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1px solid #EFECE6;background:#fff;cursor:pointer;text-align:left;transition:border-color .16s,background .16s" style-hover="border-color:#DCD8CF;background:#FCFBF9">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A5A29A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                    <span style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                      <span style="font:750 10px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#B0ADA4">Previous</span>
+                      <span dir="ltr" style="font:700 13.5px/1.3 'interVariable';color:#3D4149;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t2.prevTitle }}</span>
+                    </span>
+                  </button>
+                  <button type="button" onClick="{{ t2.next }}" style="display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:14px 16px;border-radius:14px;border:0;background:#1F4FD8;cursor:pointer;text-align:right;transition:background .16s" style-hover="background:#173CA8">
+                    <span style="display:flex;flex-direction:column;gap:4px;min-width:0;align-items:flex-end">
+                      <span style="font:750 10px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)">Next idiom</span>
+                      <span dir="ltr" style="font:700 13.5px/1.3 'interVariable';color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t2.nextTitle }}</span>
+                    </span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font:800 11px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#9A978F">Mobile</div>
+        <div style="position:relative;display:flex;flex:none;flex-direction:column;width:390px;height:844px;background:#FFFFFF;border:1px solid #E4E1DB;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,24,28,.45)">
+          <div style="padding:22px 0 12px;border-bottom:1px solid #F1EFEA">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px">
+              <button type="button" aria-label="Go back" style="display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:10px;border:0;background:#F5F3EF;color:#3D4149;cursor:pointer">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <span style="font:800 13.5px/1 'interVariable';color:#16181C">{{ t2.lessonLabel }}</span>
+                <span style="font:700 10px/1 'interVariable';letter-spacing:.1em;text-transform:uppercase;color:#A5A29A">Elementary</span>
+              </div>
+              <button type="button" aria-label="Save idiom" style="display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:10px;border:0;background:#F5F3EF;color:#3D4149;cursor:pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+              </button>
+            </div>
+            <div style="margin-top:14px;display:flex;align-items:center;gap:7px;overflow-x:auto;padding:0 16px 2px">
+              <span style="flex:none;font:750 10px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#B0ADA4;padding-right:2px">Lesson</span>
+              <sc-for list="{{ t2.lessons }}" as="l" hint-placeholder-count="8">
+                <button type="button" onClick="{{ l.onClick }}" style="{{ l.style }}">{{ l.n }}</button>
+              </sc-for>
+            </div>
+            <div style="margin:14px 16px 0;display:flex;align-items:center;gap:2px;padding:3px;border-radius:11px;background:#F3F1ED">
+              <button type="button" onClick="{{ t2.setFa }}" style="{{ t2.seg.fa }}">Persian hidden</button>
+              <button type="button" onClick="{{ t2.setEn }}" style="{{ t2.seg.en }}">English hidden</button>
+              <button type="button" onClick="{{ t2.setBoth }}" style="{{ t2.seg.both }}">Both</button>
+            </div>
+          </div>
+
+          <div style="flex:1;min-height:0;overflow-y:auto;padding:22px 20px 116px">
+            <div style="{{ t2.paneStyle }}">
+              <h1 dir="ltr" style="margin:0;font:900 25px/1.18 'interVariable';letter-spacing:-.032em;color:#16181C">{{ t2.cur.en }}</h1>
+              <p dir="rtl" style="margin:9px 0 0;font-family:'iranYekan';font-size:14.5px;line-height:28px;color:#6C6A65">{{ t2.cur.fa }}</p>
+
+              <h2 style="margin:26px 0 0;font:800 10px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#9A978F">In context</h2>
+              <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ t2.examples }}" as="ex" hint-placeholder-count="2">
+                  <div style="display:flex;flex-direction:column;gap:13px;border-radius:18px;background:#FFFFFF;border:1px solid #EEEBE4;padding:18px 18px 20px;min-width:0">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                      <span style="display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 9px;border-radius:7px;background:#F3F1EC;font:800 10px/1 'interVariable';letter-spacing:.1em;color:#A5A29A;font-variant-numeric:tabular-nums">EX {{ ex.num }}</span>
+                      <div style="display:flex;align-items:center;gap:4px">
+                        <button type="button" aria-label="Play pronunciation" style="display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;border:0;background:transparent;color:#C4C0B7;cursor:pointer">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><path d="M16 9a5 5 0 0 1 0 6"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728"></path></svg>
+                        </button>
+                        <button type="button" onClick="{{ ex.eyeAll }}" aria-label="Toggle hidden lines" style="{{ ex.eyeStyle }}">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div onClick="{{ ex.enClick }}" style="{{ ex.enWrap }}">
+                      <p dir="ltr" style="margin:0;font:500 17px/29px 'interVariable';text-wrap:pretty;color:#16181C">{{ ex.en }}</p>
+                      <div aria-hidden="true" style="{{ ex.enOverlay }}">
+                        <p dir="ltr" style="margin:0;font:500 17px/29px 'interVariable';text-wrap:pretty"><span style="{{ t2.bar }}">{{ ex.en }}</span></p>
+                      </div>
+                    </div>
+                    <div onClick="{{ ex.faClick }}" style="{{ ex.faWrap }}">
+                      <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:14.5px;line-height:29px;color:#4E4C46">{{ ex.fa }}</p>
+                      <div aria-hidden="true" style="{{ ex.faOverlay }}">
+                        <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:14.5px;line-height:29px"><span style="{{ t2.bar }}">{{ ex.fa }}</span></p>
+                      </div>
+                    </div>
+                    <span style="{{ ex.hintStyleM }}">{{ ex.hint }}</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <h2 style="margin:26px 0 0;font:800 10px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#9A978F">Reference</h2>
+              <div style="margin-top:14px;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <span style="font:700 11.5px/1 'interVariable';color:#A5A29A">Definition</span>
+                  <span dir="ltr" style="font:450 14.5px/25px 'interVariable';color:#2B2E34">{{ t2.cur.defEn }}</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:5px;padding-top:14px;border-top:1px solid #F5F3EF">
+                  <span style="font:700 11.5px/1 'interVariable';color:#A5A29A">Persian definition</span>
+                  <span dir="rtl" style="font-family:'iranYekan';font-size:13.5px;line-height:28px;color:#2B2E34">{{ t2.cur.defFa }}</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:5px;padding-top:14px;border-top:1px solid #F5F3EF">
+                  <span style="font:700 11.5px/1 'interVariable';color:#A5A29A">Usage note</span>
+                  <span dir="ltr" style="font:450 14.5px/25px 'interVariable';color:#2B2E34">{{ t2.cur.noteEn }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:22px 16px 18px;background:linear-gradient(to top,#FFFFFF 72%,rgba(255,255,255,0))">
+            <div style="display:flex;align-items:center;gap:8px;padding:7px;border-radius:9999px;background:#fff;border:1px solid #E6E3DD;box-shadow:0 14px 30px -18px rgba(22,24,28,.35)">
+              <button type="button" onClick="{{ t2.prev }}" aria-label="Previous idiom" style="display:inline-flex;width:46px;height:46px;flex:none;align-items:center;justify-content:center;border-radius:9999px;border:0;background:#F3F1ED;color:#3D4149;cursor:pointer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <button type="button" onClick="{{ t2.openSheet }}" style="flex:1;min-width:0;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:46px;border-radius:9999px;border:0;background:transparent;cursor:pointer">
+                <span style="font:800 14px/1 'interVariable';color:#3D4149;font-variant-numeric:tabular-nums">{{ t2.pos }}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A5A29A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg>
+              </button>
+              <button type="button" onClick="{{ t2.next }}" style="display:inline-flex;flex:none;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:9999px;border:0;background:#1F4FD8;color:#fff;font:700 14px/1 'interVariable';cursor:pointer">
+                <span>Next</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+
+          <div onClick="{{ t2.closeSheet }}" style="{{ t2.scrimStyle }}"></div>
+          <div style="{{ t2.sheetStyle }}">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px 12px;border-bottom:1px solid #F1EFEA">
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span style="font:800 14px/1 'interVariable';color:#16181C">{{ t2.lessonLabel }} · idioms</span>
+                <span style="font:650 11px/1 'interVariable';color:#A5A29A;font-variant-numeric:tabular-nums">{{ t2.pos }}</span>
+              </div>
+              <button type="button" onClick="{{ t2.closeSheet }}" aria-label="Close" style="display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:11px;border:0;background:#F5F3EF;color:#3D4149;cursor:pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              </button>
+            </div>
+            <div style="flex:1;min-height:0;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ t2.sheetList }}" as="it" hint-placeholder-count="12">
+                <button type="button" onClick="{{ it.onClick }}" style="{{ it.style }}">
+                  <span style="{{ it.numStyle }}">{{ it.num }}</span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                    <span style="font:700 13.5px/19px 'interVariable';color:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.en }}</span>
+                    <span dir="rtl" style="font-family:'iranYekan';font-size:11.5px;line-height:19px;color:#B0ADA4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.fa }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:40px 72px 120px;display:flex;flex-direction:column;gap:44px">
+
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:760px">
+    <div style="font:800 12px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#8C8A84">Turn 1 · two directions</div>
+    <div style="font:900 34px/1.15 'interVariable';letter-spacing:-.02em;color:#16181C">Lesson Study, premium</div>
+    <div style="font:450 16px/1.6 'interVariable';color:#6C6A65">Same content and same mechanics as <a href="Lesson Study — Current.dc.html">the current screen</a> — rebuilt on warmer neutrals, a deeper blue, and a real reading rhythm. Both directions are live: the focus control and the reveal affordances actually work.</div>
+  </div>
+
+  <div style="display:flex;align-items:flex-start;gap:56px;flex-wrap:wrap">
+
+    <div id="1a" style="display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:26px;padding:0 9px;border-radius:7px;background:#16181C;color:#fff;font:800 12px/1 'interVariable';letter-spacing:.04em">1a</span>
+        <span style="font:800 15px/1 'interVariable';color:#16181C">Focus Reader</span>
+        <span style="font:450 14px/1 'interVariable';color:#8C8A84">One column, one idiom, nothing else. Persian sits under a cover you lift.</span>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:28px">
+
+        <div style="position:relative;width:1138px;min-height:1180px;background:#F5F4F1;border:1px solid #E1DED8;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,24,28,.45)">
+          <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 28px">
+            <button type="button" aria-label="Go back" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;border:1px solid transparent;background:transparent;color:#3D4149;cursor:pointer;transition:background .15s,border-color .15s" style-hover="background:#FFFFFF;border-color:#E6E3DD">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+            </button>
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/Seedling.svg" alt="" style="width:20px;height:20px">
+              <span style="font:800 15px/1 'interVariable';letter-spacing:.01em;color:#16181C">Lesson Study</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <button type="button" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:12px;border:1px solid #E6E3DD;background:#FFFFFF;color:#3D4149;font:650 13px/1 'interVariable';box-shadow:0 1px 2px rgba(22,24,28,.04);cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+                <span>Story</span>
+              </button>
+              <button type="button" aria-label="Save idiom" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;border:1px solid #E6E3DD;background:#FFFFFF;color:#3D4149;box-shadow:0 1px 2px rgba(22,24,28,.04);cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+              </button>
+            </div>
+          </header>
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:26px;padding:34px 0 150px">
+
+            <button type="button" style="display:inline-flex;align-items:center;gap:10px;height:34px;padding:0 8px 0 14px;border-radius:9999px;border:1px solid #E6E3DD;background:#FFFFFF;color:#6C6A65;font:750 11px/1 'interVariable';letter-spacing:.11em;text-transform:uppercase;box-shadow:0 1px 2px rgba(22,24,28,.04);cursor:pointer;transition:border-color .15s" style-hover="border-color:#C9C5BC">
+              <span>Elementary · Lesson 1</span>
+              <span style="display:inline-flex;align-items:center;justify-content:center;height:22px;padding:0 9px;border-radius:9999px;background:#F1EFEB;color:#3D4149;font:800 11px/1 'interVariable';letter-spacing:.02em;font-variant-numeric:tabular-nums">1/12</span>
+            </button>
+
+            <div style="width:812px;background:#FFFFFF;border:1px solid #E9E6E0;border-radius:26px;padding:56px 60px 52px;box-shadow:0 1px 2px rgba(22,24,28,.04),0 20px 44px -26px rgba(22,24,28,.22)">
+
+              <div style="text-align:center">
+                <h1 dir="ltr" style="margin:0;font:900 46px/1.12 'interVariable';letter-spacing:-.035em;color:#16181C;text-wrap:pretty">to get in/to get on</h1>
+                <p dir="rtl" style="margin:18px 0 0;font-family:'iranYekan';font-size:19px;line-height:34px;color:#7A786F">سوار شدن (به وسیله نقلیه)</p>
+              </div>
+
+              <div style="margin:44px 0 0;display:flex;align-items:center;justify-content:space-between;gap:20px">
+                <h2 style="margin:0;font:800 11px/1 'interVariable';letter-spacing:.16em;text-transform:uppercase;color:#9A978F">Examples</h2>
+                <div style="display:inline-flex;align-items:center;gap:3px;padding:3px;border-radius:11px;background:#F3F1ED;border:1px solid #E9E6E0">
+                  <button type="button" onClick="{{ setFocusFa }}" style="{{ seg.fa }}">Persian hidden</button>
+                  <button type="button" onClick="{{ setFocusEn }}" style="{{ seg.en }}">English hidden</button>
+                  <button type="button" onClick="{{ setFocusBoth }}" style="{{ seg.both }}">Both</button>
+                </div>
+              </div>
+
+              <div style="margin-top:22px;display:flex;flex-direction:column;gap:14px">
+
+                <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:20px;padding:22px 0 0;border-top:1px solid #EFECE6">
+                  <div style="font:800 12px/26px 'interVariable';color:#C0BCB2;font-variant-numeric:tabular-nums">01</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+                    <div style="position:relative;min-width:0">
+                      <div style="{{ v.a1.en.text }}">
+                        <p dir="ltr" style="margin:0;font:550 20px/34px 'interVariable';color:#16181C;letter-spacing:-.008em">It's easiest to get in the car from the driver's side. The door on the other side doesn't work well.</p>
+                      </div>
+                      <div style="{{ v.a1.en.veil }}">
+                        <button type="button" onClick="{{ v.a1.en.toggle }}" aria-label="Reveal English" style="width:100%;height:100%;display:flex;align-items:center;gap:9px;padding:0 16px;border-radius:12px;border:1px dashed #D9D5CC;background:#FAF9F7;color:#8C8A84;font:650 13px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#1F4FD8;color:#1F4FD8">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                          <span>Reveal English</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div style="position:relative;min-width:0">
+                      <div style="{{ v.a1.fa.text }}">
+                        <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:16px;line-height:32px;color:#87857D">این آسان‌ترین راه برای سوار شدن به ماشین از سمت راننده است. در سمت دیگر خوب کار نمی‌کند.</p>
+                      </div>
+                      <div style="{{ v.a1.fa.veil }}">
+                        <button type="button" onClick="{{ v.a1.fa.toggle }}" aria-label="Reveal Persian" style="width:100%;height:100%;display:flex;align-items:center;gap:9px;padding:0 16px;border-radius:12px;border:1px dashed #D9D5CC;background:#FAF9F7;color:#8C8A84;font:650 13px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#1F4FD8;color:#1F4FD8">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                          <span>Reveal Persian</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:20px;padding:22px 0 0;border-top:1px solid #EFECE6">
+                  <div style="font:800 12px/26px 'interVariable';color:#C0BCB2;font-variant-numeric:tabular-nums">02</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+                    <div style="position:relative;min-width:0">
+                      <div style="{{ v.a2.en.text }}">
+                        <p dir="ltr" style="margin:0;font:550 20px/34px 'interVariable';color:#16181C;letter-spacing:-.008em">I always get on the bus to work at 34th Street.</p>
+                      </div>
+                      <div style="{{ v.a2.en.veil }}">
+                        <button type="button" onClick="{{ v.a2.en.toggle }}" aria-label="Reveal English" style="width:100%;height:100%;display:flex;align-items:center;gap:9px;padding:0 16px;border-radius:12px;border:1px dashed #D9D5CC;background:#FAF9F7;color:#8C8A84;font:650 13px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#1F4FD8;color:#1F4FD8">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                          <span>Reveal English</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div style="position:relative;min-width:0">
+                      <div style="{{ v.a2.fa.text }}">
+                        <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:16px;line-height:32px;color:#87857D">من همیشه در خیابان ۳۴ سوار اتوبوس می‌شوم تا سر کار بروم.</p>
+                      </div>
+                      <div style="{{ v.a2.fa.veil }}">
+                        <button type="button" onClick="{{ v.a2.fa.toggle }}" aria-label="Reveal Persian" style="width:100%;height:100%;display:flex;align-items:center;gap:9px;padding:0 16px;border-radius:12px;border:1px dashed #D9D5CC;background:#FAF9F7;color:#8C8A84;font:650 13px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#1F4FD8;color:#1F4FD8">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                          <span>Reveal Persian</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <h2 style="margin:46px 0 0;font:800 11px/1 'interVariable';letter-spacing:.16em;text-transform:uppercase;color:#9A978F">Details</h2>
+              <dl style="margin:20px 0 0;display:grid;grid-template-columns:186px minmax(0,1fr);row-gap:2px;column-gap:24px">
+                <dt style="padding:14px 0;font:700 13px/24px 'interVariable';color:#9A978F">English definition</dt>
+                <dd dir="ltr" style="margin:0;padding:14px 0;font:450 16px/26px 'interVariable';color:#2B2E34">to enter or to board a vehicle</dd>
+                <dt style="padding:14px 0;border-top:1px solid #F1EFEA;font:700 13px/24px 'interVariable';color:#9A978F">Persian definition</dt>
+                <dd dir="rtl" style="margin:0;padding:14px 0;border-top:1px solid #F1EFEA;font-family:'iranYekan';font-size:15px;line-height:30px;color:#2B2E34">وارد شدن یا سوار شدن به یک وسیله نقلیه</dd>
+                <dt style="padding:14px 0;border-top:1px solid #F1EFEA;font:700 13px/24px 'interVariable';color:#9A978F">English note</dt>
+                <dd dir="ltr" style="margin:0;padding:14px 0;border-top:1px solid #F1EFEA;font:450 16px/26px 'interVariable';color:#2B2E34">To get in is used for cars; to get on is used for all other forms of transportation.</dd>
+                <dt style="padding:14px 0;border-top:1px solid #F1EFEA;font:700 13px/24px 'interVariable';color:#9A978F">Persian note</dt>
+                <dd dir="rtl" style="margin:0;padding:14px 0;border-top:1px solid #F1EFEA;font-family:'iranYekan';font-size:15px;line-height:30px;color:#2B2E34">get in برای خودروها و get on برای سایر وسایل حمل و نقل استفاده می‌شود.</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div style="position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 0 30px;background:linear-gradient(to top,#F5F4F1 62%,rgba(245,244,241,0))">
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:7px;border-radius:9999px;background:#FFFFFF;border:1px solid #E6E3DD;box-shadow:0 1px 2px rgba(22,24,28,.05),0 16px 34px -18px rgba(22,24,28,.30)">
+              <button type="button" aria-label="Previous idiom" style="display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border-radius:9999px;border:0;background:transparent;color:#C0BCB2;cursor:not-allowed">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <span style="min-width:64px;text-align:center;font:800 14px/1 'interVariable';color:#3D4149;font-variant-numeric:tabular-nums">1 / 12</span>
+              <button type="button" style="display:inline-flex;align-items:center;gap:9px;height:42px;padding:0 20px;border-radius:9999px;border:0;background:#1F4FD8;color:#fff;font:700 14px/1 'interVariable';cursor:pointer;transition:background .15s" style-hover="background:#173CA8">
+                <span>Next</span>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+            <div style="font:600 11px/1 'interVariable';letter-spacing:.06em;color:#A5A29A">← → to move · Space to reveal</div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font:800 11px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#9A978F">Mobile</div>
+          <div style="position:relative;width:390px;height:844px;background:#F5F4F1;border:1px solid #E1DED8;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,24,28,.45)">
+            <header style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:22px 16px 12px">
+              <button type="button" aria-label="Go back" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;border:0;background:transparent;color:#3D4149;cursor:pointer">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <div style="display:flex;align-items:center;gap:7px">
+                <img src="assets/Seedling.svg" alt="" style="width:18px;height:18px">
+                <span style="font:800 14px/1 'interVariable';color:#16181C">Lesson Study</span>
+              </div>
+              <button type="button" aria-label="Save idiom" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;cursor:pointer">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+              </button>
+            </header>
+
+            <div style="display:flex;justify-content:center;padding:4px 16px 14px">
+              <button type="button" style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 6px 0 12px;border-radius:9999px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;font:750 10px/1 'interVariable';letter-spacing:.1em;text-transform:uppercase;cursor:pointer">
+                <span>Elementary · Lesson 1</span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;height:20px;padding:0 8px;border-radius:9999px;background:#F1EFEB;color:#3D4149;font:800 10px/1 'interVariable';font-variant-numeric:tabular-nums">1/12</span>
+              </button>
+            </div>
+
+            <div style="margin:0 12px;background:#fff;border:1px solid #E9E6E0;border-radius:22px;padding:26px 20px 24px;box-shadow:0 1px 2px rgba(22,24,28,.04),0 16px 34px -22px rgba(22,24,28,.22)">
+              <div style="text-align:center">
+                <h1 dir="ltr" style="margin:0;font:900 28px/1.15 'interVariable';letter-spacing:-.03em;color:#16181C">to get in/to get on</h1>
+                <p dir="rtl" style="margin:12px 0 0;font-family:'iranYekan';font-size:15px;line-height:28px;color:#7A786F">سوار شدن (به وسیله نقلیه)</p>
+              </div>
+
+              <div style="margin:24px 0 0;display:flex;align-items:center;justify-content:space-between;gap:12px">
+                <h2 style="margin:0;font:800 10px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#9A978F">Examples</h2>
+                <span style="font:650 11px/1 'interVariable';color:#9A978F">Persian hidden</span>
+              </div>
+
+              <div style="margin-top:16px;display:grid;grid-template-columns:24px minmax(0,1fr);gap:14px;padding-top:16px;border-top:1px solid #EFECE6">
+                <div style="font:800 11px/24px 'interVariable';color:#C0BCB2;font-variant-numeric:tabular-nums">01</div>
+                <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+                  <p dir="ltr" style="margin:0;font:550 16px/28px 'interVariable';color:#16181C">It's easiest to get in the car from the driver's side.</p>
+                  <div style="position:relative;min-width:0">
+                    <div style="{{ v.ma1.fa.text }}">
+                      <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:14px;line-height:28px;color:#87857D">این آسان‌ترین راه برای سوار شدن به ماشین از سمت راننده است.</p>
+                    </div>
+                    <div style="{{ v.ma1.fa.veil }}">
+                      <button type="button" onClick="{{ v.ma1.fa.toggle }}" aria-label="Reveal Persian" style="width:100%;height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:12px;border:1px dashed #D9D5CC;background:#FAF9F7;color:#8C8A84;font:650 12px/1 'interVariable';cursor:pointer">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <span>Reveal Persian</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:16px;display:grid;grid-template-columns:24px minmax(0,1fr);gap:14px;padding-top:16px;border-top:1px solid #EFECE6">
+                <div style="font:800 11px/24px 'interVariable';color:#C0BCB2;font-variant-numeric:tabular-nums">02</div>
+                <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+                  <p dir="ltr" style="margin:0;font:550 16px/28px 'interVariable';color:#16181C">I always get on the bus to work at 34th Street.</p>
+                  <div style="height:44px;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:12px;border:1px dashed #D9D5CC;background:#FAF9F7;color:#8C8A84;font:650 12px/1 'interVariable'">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span>Reveal Persian</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin:16px 12px 0;background:#fff;border:1px solid #E9E6E0;border-radius:22px;padding:20px;box-shadow:0 1px 2px rgba(22,24,28,.04)">
+              <h2 style="margin:0;font:800 10px/1 'interVariable';letter-spacing:.14em;text-transform:uppercase;color:#9A978F">Details</h2>
+              <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <span style="font:700 12px/1 'interVariable';color:#9A978F">English definition</span>
+                  <span dir="ltr" style="font:450 15px/24px 'interVariable';color:#2B2E34">to enter or to board a vehicle</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:4px;padding-top:12px;border-top:1px solid #F1EFEA">
+                  <span style="font:700 12px/1 'interVariable';color:#9A978F">Persian definition</span>
+                  <span dir="rtl" style="font-family:'iranYekan';font-size:14px;line-height:28px;color:#2B2E34">وارد شدن یا سوار شدن به یک وسیله نقلیه</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:24px 12px 22px;background:linear-gradient(to top,#F5F4F1 68%,rgba(245,244,241,0))">
+              <div style="display:flex;align-items:center;gap:8px;padding:7px;border-radius:9999px;background:#fff;border:1px solid #E6E3DD;box-shadow:0 14px 30px -18px rgba(22,24,28,.35)">
+                <button type="button" aria-label="Previous idiom" style="display:inline-flex;width:46px;height:46px;align-items:center;justify-content:center;border-radius:9999px;border:0;background:transparent;color:#C0BCB2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                </button>
+                <span style="flex:1;text-align:center;font:800 14px/1 'interVariable';color:#3D4149;font-variant-numeric:tabular-nums">1 / 12</span>
+                <button type="button" style="display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:9999px;border:0;background:#1F4FD8;color:#fff;font:700 14px/1 'interVariable';cursor:pointer">
+                  <span>Next</span>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1b" style="display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:26px;padding:0 9px;border-radius:7px;background:#16181C;color:#fff;font:800 12px/1 'interVariable';letter-spacing:.04em">1b</span>
+        <span style="font:800 15px/1 'interVariable';color:#16181C">Study Desk</span>
+        <span style="font:450 14px/1 'interVariable';color:#8C8A84">The whole lesson is visible in a rail. Click any idiom — the pane cross-fades. Fully live.</span>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:28px">
+
+        <div style="display:flex;width:1138px;height:900px;background:#F5F4F1;border:1px solid #E1DED8;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,24,28,.45)">
+
+          <aside style="display:flex;width:312px;flex-shrink:0;flex-direction:column;border-right:1px solid #E6E3DD;background:#F1EFEB">
+            <div style="display:flex;align-items:center;gap:10px;padding:20px 18px 16px">
+              <button type="button" aria-label="Go back" style="display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;cursor:pointer;transition:border-color .15s" style-hover="border-color:#C9C5BC">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                <span style="font:800 14px/1.2 'interVariable';color:#16181C">Lesson 1</span>
+                <span style="font:650 11px/1.2 'interVariable';letter-spacing:.1em;text-transform:uppercase;color:#9A978F">Elementary · 12 idioms</span>
+              </div>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow-y:auto;padding:4px 12px 12px;display:flex;flex-direction:column;gap:2px">
+              <sc-for list="{{ rail }}" as="it" hint-placeholder-count="12">
+                <button type="button" onClick="{{ it.onClick }}" style="{{ it.style }}">
+                  <span style="{{ it.numStyle }}">{{ it.num }}</span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left">
+                    <span style="font:700 13.5px/19px 'interVariable';color:inherit;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.en }}</span>
+                    <span dir="rtl" style="font-family:'iranYekan';font-size:11.5px;line-height:19px;color:#A5A29A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.fa }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;gap:8px;padding:12px;border-top:1px solid #E6E3DD">
+              <button type="button" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;font:650 12px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                <span>Lesson 0</span>
+              </button>
+              <button type="button" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#6C6A65;font:650 12px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#C9C5BC;color:#16181C">
+                <span>Lesson 2</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </aside>
+
+          <div style="display:flex;min-width:0;flex:1;flex-direction:column">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;border-bottom:1px solid #E6E3DD">
+              <div style="display:inline-flex;align-items:center;gap:3px;padding:3px;border-radius:11px;background:#EAE7E1">
+                <button type="button" onClick="{{ setFocusFa }}" style="{{ seg.fa }}">Persian hidden</button>
+                <button type="button" onClick="{{ setFocusEn }}" style="{{ seg.en }}">English hidden</button>
+                <button type="button" onClick="{{ setFocusBoth }}" style="{{ seg.both }}">Both</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <button type="button" style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 13px;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;font:650 12.5px/1 'interVariable';cursor:pointer;transition:border-color .15s" style-hover="border-color:#C9C5BC">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+                  <span>Story</span>
+                </button>
+                <button type="button" aria-label="Save idiom" style="display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;border-radius:10px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;cursor:pointer;transition:border-color .15s" style-hover="border-color:#C9C5BC">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow-y:auto;padding:36px 44px 28px">
+              <div style="{{ paneStyle }}">
+                <div style="max-width:660px">
+                  <div style="font:750 11px/1 'interVariable';letter-spacing:.16em;text-transform:uppercase;color:#9A978F;font-variant-numeric:tabular-nums">{{ posLabel }}</div>
+                  <h1 dir="ltr" style="margin:14px 0 0;font:900 40px/1.14 'interVariable';letter-spacing:-.032em;color:#16181C;text-wrap:pretty">{{ cur.en }}</h1>
+                  <p dir="rtl" style="margin:12px 0 0;font-family:'iranYekan';font-size:18px;line-height:32px;color:#7A786F">{{ cur.fa }}</p>
+                </div>
+
+                <div style="margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                  <div style="background:#FFFFFF;border:1px solid #E9E6E0;border-radius:16px;padding:18px 20px;box-shadow:0 1px 2px rgba(22,24,28,.04)">
+                    <div style="font:700 11px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#9A978F">Definition</div>
+                    <p dir="ltr" style="margin:10px 0 0;font:450 15.5px/26px 'interVariable';color:#2B2E34">{{ cur.defEn }}</p>
+                    <p dir="rtl" style="margin:8px 0 0;font-family:'iranYekan';font-size:14px;line-height:28px;color:#87857D">{{ cur.defFa }}</p>
+                  </div>
+                  <div style="background:#FFFFFF;border:1px solid #E9E6E0;border-radius:16px;padding:18px 20px;box-shadow:0 1px 2px rgba(22,24,28,.04)">
+                    <div style="font:700 11px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#9A978F">Usage note</div>
+                    <p dir="ltr" style="margin:10px 0 0;font:450 15.5px/26px 'interVariable';color:#2B2E34">{{ cur.noteEn }}</p>
+                    <p dir="rtl" style="margin:8px 0 0;font-family:'iranYekan';font-size:14px;line-height:28px;color:#87857D">{{ cur.noteFa }}</p>
+                  </div>
+                </div>
+
+                <div style="margin-top:34px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+                  <h2 style="margin:0;font:800 11px/1 'interVariable';letter-spacing:.16em;text-transform:uppercase;color:#9A978F">In context</h2>
+                  <span style="font:650 12px/1 'interVariable';color:#A5A29A">{{ focusLabel }}</span>
+                </div>
+
+                <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="2">
+                    <div style="background:#FFFFFF;border:1px solid #E9E6E0;border-radius:16px;padding:20px 22px;box-shadow:0 1px 2px rgba(22,24,28,.04)">
+                      <div style="display:grid;grid-template-columns:26px minmax(0,1fr);gap:16px">
+                        <div style="font:800 12px/28px 'interVariable';color:#C9C5BC;font-variant-numeric:tabular-nums">{{ ex.num }}</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+                          <div style="position:relative;min-width:0">
+                            <div style="{{ ex.enText }}">
+                              <p dir="ltr" style="margin:0;font:550 18px/30px 'interVariable';color:#16181C;letter-spacing:-.006em">{{ ex.en }}</p>
+                            </div>
+                            <div style="{{ ex.enVeil }}">
+                              <button type="button" onClick="{{ ex.toggleEn }}" style="width:100%;height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:11px;border:1px solid #E6E3DD;background:#F7F5F2;color:#8C8A84;font:650 12.5px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#1F4FD8;color:#1F4FD8">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>Show English</span>
+                              </button>
+                            </div>
+                          </div>
+                          <div style="position:relative;min-width:0">
+                            <div style="{{ ex.faText }}">
+                              <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:15px;line-height:30px;color:#87857D">{{ ex.fa }}</p>
+                            </div>
+                            <div style="{{ ex.faVeil }}">
+                              <button type="button" onClick="{{ ex.toggleFa }}" style="width:100%;height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:11px;border:1px solid #E6E3DD;background:#F7F5F2;color:#8C8A84;font:650 12.5px/1 'interVariable';cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#1F4FD8;color:#1F4FD8">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>Show Persian</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;border-top:1px solid #E6E3DD;background:#F8F7F4">
+              <button type="button" onClick="{{ prev }}" style="display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 16px;border-radius:11px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;font:650 13px/1 'interVariable';cursor:pointer;transition:border-color .15s" style-hover="border-color:#C9C5BC">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                <span>Previous</span>
+              </button>
+              <span style="font:800 13px/1 'interVariable';color:#8C8A84;font-variant-numeric:tabular-nums">{{ posShort }}</span>
+              <button type="button" onClick="{{ next }}" style="display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 18px;border-radius:11px;border:0;background:#1F4FD8;color:#fff;font:700 13px/1 'interVariable';cursor:pointer;transition:background .15s" style-hover="background:#173CA8">
+                <span>Next idiom</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font:800 11px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#9A978F">Mobile</div>
+          <div style="position:relative;display:flex;flex-direction:column;width:390px;height:844px;background:#F5F4F1;border:1px solid #E1DED8;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,24,28,.45)">
+            <div style="padding:22px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+              <button type="button" aria-label="Go back" style="display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;border-radius:11px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;cursor:pointer">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+              </button>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+                <span style="font:800 14px/1 'interVariable';color:#16181C">Lesson 1</span>
+                <span style="font:650 10px/1 'interVariable';letter-spacing:.1em;text-transform:uppercase;color:#9A978F">Elementary</span>
+              </div>
+              <button type="button" aria-label="Save idiom" style="display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;border-radius:11px;border:1px solid #E6E3DD;background:#fff;color:#3D4149;cursor:pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+              </button>
+            </div>
+
+            <div style="display:flex;gap:6px;overflow-x:auto;padding:8px 16px 12px">
+              <sc-for list="{{ chips }}" as="c" hint-placeholder-count="12">
+                <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.num }}</button>
+              </sc-for>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow-y:auto;padding:4px 12px 110px">
+              <div style="{{ paneStyle }}">
+                <div style="background:#fff;border:1px solid #E9E6E0;border-radius:22px;padding:24px 20px;box-shadow:0 1px 2px rgba(22,24,28,.04),0 16px 34px -24px rgba(22,24,28,.22)">
+                  <h1 dir="ltr" style="margin:0;font:900 26px/1.16 'interVariable';letter-spacing:-.03em;color:#16181C">{{ cur.en }}</h1>
+                  <p dir="rtl" style="margin:10px 0 0;font-family:'iranYekan';font-size:15px;line-height:28px;color:#7A786F">{{ cur.fa }}</p>
+                  <div style="margin-top:18px;padding-top:16px;border-top:1px solid #F1EFEA">
+                    <div style="font:700 10px/1 'interVariable';letter-spacing:.12em;text-transform:uppercase;color:#9A978F">Definition</div>
+                    <p dir="ltr" style="margin:9px 0 0;font:450 15px/25px 'interVariable';color:#2B2E34">{{ cur.defEn }}</p>
+                  </div>
+                </div>
+
+                <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+                  <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="2">
+                    <div style="background:#fff;border:1px solid #E9E6E0;border-radius:18px;padding:18px;box-shadow:0 1px 2px rgba(22,24,28,.04)">
+                      <div style="font:800 11px/1 'interVariable';color:#C9C5BC;font-variant-numeric:tabular-nums">{{ ex.num }}</div>
+                      <p dir="ltr" style="margin:10px 0 0;font:550 16px/27px 'interVariable';color:#16181C">{{ ex.en }}</p>
+                      <div style="position:relative;min-width:0;margin-top:10px">
+                        <div style="{{ ex.faText }}">
+                          <p dir="rtl" style="margin:0;font-family:'iranYekan';font-size:14px;line-height:28px;color:#87857D">{{ ex.fa }}</p>
+                        </div>
+                        <div style="{{ ex.faVeil }}">
+                          <button type="button" onClick="{{ ex.toggleFa }}" style="width:100%;height:100%;display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:11px;border:1px solid #E6E3DD;background:#F7F5F2;color:#8C8A84;font:650 12px/1 'interVariable';cursor:pointer">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                            <span>Show Persian</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:24px 12px 22px;background:linear-gradient(to top,#F5F4F1 68%,rgba(245,244,241,0))">
+              <div style="display:flex;align-items:center;gap:8px;padding:7px;border-radius:9999px;background:#fff;border:1px solid #E6E3DD;box-shadow:0 14px 30px -18px rgba(22,24,28,.35)">
+                <button type="button" onClick="{{ prev }}" aria-label="Previous idiom" style="display:inline-flex;width:46px;height:46px;align-items:center;justify-content:center;border-radius:9999px;border:0;background:#F3F1ED;color:#3D4149;cursor:pointer">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                </button>
+                <span style="flex:1;text-align:center;font:800 14px/1 'interVariable';color:#3D4149;font-variant-numeric:tabular-nums">{{ posShort }}</span>
+                <button type="button" onClick="{{ next }}" style="display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:9999px;border:0;background:#1F4FD8;color:#fff;font:700 14px/1 'interVariable';cursor:pointer">
+                  <span>Next</span>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:2600,&quot;height&quot;:2400}}">
+class Component extends DCLogic {
+  state = { focus: "fa", ov: {}, i: 0, anim: 0, focus2: "fa", ov2: {}, i2: 0, anim2: 0, q2: "", lesson2: 1, sheet2: false };
+
+  idioms = [
+    { en: "to get in/to get on", fa: "سوار شدن (به وسیله نقلیه)", defEn: "to enter or to board a vehicle", defFa: "وارد شدن یا سوار شدن به یک وسیله نقلیه", noteEn: "To get in is used for cars; to get on is used for all other forms of transportation.", noteFa: "get in برای خودروها و get on برای سایر وسایل حمل و نقل استفاده می‌شود.", ex: [["It's easiest to get in the car from the driver's side. The door on the other side doesn't work well.", "این آسان‌ترین راه برای سوار شدن به ماشین از سمت راننده است. در سمت دیگر خوب کار نمی‌کند."], ["I always get on the bus to work at 34th Street.", "من همیشه در خیابان ۳۴ سوار اتوبوس می‌شوم تا سر کار بروم."]] },
+    { en: "to get out of/to get off", fa: "پیاده شدن (از وسیله نقلیه)", defEn: "to leave or to descend from a vehicle.", defFa: "ترک کردن یا پایین آمدن از یک وسیله نقلیه.", noteEn: "To get out of is used for cars; to get off is used for all other forms of transportation.", noteFa: "get out of برای خودروها و get off برای سایر وسایل حمل و نقل استفاده می‌شود.", ex: [["Why don't we stop and get out of the car for a while?", "چرا توقف نمی‌کنیم و برای مدتی از ماشین پیاده نمی‌شویم؟"], ["Helen got off the train at the 42nd Street terminal.", "هلن در ایستگاه خیابان ۴۲ از قطار پیاده شد."]] },
+    { en: "to put on", fa: "پوشیدن (لباس)", defEn: "to place on oneself (usually said of clothes) (S)", defFa: "بر تن کردن (معمولاً در مورد لباس) (قابل تفکیک)", noteEn: "Separable — the object can sit between the verb and the particle.", noteFa: "قابل تفکیک — مفعول می‌تواند بین فعل و حرف اضافه قرار بگیرد.", ex: [["Mary put on her coat and left the room.", "مری کتش را پوشید و اتاق را ترک کرد."], ["Put your hat on before you leave the house.", "قبل از اینکه از خانه خارج شوی، کلاهت را بپوش."]] },
+    { en: "to take off", fa: "درآوردن (لباس)", defEn: "to remove (usually said of clothes) (S)", defFa: "درآوردن (معمولاً در مورد لباس) (قابل تفکیک)", noteEn: "Separable — the object can sit between the verb and the particle.", noteFa: "قابل تفکیک — مفعول می‌تواند بین فعل و حرف اضافه قرار بگیرد.", ex: [["John took off his jacket as he entered the office.", "جان وقتی وارد دفتر شد، ژاکتش را درآورد."], ["Take your sweater off. The room is very warm.", "ژاکتت را در بیاور. اتاق خیلی گرم است."]] },
+    { en: "to call up", fa: "تلفن کردن", defEn: "to telephone (also: to give someone a call) (S)", defFa: "تلفن کردن (همچنین: to give someone a call) (قابل تفکیک)", noteEn: "To call can be used instead of to call up, as in the first example below.", noteFa: "Call می‌تواند به جای call up استفاده شود، مانند مثال اول در پایین.", ex: [["I forgot to call up Mr. Jones yesterday. I'd better call him now.", "دیروز فراموش کردم به آقای جونز زنگ بزنم. بهتر است همین الان به او زنگ بزنم."], ["Call me up tomorrow, Jane. We'll arrange a time to have lunch together.", "جین، فردا به من زنگ بزن. زمانی را برای ناهار با هم هماهنگ می‌کنیم."]] },
+    { en: "to turn on", fa: "روشن کردن، به کار انداختن", defEn: "to start or cause to function (also: to switch on) (S)", defFa: "شروع به کار کردن یا باعث کار کردن چیزی شدن (همچنین: to switch on) (قابل تفکیک)", noteEn: "Used for things that flow — electricity, water, gas.", noteFa: "برای چیزهایی که جریان دارند، مانند برق، آب و گاز استفاده می‌شود.", ex: [["Please turn on the light; it's too dark in here.", "لطفاً چراغ را روشن کنید؛ اینجا خیلی تاریک است."], ["Do you know who turned the air conditioning on?", "می‌دانی چه کسی کولر را روشن کرد؟"]] },
+    { en: "to turn off", fa: "خاموش کردن", defEn: "to cause to stop functioning (also: to switch off, to shut off) (S)", defFa: "باعث توقف کار کردن چیزی شدن (همچنین: to switch off, to shut off) (قابل تفکیک)", noteEn: "Turn on and turn off are used for things that flow, such as electricity, water, gas, etc.", noteFa: "Turn on و turn off برای چیزهایی که جریان دارند، مانند برق، آب، گاز و غیره استفاده می‌شوند.", ex: [["Please turn off the light when you leave the room.", "لطفاً وقتی اتاق را ترک می‌کنید چراغ را خاموش کنید."], ["Are you really listening to the radio, or should I turn it off?", "واقعاً داری به رادیو گوش می‌دهی، یا باید آن را خاموش کنم؟"]] },
+    { en: "right away", fa: "فوراً، بلافاصله", defEn: "very soon; immediately (also: at once)", defFa: "خیلی زود؛ بلافاصله (همچنین: at once)", noteEn: "At once carries the same urgency and is slightly more formal.", noteFa: "at once همان فوریت را دارد و کمی رسمی‌تر است.", ex: [["Dad says that dinner will be ready right away, so we'd better wash our hands and set the table.", "بابا می‌گوید شام فوراً آماده می‌شود، پس بهتر است دست‌هایمان را بشوییم و میز را بچینیم."], ["Tell Will to come to my office right away. I must see him immediately.", "به ویل بگو فوراً به دفتر من بیاید. باید فوراً او را ببینم."]] },
+    { en: "to pick up", fa: "برداشتن، بلند کردن", defEn: "to lift from the floor, table, etc., with one's fingers (S)", defFa: "برداشتن از روی زمین، میز و غیره، با انگشتان (قابل تفکیک)", noteEn: "Separable — the object can sit between the verb and the particle.", noteFa: "قابل تفکیک — مفعول می‌تواند بین فعل و حرف اضافه قرار بگیرد.", ex: [["Harry picked up the newspaper that was on the front doorstep.", "هری روزنامه‌ای را که جلوی در خانه بود، برداشت."], ["Could you pick your toy up before someone falls over it?", "می‌توانی اسباب‌بازی‌ات را برداری قبل از اینکه کسی روی آن بیفتد؟"]] },
+    { en: "sooner or later", fa: "بالاخره، دیر یا زود", defEn: "eventually, after a period of time", defFa: "بالاخره، پس از مدتی", noteEn: "Fixed phrase — the word order never changes.", noteFa: "عبارت ثابت است و ترتیب کلمات تغییر نمی‌کند.", ex: [["If you study English seriously, sooner or later you'll become fluent.", "اگر جدی انگلیسی بخوانی، دیر یا زود روان خواهی شد."], ["I'm too tired to do my homework now; I'm sure I'll do it sooner or later.", "الان برای انجام تکالیفم خیلی خسته‌ام؛ مطمئنم دیر یا زود انجامش می‌دهم."]] },
+    { en: "to get up", fa: "برخاستن، از خواب بیدار شدن", defEn: "to arise, to rise from a bed; to make someone arise (S)", defFa: "بلند شدن، از رختخواب برخاستن؛ کسی را بیدار کردن (قابل تفکیک)", noteEn: "For the last definition a noun phrase must separate the verb and particle.", noteFa: "برای تعریف دوم، یک عبارت اسمی باید فعل و حرف اضافه را از هم جدا کند.", ex: [["Carla gets up at seven o'clock every morning.", "کارلا هر روز صبح ساعت هفت بیدار می‌شود."], ["At what time should we get the children up tomorrow?", "فردا بچه‌ها را ساعت چند بیدار کنیم؟"]] },
+    { en: "at first", fa: "در ابتدا، اولش", defEn: "in the beginning, originally", defFa: "در ابتدا، در اصل", noteEn: "Often paired with but later or then to mark a change.", noteFa: "اغلب با but later یا then برای نشان دادن تغییر همراه می‌شود.", ex: [["At first English was difficult for him, but later he made great progress.", "در ابتدا انگلیسی برای او دشوار بود، اما بعدها پیشرفت زیادی کرد."], ["I thought at first that it was Sheila calling, but then I realized that it was Betty.", "اول فکر کردم شیلا زنگ می‌زند، اما بعداً متوجه شدم که بتی بود."]] }
+  ];
+
+  hidden(key, lang) {
+    const base = this.state.focus === lang;
+    return this.state.ov[key + ":" + lang] ? !base : base;
+  }
+
+  toggle(key, lang) {
+    const k = key + ":" + lang;
+    this.setState((s) => ({ ov: Object.assign({}, s.ov, { [k]: !s.ov[k] }) }));
+  }
+
+  pair(key, lang) {
+    const h = this.hidden(key, lang);
+    return {
+      text: "transition:opacity .28s ease,transform .28s ease;opacity:" + (h ? "0" : "1") + ";transform:translateY(" + (h ? "3px" : "0") + ");",
+      veil: "position:absolute;inset:0;transition:opacity .22s ease;opacity:" + (h ? "1" : "0") + ";pointer-events:" + (h ? "auto" : "none") + ";",
+      toggle: () => this.toggle(key, lang)
+    };
+  }
+
+  hidden2(key, lang) {
+    const base = this.state.focus2 === lang;
+    return this.state.ov2[key + ":" + lang] ? !base : base;
+  }
+
+  toggle2(key, lang) {
+    const k = key + ":" + lang;
+    this.setState((s) => ({ ov2: Object.assign({}, s.ov2, { [k]: !s.ov2[k] }) }));
+  }
+
+  pair2(key, lang) {
+    const h = this.hidden2(key, lang);
+    return {
+      text: "transition:opacity .3s ease,transform .3s ease;opacity:" + (h ? "0" : "1") + ";transform:translateY(" + (h ? "3px" : "0") + ");",
+      veil: "position:absolute;inset:-7px -12px;display:flex;transition:opacity .24s ease,transform .24s ease;opacity:" + (h ? "1" : "0") + ";transform:scale(" + (h ? "1" : ".985") + ");pointer-events:" + (h ? "auto" : "none") + ";",
+      toggle: () => this.toggle2(key, lang),
+      hidden: h
+    };
+  }
+
+  lane2(key, lang, lh) {
+    const h = this.hidden2(key, lang);
+    return {
+      hidden: h,
+      overlay: "position:absolute;left:0;right:0;top:0;transition:opacity .3s ease;opacity:" + (h ? "1" : "0") + ";pointer-events:none;",
+      wrap2: "position:relative;min-width:0;cursor:" + (h ? "pointer" : "text") + ";--rb-a:#F1EEE7;--rb-b:#E6E2D9;",
+      click2: () => this.toggle2(key, lang),
+      span:
+        "-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:9px;padding:3px 9px;margin:0 -9px;transition:background-color .34s ease,color .34s ease,box-shadow .34s ease;" +
+        (h
+          ? "background-color:#EDE9E2;background-image:linear-gradient(104deg,var(--rb-a,#F1EEE7) 0%,var(--rb-b,#E6E2D9) 42%,var(--rb-a,#F1EEE7) 78%);background-size:230% 100%;animation:redactSweep 4.2s cubic-bezier(.4,0,.6,1) infinite;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -1px 0 rgba(22,24,28,.035);color:transparent;"
+          : "background-color:rgba(237,233,226,0);background-image:none;background-size:auto;animation:none;box-shadow:inset 0 1px 0 rgba(255,255,255,0),inset 0 -1px 0 rgba(22,24,28,0);color:" + (lang === "en" ? "#16181C" : "#4E4C46") + ";"),
+      wrap: "min-width:0;line-height:" + lh + "px;cursor:" + (h ? "pointer" : "default") + ";--rb-a:#F1EEE7;--rb-b:#E6E2D9;",
+      click: () => { if (h) this.toggle2(key, lang); }
+    };
+  }
+
+  go2(n) {
+    const total = this.idioms.length;
+    const i2 = ((n % total) + total) % total;
+    this.setState((s) => ({ i2, ov2: {}, anim2: s.anim2 + 1 }));
+  }
+
+  segStyle(active) {
+    return "height:30px;padding:0 12px;border-radius:9px;border:0;font:700 11.5px/1 'interVariable';cursor:pointer;transition:background .18s,color .18s,box-shadow .18s;background:" +
+      (active ? "#FFFFFF" : "transparent") + ";color:" + (active ? "#16181C" : "#8C8A84") + ";box-shadow:" + (active ? "0 1px 2px rgba(22,24,28,.10)" : "none") + ";";
+  }
+
+  go(n) {
+    const total = this.idioms.length;
+    const i = ((n % total) + total) % total;
+    this.setState((s) => ({ i, ov: {}, anim: s.anim + 1 }));
+  }
+
+  seg2Style(active) {
+    return "height:32px;padding:0 13px;border-radius:9px;border:0;font:700 12px/1 'interVariable';cursor:pointer;transition:background .18s,color .18s,box-shadow .18s;background:" +
+      (active ? "#16181C" : "transparent") + ";color:" + (active ? "#FFFFFF" : "#8C8A84") + ";";
+  }
+
+  vals2() {
+    const s = this.state;
+    const cur = this.idioms[s.i2];
+    const pad = (n) => String(n).padStart(2, "0");
+    const lesson = s.lesson2 == null ? 1 : s.lesson2;
+    const veilBtn = (label, faded) =>
+      "width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 14px;border-radius:13px;border:1px solid #EBE7E0;background:#F7F5F1;color:" +
+      (faded ? "#A5A29A" : "#8C8A84") + ";font:650 12.5px/1 'interVariable';cursor:pointer;transition:background .16s,border-color .16s,color .16s;";
+    const q = s.q2.trim().toLowerCase();
+    const rail = this.idioms
+      .map((it, idx) => ({ it, idx }))
+      .filter(({ it }) => !q || it.en.toLowerCase().includes(q) || it.fa.includes(s.q2.trim()))
+      .map(({ it, idx }) => {
+        const active = idx === s.i2;
+        return {
+          en: it.en, fa: it.fa, num: pad(idx + 1),
+          onClick: () => this.go2(idx),
+          style: "display:grid;grid-template-columns:26px minmax(0,1fr);align-items:center;gap:11px;width:100%;padding:10px 12px;border-radius:11px;border:0;border-left:2px solid " + (active ? "#1F4FD8" : "transparent") + ";background:" + (active ? "#F1EFEB" : "transparent") + ";color:" + (active ? "#16181C" : "#5F5D58") + ";cursor:pointer;text-align:left;transition:background .16s,color .16s,border-color .16s;",
+          numStyle: "font:800 11px/1 'interVariable';font-variant-numeric:tabular-nums;color:" + (active ? "#1F4FD8" : "#BFBBB2") + ";"
+        };
+      });
+
+    return {
+      cur,
+      prevTitle: this.idioms[(s.i2 - 1 + this.idioms.length) % this.idioms.length].en,
+      nextTitle: this.idioms[(s.i2 + 1) % this.idioms.length].en,
+      veilEn: veilBtn("en", false),
+      veilFa: veilBtn("fa", true),
+      lessonLabel: "Lesson " + lesson,
+      lessons: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ({
+        n: String(n),
+        onClick: () => this.setState({ lesson2: n }),
+        style: "flex:none;display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:36px;padding:0 13px;border-radius:11px;border:1px solid " +
+          (n === lesson ? "#16181C" : "#EAE7E1") + ";background:" + (n === lesson ? "#16181C" : "#FFFFFF") + ";color:" +
+          (n === lesson ? "#FFFFFF" : "#8C8A84") + ";font:750 12.5px/1 'interVariable';font-variant-numeric:tabular-nums;cursor:pointer;transition:background .16s,border-color .16s,color .16s;"
+      })),
+      sheetOpen: !!s.sheet2,
+      openSheet: () => this.setState({ sheet2: true }),
+      closeSheet: () => this.setState({ sheet2: false }),
+      scrimStyle: "position:absolute;inset:0;background:rgba(22,24,28,.34);transition:opacity .24s ease;opacity:" +
+        (s.sheet2 ? "1" : "0") + ";pointer-events:" + (s.sheet2 ? "auto" : "none") + ";",
+      sheetStyle: "position:absolute;left:0;right:0;bottom:0;max-height:74%;display:flex;flex-direction:column;background:#FFFFFF;border-radius:22px 22px 0 0;box-shadow:0 -18px 44px -20px rgba(22,24,28,.45);transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .24s ease;transform:translateY(" +
+        (s.sheet2 ? "0" : "18px") + ");opacity:" + (s.sheet2 ? "1" : "0") + ";pointer-events:" + (s.sheet2 ? "auto" : "none") + ";",
+      sheetList: this.idioms.map((it, idx) => {
+        const active = idx === s.i2;
+        return {
+          en: it.en, fa: it.fa, num: pad(idx + 1),
+          onClick: () => { this.go2(idx); this.setState({ sheet2: false }); },
+          style: "display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 14px;border-radius:13px;border:0;background:" +
+            (active ? "#F3F1ED" : "transparent") + ";color:" + (active ? "#16181C" : "#5F5D58") + ";text-align:left;cursor:pointer;",
+          numStyle: "font:800 11.5px/1 'interVariable';font-variant-numeric:tabular-nums;color:" + (active ? "#1F4FD8" : "#C0BCB2") + ";"
+        };
+      }),
+      q: s.q2,
+      onQ: (e) => this.setState({ q2: e.target.value }),
+      clearQ: () => this.setState({ q2: "" }),
+      bar: "-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:9px;padding:3px 9px;margin:0 -9px;color:transparent;background-color:#EDE9E2;background-image:linear-gradient(104deg,var(--rb-a,#F1EEE7) 0%,var(--rb-b,#E6E2D9) 42%,var(--rb-a,#F1EEE7) 78%);background-size:230% 100%;animation:redactSweep 4.2s cubic-bezier(.4,0,.6,1) infinite;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -1px 0 rgba(22,24,28,.035);",
+      hasResults: rail.length > 0,
+      noResults: rail.length === 0,
+      rail,
+      railCount: rail.length + " of " + this.idioms.length,
+      pos: pad(s.i2 + 1) + " / " + this.idioms.length,
+      focusLabel: s.focus2 === "fa" ? "Persian hidden" : s.focus2 === "en" ? "English hidden" : "Both visible",
+      paneStyle: "animation:" + (s.anim2 % 2 ? "fadeB" : "fadeA") + " .36s cubic-bezier(.2,.7,.2,1);",
+      seg: { fa: this.seg2Style(s.focus2 === "fa"), en: this.seg2Style(s.focus2 === "en"), both: this.seg2Style(s.focus2 === "none") },
+      setFa: () => this.setState({ focus2: "fa", ov2: {} }),
+      setEn: () => this.setState({ focus2: "en", ov2: {} }),
+      setBoth: () => this.setState({ focus2: "none", ov2: {} }),
+      prev: () => this.go2(s.i2 - 1),
+      next: () => this.go2(s.i2 + 1),
+      examples: cur.ex.map((e, idx) => {
+        const k = "c" + s.i2 + "-" + idx;
+        const en = this.lane2(k, "en", 34);
+        const fa = this.lane2(k, "fa", 31);
+        const mEn = this.lane2(k, "en", 29);
+        const mFa = this.lane2(k, "fa", 29);
+        const any = en.hidden || fa.hidden;
+        return {
+          num: pad(idx + 1), en: e[0], fa: e[1],
+          enWrap: en.wrap2, enOverlay: en.overlay, enClick: en.click2,
+          faWrap: fa.wrap2, faOverlay: fa.overlay, faClick: fa.click2,
+          hint: any ? (en.hidden && fa.hidden ? "Tap either line to reveal" : en.hidden ? "Tap to reveal the English" : "Tap to reveal the Persian") : "",
+          hintStyle: "display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:7px;font:600 11.5px/1 'interVariable';overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:opacity .2s ease;background:" +
+            (any ? "#EFF2FC" : "transparent") + ";color:" + (any ? "#5B79D6" : "transparent") + ";opacity:" + (any ? "1" : "0") + ";",
+          hintStyleM: "display:inline-flex;align-self:flex-start;align-items:center;height:22px;padding:0 10px;border-radius:7px;font:600 11px/1 'interVariable';transition:opacity .2s ease;background:" +
+            (any ? "#EFF2FC" : "transparent") + ";color:" + (any ? "#5B79D6" : "transparent") + ";opacity:" + (any ? "1" : "0") + ";",
+          eyeStyle: "display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;border:0;background:" +
+            (any ? "#EFF2FC" : "transparent") + ";color:" + (any ? "#1F4FD8" : "#C4C0B7") + ";cursor:pointer;transition:background .16s,color .16s;",
+          eyeAll: () => {
+            const on = !any;
+            this.setState((st) => {
+              const ov2 = Object.assign({}, st.ov2);
+              ["en", "fa"].forEach((lang) => {
+                const base = st.focus2 === lang;
+                const want = on ? true : false;
+                ov2[k + ":" + lang] = base !== want;
+              });
+              return { ov2 };
+            });
+          }
+        };
+      })
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const cur = this.idioms[s.i];
+    const focusLabel = s.focus === "fa" ? "Persian hidden" : s.focus === "en" ? "English hidden" : "Both visible";
+    const pad = (n) => String(n).padStart(2, "0");
+
+    return {
+      cur,
+      focusLabel,
+      posLabel: "Idiom " + (s.i + 1) + " of " + this.idioms.length,
+      posShort: (s.i + 1) + " / " + this.idioms.length,
+      paneStyle: "animation:" + (s.anim % 2 ? "fadeB" : "fadeA") + " .34s cubic-bezier(.2,.7,.2,1);",
+      seg: { fa: this.segStyle(s.focus === "fa"), en: this.segStyle(s.focus === "en"), both: this.segStyle(s.focus === "none") },
+      setFocusFa: () => this.setState({ focus: "fa", ov: {} }),
+      setFocusEn: () => this.setState({ focus: "en", ov: {} }),
+      setFocusBoth: () => this.setState({ focus: "none", ov: {} }),
+      prev: () => this.go(s.i - 1),
+      next: () => this.go(s.i + 1),
+      v: { a1: { en: this.pair("a1", "en"), fa: this.pair("a1", "fa") }, a2: { en: this.pair("a2", "en"), fa: this.pair("a2", "fa") }, ma1: { fa: this.pair("ma1", "fa") } },
+      examples: cur.ex.map((e, idx) => {
+        const en = this.pair("b" + s.i + "-" + idx, "en");
+        const fa = this.pair("b" + s.i + "-" + idx, "fa");
+        return { num: pad(idx + 1), en: e[0], fa: e[1], enText: en.text, enVeil: en.veil, toggleEn: en.toggle, faText: fa.text, faVeil: fa.veil, toggleFa: fa.toggle };
+      }),
+      rail: this.idioms.map((it, idx) => {
+        const active = idx === s.i;
+        return {
+          en: it.en, fa: it.fa, num: pad(idx + 1),
+          onClick: () => this.go(idx),
+          style: "display:flex;align-items:center;gap:12px;width:100%;padding:9px 12px;border-radius:12px;border:1px solid " + (active ? "#DCE3F8" : "transparent") + ";background:" + (active ? "#FFFFFF" : "transparent") + ";color:" + (active ? "#16181C" : "#5F5D58") + ";cursor:pointer;text-align:left;transition:background .16s,border-color .16s,color .16s;box-shadow:" + (active ? "0 1px 2px rgba(22,24,28,.06)" : "none") + ";",
+          numStyle: "display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex-shrink:0;border-radius:8px;font:800 11px/1 'interVariable';font-variant-numeric:tabular-nums;background:" + (active ? "#1F4FD8" : "#E7E4DE") + ";color:" + (active ? "#FFFFFF" : "#9A978F") + ";"
+        };
+      }),
+      t2: this.vals2(),
+      chips: this.idioms.map((it, idx) => {
+        const active = idx === s.i;
+        return {
+          num: pad(idx + 1),
+          onClick: () => this.go(idx),
+          style: "flex-shrink:0;width:38px;height:38px;border-radius:12px;border:1px solid " + (active ? "#1F4FD8" : "#E6E3DD") + ";background:" + (active ? "#1F4FD8" : "#FFFFFF") + ";color:" + (active ? "#FFFFFF" : "#8C8A84") + ";font:800 12px/1 'interVariable';font-variant-numeric:tabular-nums;cursor:pointer;transition:background .16s,border-color .16s,color .16s;"
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
